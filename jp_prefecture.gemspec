@@ -4,9 +4,9 @@ require File.expand_path('../lib/jp_prefecture/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["chocoby"]
   gem.email         = ["chocoby@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.summary       = %q{Convert japan prefecture code into prefecture name}
+  gem.description   = %q{Convert japan prefecture code(JIS X 0402 based) into prefecture name.}
+  gem.homepage      = "https://github.com/chocoby/jp_prefecture"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -14,4 +14,17 @@ Gem::Specification.new do |gem|
   gem.name          = "jp_prefecture"
   gem.require_paths = ["lib"]
   gem.version       = JpPrefecture::VERSION
+
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "yard"
+  gem.add_development_dependency "redcarpet"
+
+  gem.add_development_dependency "awesome_print"
+
+  gem.add_development_dependency "activerecord", ">= 3.2.0"
+  gem.add_development_dependency "sqlite3"
+
+  gem.add_development_dependency "rspec", "~> 2.12.0"
+  gem.add_development_dependency "guard-rspec", "~> 2.4.0"
+  gem.add_development_dependency "growl-rspec", "~> 0.0.1"
 end
