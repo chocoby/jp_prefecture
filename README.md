@@ -1,9 +1,21 @@
 # JpPrefecture
 
+https://rubygems.org/gems/jp_prefecture
+
 ## jp_prefecture とは
 
 都道府県コードと都道府県名を変換するライブラリです。
 Ruby on Rails で使用することもできます。
+
+JIS X 0402 で定義されている都道府県コードをベースに、
+ゼロから始まるものはゼロを削除して使用しています。
+
+    北海道 01 -> 1
+    東京都 13 -> 13
+
+要望があれば JIS X 0402 で定義されている正規のコードもサポートするようにします。
+
+参考: [Wikipedia:全国地方公共団体コード](http://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89#.E9.83.BD.E9.81.93.E5.BA.9C.E7.9C.8C.E3.82.B3.E3.83.BC.E3.83.89)
 
 ## インストール方法
 
@@ -61,18 +73,6 @@ app/models/place.rb:
 `collection_select` を使用して、都道府県のセレクトボックスを生成することができます。
 
     f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
-
-## 都道府県コードと都道府県名のマッピングについて
-
-JIS X 0402 で定義されている都道府県コードをベースに、
-ゼロから始まるものはゼロを削除して使用しています。
-
-    北海道 01 -> 1
-    東京都 13 -> 13
-
-要望があれば JIS X 0402 で定義されている正規のコードもサポートするようにします。
-
-参考: [Wikipedia:全国地方公共団体コード](http://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89#.E9.83.BD.E9.81.93.E5.BA.9C.E7.9C.8C.E3.82.B3.E3.83.BC.E3.83.89)
 
 ## ドキュメント
 
