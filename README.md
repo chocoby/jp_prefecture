@@ -54,7 +54,7 @@ Gemfile に記述してインストールするか:
 app/models/place.rb:
 
     class Place < ActiveRecord::Base
-      # prefecture_code:string
+      # prefecture_code:integer
 
       include JpPrefecture
       jp_prefecture
