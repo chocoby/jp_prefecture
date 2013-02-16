@@ -1,10 +1,6 @@
 # coding: utf-8
-require 'rubygems'
 require 'jp_prefecture'
-
 require "active_record"
-
-require 'awesome_print'
 
 RSpec.configure do |config|
   config.before(:suite) do

@@ -16,15 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = JpPrefecture::VERSION
 
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "yard"
-  gem.add_development_dependency "redcarpet"
-
-  gem.add_development_dependency "awesome_print"
-
+  gem.add_development_dependency "rspec", "~> 2.12.0"
   gem.add_development_dependency "activerecord", ">= 3.2.0"
   gem.add_development_dependency "sqlite3"
-
-  gem.add_development_dependency "rspec", "~> 2.12.0"
-  gem.add_development_dependency "guard-rspec", "~> 2.4.0"
-  gem.add_development_dependency "growl-rspec", "~> 0.0.1"
 end
