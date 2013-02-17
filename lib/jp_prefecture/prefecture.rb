@@ -1,4 +1,5 @@
 # coding: utf-8
+require "jp_prefecture/mapping"
 
 module JpPrefecture
   # 都道府県のコードと名前を扱うクラス

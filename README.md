@@ -49,15 +49,13 @@ Gemfile に記述してインストールするか:
 `ActiveRecord::Base` を継承した Model に include し、`jp_prefecture` を呼び出すことで、
 都道府県コードを扱うことができます。
 
-**NOTE:** 現在、カラム名は `prefecture_code` 固定です。
-
 app/models/place.rb:
 
     class Place < ActiveRecord::Base
       # prefecture_code:integer
 
       include JpPrefecture
-      jp_prefecture
+      jp_prefecture :prefecture_code
     end
 
 `prefecture` というメソッドが生成され、都道府県コード、都道府県名が参照できるようになります。:
@@ -79,13 +77,11 @@ app/models/place.rb:
 
 ## TODO
 
-* 対象カラムを指定できるようにする
-  * 現在は `prefecture_code` 固定
 * 生成するメソッド名を指定できるようにする
   * 現在は `prefecture` 固定
 * バリデーター
 * i18n?(tokyo などの文字列に対応)
-* ドキュメントをちゃんと書く
+* ドキュメントを書く
 * JIS X 0402 で定義されている正規のコードをサポート？
 
 ## Contributing

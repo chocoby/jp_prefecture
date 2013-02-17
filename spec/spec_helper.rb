@@ -18,6 +18,7 @@ def setup_db
   ActiveRecord::Schema.define(:version => 1) do
     create_table :places do |t|
       t.integer :prefecture_code
+      t.integer :prefecture_id
     end
   end
 end
