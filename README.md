@@ -16,21 +16,23 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 また、Rails のプラグインとして使用することもできます。
 
-## インストール方法
+## インストール
 
-Gemfile に記述してインストールするか:
+以下の行を `Gemfile` に記述してから:
 
     gem 'jp_prefecture'
 
-    $ bundle
+`bundle` を実行してください。
 
-手動でインストールしてください:
+または、手動でインストールしてください:
 
     $ gem install jp_prefecture
 
 ## 使い方
 
 ### 都道府県コードから都道府県名を取得
+
+    require 'jp_prefecture'
 
     pref = JpPrefecture::Prefecture.find 13
     # => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都">
