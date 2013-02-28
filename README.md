@@ -46,10 +46,9 @@ JIS X 0402 で定義されている都道府県コードをベースに、
     JpPrefecture::Prefecture.all
     # => [#<JpPrefecture::Prefecture:0x007fd0a3d78d38 @code=1, @name="北海道">, ...]
 
-### ActiveRecord で使用する
+### Rails(ActiveRecord) で使用する
 
-`ActiveRecord::Base` を継承した Model に include し、`jp_prefecture` を呼び出すことで、
-都道府県コードを扱うことができます。
+`ActiveRecord::Base` を継承した Model で、都道府県コードを扱うことができます。
 
 app/models/place.rb:
 
@@ -60,11 +59,21 @@ app/models/place.rb:
       jp_prefecture :prefecture_code
     end
 
-`prefecture` というメソッドが生成され、都道府県コード、都道府県名が参照できるようになります。:
+`prefecture` というメソッドが生成され、都道府県コード、都道府県名が参照できるようになります:
 
     place = Place.new
     place.prefecture_code = 13
     place.prefecture.name
+    # => "東京都"
+
+生成されるメソッド名は `method_name` というオプションで指定することができます:
+
+    # model
+    jp_prefecture :prefecture_code, :method_name => :pref
+
+    place = Place.new
+    place.prefecture_code = 13
+    place.pref.name
     # => "東京都"
 
 ### テンプレートで使用する
@@ -79,11 +88,9 @@ app/models/place.rb:
 
 ## TODO
 
-* 生成するメソッド名を指定できるようにする
-  * 現在は `prefecture` 固定
 * バリデーター
 * i18n?(tokyo などの文字列に対応)
-* ドキュメントを書く
+* 一つのモデルで複数のカラムをサポート？
 * JIS X 0402 で定義されている正規のコードをサポート？
 
 ## Contributing

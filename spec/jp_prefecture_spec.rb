@@ -12,16 +12,6 @@ describe JpPrefecture do
     it { should respond_to(:jp_prefecture) }
   end
 
-  describe '.extended' do
-    subject do
-      Class.new(ActiveRecord::Base) do
-        extend JpPrefecture
-      end
-    end
-
-    it { should respond_to(:jp_prefecture) }
-  end
-
   describe 'include されていない' do
     subject { Class.new(ActiveRecord::Base) }
     it { should_not respond_to(:jp_prefecture) }
