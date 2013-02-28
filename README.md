@@ -1,5 +1,7 @@
 # JpPrefecture
 
+[![Build Status](https://travis-ci.org/chocoby/jp_prefecture.png?branch=master)](https://travis-ci.org/chocoby/jp_prefecture)
+
 https://rubygems.org/gems/jp_prefecture
 
 ## jp_prefecture とは
