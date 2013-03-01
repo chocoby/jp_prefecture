@@ -1,6 +1,7 @@
 # JpPrefecture
 
 [![Build Status](https://travis-ci.org/chocoby/jp_prefecture.png?branch=master)](https://travis-ci.org/chocoby/jp_prefecture)
+[![Dependency Status](https://gemnasium.com/chocoby/jp_prefecture.png)](https://gemnasium.com/chocoby/jp_prefecture)
 
 https://rubygems.org/gems/jp_prefecture
 
