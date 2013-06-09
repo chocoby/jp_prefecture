@@ -96,10 +96,7 @@ app/models/place.rb:
 
 ## TODO
 
-* バリデーター
-* i18n?(tokyo などの文字列に対応)
-* 一つのモデルで複数のカラムをサポート？
-* JIS X 0402 で定義されている正規のコードをサポート？
+GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照してください。
 
 ## Contributing
 
