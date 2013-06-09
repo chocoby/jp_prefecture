@@ -38,16 +38,18 @@ JIS X 0402 で定義されている都道府県コードをベースに、
     require 'jp_prefecture'
 
     pref = JpPrefecture::Prefecture.find 13
-    # => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都">
+    # => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都", @name_e="Tokyo">
     pref.code
     # => 13
     pref.name
     # => "東京都"
+    pref.name_e
+    # => "Tokyo"
 
 ### 都道府県の一覧を取得
 
     JpPrefecture::Prefecture.all
-    # => [#<JpPrefecture::Prefecture:0x007fd0a3d78d38 @code=1, @name="北海道">, ...]
+    # => [#<JpPrefecture::Prefecture:0x007fd0a3d78d38 @code=1, @name="北海道", @name_e="Hokkaido">, ...]
 
 ### Rails(ActiveRecord) で使用する
 
@@ -84,6 +86,9 @@ app/models/place.rb:
 `collection_select` を使用して、都道府県のセレクトボックスを生成することができます。:
 
     f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
+
+    # 英語表記
+    f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
 
 ## ドキュメント
 

@@ -3,9 +3,10 @@ require 'spec_helper'
 
 describe JpPrefecture::Prefecture do
   describe '.build' do
-    let(:pref) { JpPrefecture::Prefecture.build([1, '北海道']) }
+    let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido') }
     it { pref.code.should eq 1 }
     it { pref.name.should eq '北海道' }
+    it { pref.name_e.should eq 'Hokkaido' }
   end
 
   describe '.find' do
@@ -13,6 +14,7 @@ describe JpPrefecture::Prefecture do
       let(:pref) { JpPrefecture::Prefecture.find(1) }
       it { pref.code.should eq 1 }
       it { pref.name.should eq '北海道' }
+      it { pref.name_e.should eq 'Hokkaido' }
     end
 
     context '都道府県が見つからなかった場合' do

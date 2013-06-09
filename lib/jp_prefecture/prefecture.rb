@@ -6,19 +6,23 @@ module JpPrefecture
   class Prefecture
     include JpPrefecture::Mapping
 
-    attr_accessor :code, :name
+    attr_accessor :code, :name, :name_e
 
     # 配列から都道府県クラスを生成
     #
     # @example
     #   # コード/名前から都道府県クラスを生成
-    #   JpPrefecture::Prefecture.build [1, '北海道']
+    #   JpPrefecture::Prefecture.build 1, '北海道', 'Hokkaido'
     #
-    # @param pref [Array] コード/名前の配列
-    def self.build(pref)
+    # @param pref [Integer] 都道府県コード
+    # @param name [String] 都道府県名
+    # @param name_e [String] 都道府県名(英語表記)
+    def self.build(code, name, name_e)
       p = self.new
-      p.code = pref[0]
-      p.name = pref[1]
+
+      p.code    = code
+      p.name    = name
+      p.name_e  = name_e
 
       p
     end
@@ -32,10 +36,10 @@ module JpPrefecture
     # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
     # @return [nil] 都道府県が見つからない場合は nil
     def self.find(code)
-      name = PREFECTURE_CODE_NAME[code]
-      return nil unless name
+      names = PREFECTURE_CODE_NAME[code]
+      return nil unless names
 
-      self.build([code, name])
+      self.build(code, names[:name], names[:name_e])
     end
 
 
@@ -48,10 +52,14 @@ module JpPrefecture
     #   # collection_select で選択肢を生成
     #   f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
     #
+    #   # collection_select で選択肢を生成(英語表記)
+    #   f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
+    #
     # @return [Array] 都道府県クラスの配列
     def self.all
       PREFECTURE_CODE_NAME.map do |pref|
-        self.build(pref)
+        names = pref[1]
+        self.build(pref[0], names[:name], names[:name_e])
       end
     end
   end

@@ -13,7 +13,7 @@ module JpPrefecture
     #   p = Place.new
     #   p.prefecture_code = 1
     #   p.prefecture
-    #   # => #<JpPrefecture::Prefecture:0x007fd0a3d10f30 @code=1, @name="北海道">
+    #   # => #<JpPrefecture::Prefecture:0x007fd0a3d10f30 @code=1, @name="北海道", @name_e="Hokkaido">
     #
     # 生成するメソッド名は method_name で指定する:
     #
@@ -25,7 +25,7 @@ module JpPrefecture
     #   p = Place.new
     #   p.prefecture_code = 1
     #   p.pref
-    #   # => #<JpPrefecture::Prefecture:0x007fcb8444dcc8 @code=1, @name="北海道">
+    #   # => #<JpPrefecture::Prefecture:0x007fcb8444dcc8 @code=1, @name="北海道", @name_e="Hokkaido">
     #
     # @param [Symbol] column_name 変換対象のカラム
     # @option options [Symbol] :method_name 生成するメソッド名。デフォルト: +:prefecture+
