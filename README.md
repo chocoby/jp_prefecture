@@ -87,7 +87,7 @@ app/models/place.rb:
 生成されるメソッド名は `method_name` というオプションで指定することができます:
 
     # model
-    jp_prefecture :prefecture_code, :method_name => :pref
+    jp_prefecture :prefecture_code, method_name: :pref
 
     place = Place.new
     place.prefecture_code = 13
