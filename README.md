@@ -103,6 +103,18 @@ app/models/place.rb:
     # 英語表記で出力
     f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
 
+### マイグレーション
+
+カラムのタイプは `integer` か `string` で作成してください。
+
+マイグレーションのサンプル:
+
+    class AddPrefectureCodeToPlaces < ActiveRecord::Migration
+      def change
+        add_column :places, :prefecture_code, :integer
+      end
+    end
+
 ## ドキュメント
 
 [http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
