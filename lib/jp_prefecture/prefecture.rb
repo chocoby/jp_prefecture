@@ -32,6 +32,7 @@ module JpPrefecture
     # @example
     #   # 都道府県コードから検索
     #   JpPrefecture::Prefecture.find(1)
+    #   JpPrefecture::Prefecture.find(code: 1)
     #
     #   # 都道府県名から検索
     #   JpPrefecture::Prefecture.find(name: '北海道')
@@ -42,6 +43,7 @@ module JpPrefecture
     #
     # @param args [Integer] 都道府県コード
     # @param [Hash] args 検索条件
+    # @option args [Integer] :code 都道府県コード
     # @option args [String] :name 都道府県名/英語表記の都道府県名
     # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
     # @return [nil] 都道府県が見つからない場合は nil
@@ -51,12 +53,13 @@ module JpPrefecture
       if args.is_a?(Integer)
         code = args
       else
-        name = args[:name].capitalize
-
-        result = PREFECTURE_CODE_NAME.select { |_, v| v.has_value?(name) }.first
-        return if result.nil?
-
-        code = result[0]
+        code =
+          case args.keys[0]
+          when :name
+            self.find_code_by_name(args[:name])
+          when :code
+            args[:code]
+          end
       end
 
       names = PREFECTURE_CODE_NAME[code]
@@ -86,5 +89,18 @@ module JpPrefecture
         self.build(pref[0], names[:name], names[:name_e])
       end
     end
+
+  protected
+
+    # 名前から都道府県コードを検索
+    def self.find_code_by_name(name)
+      name.capitalize!
+
+      result = PREFECTURE_CODE_NAME.select { |_, v| v.has_value?(name) }.first
+      return if result.nil?
+
+      result[0]
+    end
+
   end
 end

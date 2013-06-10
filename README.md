@@ -39,6 +39,8 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 ### 都道府県コードから都道府県を検索
 
+単純に都道府県コードを渡すと、都道府県コードから都道府県を検索します:
+
     pref = JpPrefecture::Prefecture.find 13
     # => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都", @name_e="Tokyo">
     pref.code
@@ -47,6 +49,10 @@ JIS X 0402 で定義されている都道府県コードをベースに、
     # => "東京都"
     pref.name_e
     # => "Tokyo"
+
+以下のように渡すことも可能です:
+
+    JpPrefecture::Prefecture.find code: 13
 
 ### 都道府県名から都道府県を検索
 

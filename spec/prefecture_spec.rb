@@ -32,6 +32,18 @@ describe JpPrefecture::Prefecture do
       end
     end
 
+    describe '都道府県コード' do
+      context '都道府県が見つかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(code: 1) }
+        it_behaves_like "都道府県が見つかった場合"
+      end
+
+      context '都道府県が見つからなかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(code: 99) }
+        it_behaves_like "都道府県が見つからなかった場合"
+      end
+    end
+
     describe '都道府県名' do
       context '都道府県が見つかった場合' do
         let(:pref) { JpPrefecture::Prefecture.find(name: "北海道") }
