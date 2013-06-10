@@ -25,11 +25,17 @@ describe JpPrefecture::Prefecture do
     describe '都道府県コード' do
       it_behaves_like "都道府県が見つかる", 1
       it_behaves_like "都道府県が見つからない", 99
+      it_behaves_like "都道府県が見つかる", "1"
+      it_behaves_like "都道府県が見つかる", "01"
+      it_behaves_like "都道府県が見つからない", "99"
     end
 
     describe '都道府県コード(キーワード引数)' do
       it_behaves_like "都道府県が見つかる", code: 1
       it_behaves_like "都道府県が見つからない", code: 99
+      it_behaves_like "都道府県が見つかる", code: "1"
+      it_behaves_like "都道府県が見つかる", code: "01"
+      it_behaves_like "都道府県が見つからない", code: "99"
     end
 
     describe '都道府県名' do

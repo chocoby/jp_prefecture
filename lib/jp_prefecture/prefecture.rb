@@ -50,15 +50,15 @@ module JpPrefecture
     def self.find(args)
       return if args.nil?
 
-      if args.is_a?(Integer)
-        code = args
+      if args.is_a?(Integer) || args.is_a?(String)
+        code = args.to_i
       else
         code =
           case args.keys[0]
           when :name
             self.find_code_by_name(args[:name])
           when :code
-            args[:code]
+            args[:code].to_i
           end
       end
 
