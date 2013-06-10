@@ -12,7 +12,7 @@ module JpPrefecture
     #
     # @example
     #   # コード/名前から都道府県クラスを生成
-    #   JpPrefecture::Prefecture.build 1, '北海道', 'Hokkaido'
+    #   JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido')
     #
     # @param pref [Integer] 都道府県コード
     # @param name [String] 都道府県名
@@ -27,17 +27,41 @@ module JpPrefecture
       p
     end
 
-    # 都道府県コードから都道府県を検索
+    # 都道府県を検索
     #
     # @example
-    #   JpPrefecture::Prefecture.find 1
+    #   # 都道府県コードから検索
+    #   JpPrefecture::Prefecture.find(1)
     #
-    # @param code [Integer] 都道府県コード
+    #   # 都道府県名から検索
+    #   JpPrefecture::Prefecture.find(name: '北海道')
+    #
+    #   # 英語表記の都道府県名から検索
+    #   JpPrefecture::Prefecture.find(name: 'Hokkaido')
+    #   JpPrefecture::Prefecture.find(name: 'hokkaido')
+    #
+    # @param args [Integer] 都道府県コード
+    # @param [Hash] args 検索条件
+    # @option args [String] :name 都道府県名/英語表記の都道府県名
     # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
     # @return [nil] 都道府県が見つからない場合は nil
-    def self.find(code)
+    def self.find(args)
+      return if args.nil?
+
+      if args.is_a?(Integer)
+        code = args
+      else
+        name = args[:name].capitalize
+
+        result = PREFECTURE_CODE_NAME.select { |_, v| v.has_value?(name) }.first
+        return if result.nil?
+
+        code = result[0]
+      end
+
       names = PREFECTURE_CODE_NAME[code]
-      return nil unless names
+
+      return unless names
 
       self.build(code, names[:name], names[:name_e])
     end

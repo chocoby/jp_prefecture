@@ -31,6 +31,42 @@ describe JpPrefecture::Prefecture do
         it_behaves_like "都道府県が見つからなかった場合"
       end
     end
+
+    describe '都道府県名' do
+      context '都道府県が見つかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: "北海道") }
+        it_behaves_like "都道府県が見つかった場合"
+      end
+
+      context '都道府県が見つからなかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: "うどん県") }
+        it_behaves_like "都道府県が見つからなかった場合"
+      end
+    end
+
+    describe '都道府県名(英語表記)' do
+      context '都道府県が見つかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: "Hokkaido") }
+        it_behaves_like "都道府県が見つかった場合"
+      end
+
+      context '都道府県が見つからなかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: "Udon") }
+        it_behaves_like "都道府県が見つからなかった場合"
+      end
+    end
+
+    describe '都道府県名(英語表記-小文字)' do
+      context '都道府県が見つかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: "hokkaido") }
+        it_behaves_like "都道府県が見つかった場合"
+      end
+
+      context '都道府県が見つからなかった場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: "udon") }
+        it_behaves_like "都道府県が見つからなかった場合"
+      end
+    end
   end
 
   describe '.all' do

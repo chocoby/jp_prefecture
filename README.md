@@ -33,9 +33,11 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 ## 使い方
 
-### 都道府県コードから都道府県名を取得
+### ライブラリの読み込み
 
     require 'jp_prefecture'
+
+### 都道府県コードから都道府県を検索
 
     pref = JpPrefecture::Prefecture.find 13
     # => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都", @name_e="Tokyo">
@@ -45,6 +47,17 @@ JIS X 0402 で定義されている都道府県コードをベースに、
     # => "東京都"
     pref.name_e
     # => "Tokyo"
+
+### 都道府県名から都道府県を検索
+
+    JpPrefecture::Prefecture.find name: "東京都"
+    # => #<JpPrefecture::Prefecture:0x007ff672271800 @code=13, @name="東京都", @name_e="Tokyo">
+
+    JpPrefecture::Prefecture.find name: "Tokyo"
+    # => #<JpPrefecture::Prefecture:0x007fb3c2828b10 @code=13, @name="東京都", @name_e="Tokyo">
+
+    JpPrefecture::Prefecture.find name: "tokyo"
+    # => #<JpPrefecture::Prefecture:0x007f965c0c5a40 @code=13, @name="東京都", @name_e="Tokyo">
 
 ### 都道府県の一覧を取得
 
@@ -87,7 +100,7 @@ app/models/place.rb:
 
     f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
 
-    # 英語表記
+    # 英語表記で出力
     f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
 
 ## ドキュメント
