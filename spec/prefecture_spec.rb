@@ -10,74 +10,41 @@ describe JpPrefecture::Prefecture do
   end
 
   describe '.find' do
-    shared_examples "都道府県が見つかった場合" do
+    shared_examples "都道府県が見つかる" do |arg|
+      let(:pref) { JpPrefecture::Prefecture.find(arg) }
       it { pref.code.should eq 1 }
       it { pref.name.should eq '北海道' }
       it { pref.name_e.should eq 'Hokkaido' }
     end
 
-    shared_examples '都道府県が見つからなかった場合' do
+    shared_examples '都道府県が見つからない' do |arg|
+      let(:pref) { JpPrefecture::Prefecture.find(arg) }
       it { pref.should be_nil }
     end
 
     describe '都道府県コード' do
-      context '都道府県が見つかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(1) }
-        it_behaves_like "都道府県が見つかった場合"
-      end
-
-      context '都道府県が見つからなかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(99) }
-        it_behaves_like "都道府県が見つからなかった場合"
-      end
+      it_behaves_like "都道府県が見つかる", 1
+      it_behaves_like "都道府県が見つからない", 99
     end
 
-    describe '都道府県コード' do
-      context '都道府県が見つかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(code: 1) }
-        it_behaves_like "都道府県が見つかった場合"
-      end
-
-      context '都道府県が見つからなかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(code: 99) }
-        it_behaves_like "都道府県が見つからなかった場合"
-      end
+    describe '都道府県コード(キーワード引数)' do
+      it_behaves_like "都道府県が見つかる", code: 1
+      it_behaves_like "都道府県が見つからない", code: 99
     end
 
     describe '都道府県名' do
-      context '都道府県が見つかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(name: "北海道") }
-        it_behaves_like "都道府県が見つかった場合"
-      end
-
-      context '都道府県が見つからなかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(name: "うどん県") }
-        it_behaves_like "都道府県が見つからなかった場合"
-      end
+      it_behaves_like "都道府県が見つかる", name: "北海道"
+      it_behaves_like "都道府県が見つからない", name: "うどん県"
     end
 
     describe '都道府県名(英語表記)' do
-      context '都道府県が見つかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(name: "Hokkaido") }
-        it_behaves_like "都道府県が見つかった場合"
-      end
-
-      context '都道府県が見つからなかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(name: "Udon") }
-        it_behaves_like "都道府県が見つからなかった場合"
-      end
+      it_behaves_like "都道府県が見つかる", name: "Hokkaido"
+      it_behaves_like "都道府県が見つからない", name: "Udon"
     end
 
     describe '都道府県名(英語表記-小文字)' do
-      context '都道府県が見つかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(name: "hokkaido") }
-        it_behaves_like "都道府県が見つかった場合"
-      end
-
-      context '都道府県が見つからなかった場合' do
-        let(:pref) { JpPrefecture::Prefecture.find(name: "udon") }
-        it_behaves_like "都道府県が見つからなかった場合"
-      end
+      it_behaves_like "都道府県が見つかる", name: "hokkaido"
+      it_behaves_like "都道府県が見つからない", name: "udon"
     end
   end
 
