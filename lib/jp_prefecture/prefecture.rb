@@ -94,9 +94,10 @@ module JpPrefecture
 
     # 名前から都道府県コードを検索
     def self.find_code_by_name(name)
-      name.capitalize!
+      result = PREFECTURE_CODE_NAME.select { |_, v|
+        v.has_value?(name.capitalize)
+      }.first
 
-      result = PREFECTURE_CODE_NAME.select { |_, v| v.has_value?(name) }.first
       return if result.nil?
 
       result[0]

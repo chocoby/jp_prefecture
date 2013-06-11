@@ -54,6 +54,32 @@ describe JpPrefecture::Prefecture do
         it_behaves_like "都道府県が見つからない", name: "udon"
       end
     end
+
+    describe '渡した変数について' do
+      context 'string の場合' do
+        it '値が変更されないこと' do
+          code = '1'
+          JpPrefecture::Prefecture.find(code)
+          code.should eq '1'
+        end
+      end
+
+      context 'code が string の場合' do
+        it '値が変更されないこと' do
+          code = '1'
+          JpPrefecture::Prefecture.find(code: code)
+          code.should eq '1'
+        end
+      end
+
+      context 'name の場合' do
+        it '値が変更されないこと' do
+          name = 'hokkaido'
+          JpPrefecture::Prefecture.find(name: name)
+          name.should eq 'hokkaido'
+        end
+      end
+    end
   end
 
   describe '.all' do
