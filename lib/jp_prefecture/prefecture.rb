@@ -22,7 +22,7 @@ module JpPrefecture
 
       p.code    = code
       p.name    = name
-      p.name_e  = name_e
+      p.name_e  = name_e.capitalize
 
       p
     end
@@ -95,7 +95,7 @@ module JpPrefecture
     # 名前から都道府県コードを検索
     def self.find_code_by_name(name)
       result = PREFECTURE_CODE_NAME.select { |_, v|
-        v.has_value?(name.capitalize)
+        v.has_value?(name.downcase)
       }.first
 
       return if result.nil?
