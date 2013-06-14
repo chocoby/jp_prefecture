@@ -143,3 +143,11 @@ Ruby 1.8.7 のサポートは [v0.1.1](https://github.com/chocoby/jp_prefecture/
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## GitHub
+
+https://github.com/chocoby/jp_prefecture
+
+## ライセンス
+
+MIT: http://chocoby.mit-license.org/
