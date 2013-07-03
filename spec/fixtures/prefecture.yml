@@ -1,0 +1,148 @@
+# JIS X 0402 で定義されている都道府県コードと都道府県名をベースに
+# コードがゼロから始まるもの(09 など)を 1 ケタにし、
+# さらに、「海外」をcode: 48として追加したもの
+---
+1:
+  :name: 北海道
+  :name_e: hokkaido
+2:
+  :name: 青森県
+  :name_e: aomori
+3:
+  :name: 岩手県
+  :name_e: iwate
+4:
+  :name: 宮城県
+  :name_e: miyagi
+5:
+  :name: 秋田県
+  :name_e: akita
+6:
+  :name: 山形県
+  :name_e: yamagata
+7:
+  :name: 福島県
+  :name_e: fukushima
+8:
+  :name: 茨城県
+  :name_e: ibaraki
+9:
+  :name: 栃木県
+  :name_e: tochigi
+10:
+  :name: 群馬県
+  :name_e: gunma
+11:
+  :name: 埼玉県
+  :name_e: saitama
+12:
+  :name: 千葉県
+  :name_e: chiba
+13:
+  :name: 東京都
+  :name_e: tokyo
+14:
+  :name: 神奈川県
+  :name_e: kanagawa
+15:
+  :name: 新潟県
+  :name_e: niigata
+16:
+  :name: 富山県
+  :name_e: toyama
+17:
+  :name: 石川県
+  :name_e: ishikawa
+18:
+  :name: 福井県
+  :name_e: fukui
+19:
+  :name: 山梨県
+  :name_e: yamanashi
+20:
+  :name: 長野県
+  :name_e: nagano
+21:
+  :name: 岐阜県
+  :name_e: gifu
+22:
+  :name: 静岡県
+  :name_e: shizuoka
+23:
+  :name: 愛知県
+  :name_e: aichi
+24:
+  :name: 三重県
+  :name_e: mie
+25:
+  :name: 滋賀県
+  :name_e: shiga
+26:
+  :name: 京都府
+  :name_e: kyoto
+27:
+  :name: 大阪府
+  :name_e: osaka
+28:
+  :name: 兵庫県
+  :name_e: hyogo
+29:
+  :name: 奈良県
+  :name_e: nara
+30:
+  :name: 和歌山県
+  :name_e: wakayama
+31:
+  :name: 鳥取県
+  :name_e: tottori
+32:
+  :name: 島根県
+  :name_e: shimane
+33:
+  :name: 岡山県
+  :name_e: okayama
+34:
+  :name: 広島県
+  :name_e: hiroshima
+35:
+  :name: 山口県
+  :name_e: yamaguchi
+36:
+  :name: 徳島県
+  :name_e: tokushima
+37:
+  :name: 香川県
+  :name_e: kagawa
+38:
+  :name: 愛媛県
+  :name_e: ehime
+39:
+  :name: 高知県
+  :name_e: kochi
+40:
+  :name: 福岡県
+  :name_e: fukuoka
+41:
+  :name: 佐賀県
+  :name_e: saga
+42:
+  :name: 長崎県
+  :name_e: nagasaki
+43:
+  :name: 熊本県
+  :name_e: kumamoto
+44:
+  :name: 大分県
+  :name_e: oita
+45:
+  :name: 宮崎県
+  :name_e: miyazaki
+46:
+  :name: 鹿児島県
+  :name_e: kagoshima
+47:
+  :name: 沖縄県
+  :name_e: okinawa
+48:
+  :name: 海外
+  :name_e: foreign_country

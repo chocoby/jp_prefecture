@@ -4,7 +4,6 @@ require "jp_prefecture/mapping"
 module JpPrefecture
   # 都道府県のコードと名前を扱うクラス
   class Prefecture
-    include JpPrefecture::Mapping
 
     attr_accessor :code, :name, :name_e
 
@@ -62,7 +61,7 @@ module JpPrefecture
           end
       end
 
-      names = PREFECTURE_CODE_NAME[code]
+      names = Mapping.data[code]
 
       return unless names
 
@@ -84,7 +83,7 @@ module JpPrefecture
     #
     # @return [Array] 都道府県クラスの配列
     def self.all
-      PREFECTURE_CODE_NAME.map do |pref|
+      Mapping.data.map do |pref|
         names = pref[1]
         self.build(pref[0], names[:name], names[:name_e])
       end
@@ -94,7 +93,7 @@ module JpPrefecture
 
     # 名前から都道府県コードを検索
     def self.find_code_by_name(name)
-      result = PREFECTURE_CODE_NAME.select { |_, v|
+      result = Mapping.data.select { |_, v|
         v.has_value?(name.downcase)
       }.first
 
