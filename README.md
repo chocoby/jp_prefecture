@@ -121,6 +121,19 @@ app/models/place.rb:
       end
     end
 
+### 都道府県のマッピング情報を変更する
+
+デフォルトのマッピング情報以外のものを使用したい場合、以下のようにカスタマイズされた
+マッピングデータを指定することができます:
+
+    custom_mapping_path = "..." # /path/to/mapping_data
+
+    JpPrefecture.setup do |config|
+      config.mapping_data = YAML.load_file custom_mapping_path
+    end
+
+マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) を参考にしてください。
+
 ## ドキュメント
 
 [http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
