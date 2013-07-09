@@ -178,8 +178,6 @@ GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照�
 * Ruby: 1.9.3 / 2.0.0 以上
 * Rails: 3.2 系の最新
 
-Ruby 1.8.7 のサポートは [v0.1.1](https://github.com/chocoby/jp_prefecture/tree/v0.1.1) で終了しました。
-
 ## Contributing
 
 1. Fork it
