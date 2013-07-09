@@ -12,12 +12,14 @@ https://rubygems.org/gems/jp_prefecture
 JIS X 0402 で定義されている都道府県コードをベースに、
 ゼロから始まるものはゼロを削除して使用しています。
 
-    北海道: 01 -> 1
-    東京都: 13 -> 13
+```
+北海道: 01 -> 1
+東京都: 13 -> 13
+```
 
 参考: [Wikipedia: 全国地方公共団体コード](http://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89#.E9.83.BD.E9.81.93.E5.BA.9C.E7.9C.8C.E3.82.B3.E3.83.BC.E3.83.89)
 
-マッピングの情報は変更することもできます。
+都道府県コードと都道府県名のマッピングは変更することもできます。
 詳しくは「都道府県のマッピング情報を変更する」の項目を参照してください。
 
 また、Rails のプラグインとして使用することもできます。
@@ -26,52 +28,66 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 以下の行を `Gemfile` に記述してから:
 
-    gem 'jp_prefecture'
+```
+gem 'jp_prefecture'
+```
 
 `bundle` を実行してください。
 
 または、手動でインストールしてください:
 
-    $ gem install jp_prefecture
+```
+$ gem install jp_prefecture
+```
 
 ## 使い方
 
 ### ライブラリの読み込み
 
-    require 'jp_prefecture'
+```ruby
+require 'jp_prefecture'
+```
 
 ### 都道府県コードから都道府県を検索
 
 単純に都道府県コードを渡すと、都道府県コードから都道府県を検索します:
 
-    pref = JpPrefecture::Prefecture.find 13
-    # => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都", @name_e="Tokyo">
-    pref.code
-    # => 13
-    pref.name
-    # => "東京都"
-    pref.name_e
-    # => "Tokyo"
+```ruby
+pref = JpPrefecture::Prefecture.find 13
+# => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都", @name_e="Tokyo">
+pref.code
+# => 13
+pref.name
+# => "東京都"
+pref.name_e
+# => "Tokyo"
+```
 
 以下のように渡すことも可能です:
 
-    JpPrefecture::Prefecture.find code: 13
+```ruby
+JpPrefecture::Prefecture.find code: 13
+```
 
 ### 都道府県名から都道府県を検索
 
-    JpPrefecture::Prefecture.find name: "東京都"
-    # => #<JpPrefecture::Prefecture:0x007ff672271800 @code=13, @name="東京都", @name_e="Tokyo">
+```ruby
+JpPrefecture::Prefecture.find name: "東京都"
+# => #<JpPrefecture::Prefecture:0x007ff672271800 @code=13, @name="東京都", @name_e="Tokyo">
 
-    JpPrefecture::Prefecture.find name: "Tokyo"
-    # => #<JpPrefecture::Prefecture:0x007fb3c2828b10 @code=13, @name="東京都", @name_e="Tokyo">
+JpPrefecture::Prefecture.find name: "Tokyo"
+# => #<JpPrefecture::Prefecture:0x007fb3c2828b10 @code=13, @name="東京都", @name_e="Tokyo">
 
-    JpPrefecture::Prefecture.find name: "tokyo"
-    # => #<JpPrefecture::Prefecture:0x007f965c0c5a40 @code=13, @name="東京都", @name_e="Tokyo">
+JpPrefecture::Prefecture.find name: "tokyo"
+# => #<JpPrefecture::Prefecture:0x007f965c0c5a40 @code=13, @name="東京都", @name_e="Tokyo">
+```
 
 ### 都道府県の一覧を取得
 
-    JpPrefecture::Prefecture.all
-    # => [#<JpPrefecture::Prefecture:0x007fd0a3d78d38 @code=1, @name="北海道", @name_e="Hokkaido">, ...]
+```ruby
+JpPrefecture::Prefecture.all
+# => [#<JpPrefecture::Prefecture:0x007fd0a3d78d38 @code=1, @name="北海道", @name_e="Hokkaido">, ...]
+```
 
 ### Rails(ActiveRecord) で使用する
 
@@ -79,38 +95,46 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 app/models/place.rb:
 
-    class Place < ActiveRecord::Base
-      # prefecture_code:integer
+```ruby
+class Place < ActiveRecord::Base
+  # prefecture_code:integer
 
-      include JpPrefecture
-      jp_prefecture :prefecture_code
-    end
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+end
+```
 
 `prefecture` というメソッドが生成され、都道府県コード、都道府県名が参照できるようになります:
 
-    place = Place.new
-    place.prefecture_code = 13
-    place.prefecture.name
-    # => "東京都"
+```ruby
+place = Place.new
+place.prefecture_code = 13
+place.prefecture.name
+# => "東京都"
+```
 
 生成されるメソッド名は `method_name` というオプションで指定することができます:
 
-    # model
-    jp_prefecture :prefecture_code, method_name: :pref
+```ruby
+# model
+jp_prefecture :prefecture_code, method_name: :pref
 
-    place = Place.new
-    place.prefecture_code = 13
-    place.pref.name
-    # => "東京都"
+place = Place.new
+place.prefecture_code = 13
+place.pref.name
+# => "東京都"
+```
 
 ### テンプレートで使用する
 
 `collection_select` を使用して、都道府県のセレクトボックスを生成することができます。:
 
-    f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
+```ruby
+f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
 
-    # 英語表記で出力
-    f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
+# 英語表記で出力
+f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
+```
 
 ### マイグレーション
 
@@ -118,22 +142,26 @@ app/models/place.rb:
 
 マイグレーションのサンプル:
 
-    class AddPrefectureCodeToPlaces < ActiveRecord::Migration
-      def change
-        add_column :places, :prefecture_code, :integer
-      end
-    end
+```ruby
+class AddPrefectureCodeToPlaces < ActiveRecord::Migration
+  def change
+    add_column :places, :prefecture_code, :integer
+  end
+end
+```
 
 ### 都道府県のマッピング情報を変更する
 
 デフォルトのマッピング情報以外のものを使用したい場合、以下のようにカスタマイズされた
 マッピングデータを指定することができます:
 
-    custom_mapping_path = "..." # /path/to/mapping_data
+```ruby
+custom_mapping_path = "..." # /path/to/mapping_data
 
-    JpPrefecture.setup do |config|
-      config.mapping_data = YAML.load_file custom_mapping_path
-    end
+JpPrefecture.setup do |config|
+  config.mapping_data = YAML.load_file custom_mapping_path
+end
+```
 
 マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) を参考にしてください。
 
