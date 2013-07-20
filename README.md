@@ -175,8 +175,8 @@ GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照�
 
 ## 対象バージョン
 
-* Ruby: 1.9.3 / 2.0.0 以上
-* Rails: 3.2 系の最新
+* Ruby: 1.9.3 / 2.0.0
+* Rails: 3.2.x / 4.0.x
 
 ## Contributing
 
