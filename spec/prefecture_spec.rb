@@ -7,6 +7,7 @@ describe JpPrefecture::Prefecture do
     it { pref.code.should eq 1 }
     it { pref.name.should eq '北海道' }
     it { pref.name_e.should eq 'Hokkaido' }
+    it { pref.zips.should eq [10000..70895, 400000..996509] }
   end
 
   describe '.find' do
@@ -16,6 +17,7 @@ describe JpPrefecture::Prefecture do
         it { pref.code.should eq 1 }
         it { pref.name.should eq '北海道' }
         it { pref.name_e.should eq 'Hokkaido' }
+        it { pref.zips.should eq [10000..70895, 400000..996509] }
       end
 
       shared_examples '都道府県が見つからない' do |arg|
@@ -77,6 +79,14 @@ describe JpPrefecture::Prefecture do
           name = 'hokkaido'
           JpPrefecture::Prefecture.find(name: name)
           name.should eq 'hokkaido'
+        end
+      end
+
+      context 'zip の場合' do
+        it '値が変更されないこと' do
+          zip = '9999999'
+          JpPrefecture::Prefecture.find(zip: zip)
+          zip.should eq '9999999'
         end
       end
     end
