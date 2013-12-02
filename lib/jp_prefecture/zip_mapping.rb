@@ -2,7 +2,7 @@
 require 'yaml'
 
 module JpPrefecture
-  # コードと都道府県のマッピング
+  # コードと郵便番号のマッピング
   module ZipMapping
 
     filepath = File.join(File.dirname(__FILE__), '../../data/zip.yml')
