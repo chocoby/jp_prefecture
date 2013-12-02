@@ -1,4 +1,5 @@
 #!/usr/bin/env rake
+# coding: utf-8
 require "bundler/gem_tasks"
 
 task :default => [:spec]
@@ -11,6 +12,7 @@ begin
 rescue LoadError => e
 end
 
+desc 'zip.yml を作成します'
 task :create_zips do
   require 'csv'
   require 'jp_prefecture'
