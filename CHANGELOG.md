@@ -1,10 +1,10 @@
 ## 0.5.0 (Nov 30, 2013)
 
-* 郵便番号から都道府県を検索する機能の追加 (PR #9/@fruwe)
+* 郵便番号から都道府県を検索する機能の追加 (PR [#9](https://github.com/chocoby/jp_prefecture/pull/9)/[@fruwe](https://github.com/fruwe))
 
 ## 0.4.0 (Jul 08, 2013)
 
-* 都道府県のマッピングを変更する機能の追加 (PR #8/@mizoR)
+* 都道府県のマッピングを変更する機能の追加 (PR [#8](https://github.com/chocoby/jp_prefecture/pull/8)/[@mizoR](https://github.com/mizoR))
 
 ## 0.3.2 (Jun 12, 2013)
 
