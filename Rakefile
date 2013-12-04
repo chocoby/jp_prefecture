@@ -29,10 +29,12 @@ task :create_zips do
   zips = []
 
   # read CSV
-  CSV.foreach(file_name, headers: false){|line| zips << [line[2],line[6]]}
+  CSV.foreach(file_name, headers: false) { |line| zips << [line[2], line[6]] }
 
   # create sorted list of zips -> prefecture_code
-  zips = zips.collect{|zip, prefecture|[zip.to_i, JpPrefecture::Prefecture.find(name: prefecture).code]}.sort{|x,y| x[0]<=>y[0] }
+  zips = zips
+    .collect { |zip, prefecture| [zip.to_i, JpPrefecture::Prefecture.find(name: prefecture).code] }
+    .sort{ |x, y| x[0] <=> y[0] }
 
   # prepare calculation
   ranged_zips = []
@@ -56,7 +58,7 @@ task :create_zips do
 
   ranged_zips.each do |r0, r1, code|
     prefectures_to_zip[code] ||= []
-    prefectures_to_zip[code] << [r0,r1]
+    prefectures_to_zip[code] << [r0, r1]
   end
 
   prefectures_to_zip = Hash[*prefectures_to_zip.sort.flatten(1)]
