@@ -99,7 +99,7 @@ module JpPrefecture
     # 名前から都道府県コードを検索
     def self.find_code_by_name(name)
       result = Mapping.data.select { |_, v|
-        v.has_value?(name.downcase)
+        v if v.values.map{|v2| v2 !~ /^#{name.downcase}/ }.delete_if{|i| i == true}.length > 0
       }.first
 
       return if result.nil?
