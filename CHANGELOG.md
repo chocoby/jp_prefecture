@@ -1,3 +1,8 @@
+## 0.6.0 (Mar 10, 2014)
+
+* 都道府県名を前方一致で検索できるようにした (PR [#11](https://github.com/chocoby/jp_prefecture/pull/11)/[@yuuna](https://github.com/yuuna))
+* 都道府県名の検索ロジックを高速化
+
 ## 0.5.0 (Nov 30, 2013)
 
 * 郵便番号から都道府県を検索する機能の追加 (PR [#9](https://github.com/chocoby/jp_prefecture/pull/9)/[@fruwe](https://github.com/fruwe))
