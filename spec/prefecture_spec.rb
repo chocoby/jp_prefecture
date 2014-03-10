@@ -56,7 +56,7 @@ describe JpPrefecture::Prefecture do
         it_behaves_like "都道府県が見つからない", name: "udon"
       end
 
-      describe '都道府県名(先頭一致)' do
+      describe '都道府県名(前方一致)' do
         let(:pref) { JpPrefecture::Prefecture.find(name: '東京') }
         it { expect(pref.name).to eq '東京都' }
 
