@@ -39,6 +39,9 @@ module JpPrefecture
     #   # 都道府県名から検索
     #   JpPrefecture::Prefecture.find(name: '北海道')
     #
+    #   # 都道府県名から検索(先頭一致)
+    #   JpPrefecture::Prefecture.find(name: '東京')
+    #
     #   # 英語表記の都道府県名から検索
     #   JpPrefecture::Prefecture.find(name: 'Hokkaido')
     #   JpPrefecture::Prefecture.find(name: 'hokkaido')
@@ -96,7 +99,11 @@ module JpPrefecture
 
   protected
 
-    # 名前から都道府県コードを検索
+    # 名前から都道府県コードを先頭一致で検索
+    #
+    # @param name [String] 検索する都道府県名
+    # @return [Integer] 見つかった場合は都道府県コード
+    # @return [nil] 見つからない場合は nil
     def self.find_code_by_name(name)
       name = name.downcase
 
