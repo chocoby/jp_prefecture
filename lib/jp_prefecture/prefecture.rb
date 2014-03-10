@@ -19,14 +19,14 @@ module JpPrefecture
     # @param name_e [String] 都道府県名(英語表記)
     # @param zips [Array] 郵便番号の配列 (array of ranges, can be used in ARel, e.g. User.where(zip: prefecture.zips))
     def self.build(code, name, name_e)
-      p = self.new
+      pref = self.new
 
-      p.code    = code
-      p.name    = name
-      p.name_e  = name_e.capitalize
-      p.zips    = ZipMapping.data[code]
+      pref.code    = code
+      pref.name    = name
+      pref.name_e  = name_e.capitalize
+      pref.zips    = ZipMapping.data[code]
 
-      p
+      pref
     end
 
     # 都道府県を検索
@@ -99,7 +99,8 @@ module JpPrefecture
     # 名前から都道府県コードを検索
     def self.find_code_by_name(name)
       result = Mapping.data.select { |_, v|
-        v.has_value?(name.downcase)
+        #v if v.values.map{|v2| v2 !~ /^#{name.downcase}/ }.delete_if{|i| i == true}.length > 0
+        v if v.values.grep(/^#{name.downcase}/).length > 0
       }.first
 
       return if result.nil?
