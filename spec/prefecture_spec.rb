@@ -55,6 +55,27 @@ describe JpPrefecture::Prefecture do
         it_behaves_like "都道府県が見つかる", name: "hokkaido"
         it_behaves_like "都道府県が見つからない", name: "udon"
       end
+
+      describe '都道府県名(先頭一致)' do
+        let(:pref) { JpPrefecture::Prefecture.find(name: '東京') }
+        it { expect(pref.name).to eq '東京都' }
+
+        let(:pref2) { JpPrefecture::Prefecture.find(name: '京都') }
+        it { expect(pref2.name).to eq '京都府' }
+
+        context 'マッチする都道府県が複数あった場合' do
+          let(:pref) { JpPrefecture::Prefecture.find(name: '宮') }
+          it { expect(pref.name).to eq '宮城県' }
+        end
+
+        context 'マッチする都道府県が複数あった場合(英語表記)' do
+          let(:pref) { JpPrefecture::Prefecture.find(name: 'miya') }
+          it { expect(pref.name_e).to eq 'Miyagi' }
+
+          let(:pref2) { JpPrefecture::Prefecture.find(name: 'Miya') }
+          it { expect(pref2.name_e).to eq 'Miyagi' }
+        end
+      end
     end
 
     describe '渡した変数について' do
