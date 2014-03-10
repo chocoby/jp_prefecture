@@ -98,14 +98,17 @@ module JpPrefecture
 
     # 名前から都道府県コードを検索
     def self.find_code_by_name(name)
-      result = Mapping.data.select { |_, v|
-        #v if v.values.map{|v2| v2 !~ /^#{name.downcase}/ }.delete_if{|i| i == true}.length > 0
-        v if v.values.grep(/^#{name.downcase}/).length > 0
-      }.first
+      name = name.downcase
 
-      return if result.nil?
+      Mapping.data.each do |m|
+        m[1].values.each do |v|
+          if v.start_with?(name)
+            return m[0]
+          end
+        end
+      end
 
-      result[0]
+      nil
     end
 
   end
