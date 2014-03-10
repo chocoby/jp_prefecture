@@ -81,6 +81,9 @@ JpPrefecture::Prefecture.find name: "Tokyo"
 
 JpPrefecture::Prefecture.find name: "tokyo"
 # => #<JpPrefecture::Prefecture:0x007f965c0c5a40 @code=13, @name="東京都", @name_e="Tokyo">
+
+JpPrefecture::Prefecture.find name: "東京"
+# => #<JpPrefecture::Prefecture:0x007fe8b2b6f678 @code=13, @name="東京都", @name_e="Tokyo">
 ```
 
 ### 都道府県の一覧を取得
