@@ -1,8 +1,8 @@
 # JpPrefecture
 
-[![Build Status](https://travis-ci.org/chocoby/jp_prefecture.png?branch=master)](https://travis-ci.org/chocoby/jp_prefecture)
-[![Dependency Status](https://gemnasium.com/chocoby/jp_prefecture.png)](https://gemnasium.com/chocoby/jp_prefecture)
-[![Gem Version](https://badge.fury.io/rb/jp_prefecture.png)](http://badge.fury.io/rb/jp_prefecture)
+[![Build Status](http://img.shields.io/travis/chocoby/jp_prefecture/master.svg)](https://travis-ci.org/chocoby/jp_prefecture)
+[![Dependency Status](http://img.shields.io/gemnasium/chocoby/jp_prefecture.svg)](https://gemnasium.com/chocoby/jp_prefecture)
+[![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg)](https://rubygems.org/gems/jp_prefecture)
 
 https://rubygems.org/gems/jp_prefecture
 
