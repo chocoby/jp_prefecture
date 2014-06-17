@@ -3,10 +3,12 @@ require 'spec_helper'
 
 describe JpPrefecture::Prefecture do
   describe '.build' do
-    let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido') }
+    let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido', 'ほっかいどう', 'ホッカイドウ') }
     it { pref.code.should eq 1 }
     it { pref.name.should eq '北海道' }
     it { pref.name_e.should eq 'Hokkaido' }
+    it { pref.name_h.should eq 'ほっかいどう' }
+    it { pref.name_k.should eq 'ホッカイドウ' }
     it { pref.zips.should eq [10000..70895, 400000..996509] }
   end
 
@@ -17,6 +19,8 @@ describe JpPrefecture::Prefecture do
         it { pref.code.should eq 1 }
         it { pref.name.should eq '北海道' }
         it { pref.name_e.should eq 'Hokkaido' }
+        it { pref.name_h.should eq 'ほっかいどう' }
+        it { pref.name_k.should eq 'ホッカイドウ' }
         it { pref.zips.should eq [10000..70895, 400000..996509] }
       end
 
@@ -56,6 +60,16 @@ describe JpPrefecture::Prefecture do
         it_behaves_like "都道府県が見つからない", name: "udon"
       end
 
+      describe '都道府県名(ひらがな表記)' do
+        it_behaves_like "都道府県が見つかる", name: "ほっかいどう"
+        it_behaves_like "都道府県が見つからない", name: "うどん"
+      end
+
+      describe '都道府県名(カタカナ表記)' do
+        it_behaves_like "都道府県が見つかる", name: "ホッカイドウ"
+        it_behaves_like "都道府県が見つからない", name: "ウドン"
+      end
+
       describe '都道府県名(前方一致)' do
         let(:pref) { JpPrefecture::Prefecture.find(name: '東京') }
         it { expect(pref.name).to eq '東京都' }
@@ -74,6 +88,16 @@ describe JpPrefecture::Prefecture do
 
           let(:pref2) { JpPrefecture::Prefecture.find(name: 'Miya') }
           it { expect(pref2.name_e).to eq 'Miyagi' }
+        end
+
+        context 'マッチする都道府県が複数あった場合(ひらがな表記)' do
+          let(:pref) { JpPrefecture::Prefecture.find(name: 'みや') }
+          it { expect(pref.name_h).to eq 'みやぎけん' }
+        end
+
+        context 'マッチする都道府県が複数あった場合(カタカナ表記)' do
+          let(:pref) { JpPrefecture::Prefecture.find(name: 'ミヤ') }
+          it { expect(pref.name_k).to eq 'ミヤギケン' }
         end
       end
     end
