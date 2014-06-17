@@ -6,7 +6,7 @@ module JpPrefecture
   # 都道府県のコードと名前を扱うクラス
   class Prefecture
 
-    attr_accessor :code, :name, :name_e, :zips
+    attr_accessor :code, :name, :name_e, :name_h, :name_k, :zips
 
     # 配列から都道府県クラスを生成
     #
@@ -17,13 +17,17 @@ module JpPrefecture
     # @param pref [Integer] 都道府県コード
     # @param name [String] 都道府県名
     # @param name_e [String] 都道府県名(英語表記)
+    # @param optional name_h [String] 都道府県名(ひらがな表記)
+    # @param optional name_k [String] 都道府県名(カタカナ表記)
     # @param zips [Array] 郵便番号の配列 (array of ranges, can be used in ARel, e.g. User.where(zip: prefecture.zips))
-    def self.build(code, name, name_e)
+    def self.build(code, name, name_e, name_h = nil, name_k = nil)
       pref = self.new
 
       pref.code    = code
       pref.name    = name
       pref.name_e  = name_e.capitalize
+      pref.name_h  = name_h
+      pref.name_k  = name_k
       pref.zips    = ZipMapping.data[code]
 
       pref
@@ -49,7 +53,7 @@ module JpPrefecture
     # @param args [Integer] 都道府県コード
     # @param [Hash] args 検索条件
     # @option args [Integer] :code 都道府県コード
-    # @option args [String] :name 都道府県名/英語表記の都道府県名
+    # @option args [String] :name 都道府県名/英語/ひらがな/カタカナ表記の都道府県名
     # @option args [Integer] :zip 郵便番号
     # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
     # @return [nil] 都道府県が見つからない場合は nil
@@ -74,7 +78,9 @@ module JpPrefecture
 
       return unless names
 
-      self.build(code, names[:name], names[:name_e])
+      self.build(code,
+                 names[:name], names[:name_e],
+                 names[:name_h], names[:name_k])
     end
 
     # すべての都道府県クラスを返す
@@ -93,7 +99,9 @@ module JpPrefecture
     def self.all
       Mapping.data.map do |pref|
         names = pref[1]
-        self.build(pref[0], names[:name], names[:name_e])
+        self.build(pref[0],
+                   names[:name], names[:name_e],
+                   names[:name_h], names[:name_k])
       end
     end
 

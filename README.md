@@ -55,13 +55,17 @@ require 'jp_prefecture'
 
 ```ruby
 pref = JpPrefecture::Prefecture.find 13
-# => #<JpPrefecture::Prefecture:0x007fd0a3d43fe8 @code=13, @name="東京都", @name_e="Tokyo">
+# => #<JpPrefecture::Prefecture:0x007fd3c1838208 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
 pref.code
 # => 13
 pref.name
 # => "東京都"
 pref.name_e
 # => "Tokyo"
+pref.name_h
+# => "とうきょうと"
+pref.name_k
+# => "トウキョウト"
 ```
 
 以下のように渡すことも可能です:
@@ -74,23 +78,29 @@ JpPrefecture::Prefecture.find code: 13
 
 ```ruby
 JpPrefecture::Prefecture.find name: "東京都"
-# => #<JpPrefecture::Prefecture:0x007ff672271800 @code=13, @name="東京都", @name_e="Tokyo">
+# => #<JpPrefecture::Prefecture:0x007fe7bb033040 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
 
 JpPrefecture::Prefecture.find name: "Tokyo"
-# => #<JpPrefecture::Prefecture:0x007fb3c2828b10 @code=13, @name="東京都", @name_e="Tokyo">
+# => #<JpPrefecture::Prefecture:0x007fe7bb032758 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
 
 JpPrefecture::Prefecture.find name: "tokyo"
-# => #<JpPrefecture::Prefecture:0x007f965c0c5a40 @code=13, @name="東京都", @name_e="Tokyo">
+# => #<JpPrefecture::Prefecture:0x007fe7bb031e70 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
+
+JpPrefecture::Prefecture.find name: "トウキョウト"
+# => #<JpPrefecture::Prefecture:0x007f8cc2038210 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
+
+JpPrefecture::Prefecture.find name: "とうきょうと"
+# => #<JpPrefecture::Prefecture:0x007f8cc2033760 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
 
 JpPrefecture::Prefecture.find name: "東京"
-# => #<JpPrefecture::Prefecture:0x007fe8b2b6f678 @code=13, @name="東京都", @name_e="Tokyo">
+# => #<JpPrefecture::Prefecture:0x007fe7bb0305c0 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
 ```
 
 ### 都道府県の一覧を取得
 
 ```ruby
 JpPrefecture::Prefecture.all
-# => [#<JpPrefecture::Prefecture:0x007fd0a3d78d38 @code=1, @name="北海道", @name_e="Hokkaido">, ...]
+# => [#<JpPrefecture::Prefecture:0x007fea13830158 @code=1, @name="北海道", @name_e="Hokkaido", @name_h="ほっかいどう", @name_k="ホッカイドウ", @zips=[10000..70895, 400000..996509]>, ...]
 ```
 
 ### Rails(ActiveRecord) で使用する
