@@ -1,3 +1,7 @@
+## 0.7.0 (Jun 18, 2014)
+
+* 都道府県名にひらがな、カタカナを追加 (PR [#12](https://github.com/chocoby/jp_prefecture/pull/12)/[@yukihr](https://github.com/yukihr))
+
 ## 0.6.0 (Mar 10, 2014)
 
 * 都道府県名を前方一致で検索できるようにした (PR [#11](https://github.com/chocoby/jp_prefecture/pull/11)/[@yuuna](https://github.com/yuuna))
