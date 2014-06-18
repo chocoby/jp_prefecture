@@ -11,7 +11,7 @@ describe JpPrefecture::Config do
       end
 
       it '都道府県＋海外の数が48であること' do
-        @config.mapping_data.count.should eq 48
+        expect(@config.mapping_data.count).to eq 48
       end
     end
   end

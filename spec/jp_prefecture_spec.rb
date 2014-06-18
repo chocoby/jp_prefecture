@@ -9,12 +9,12 @@ describe JpPrefecture do
       end
     end
 
-    it { should respond_to(:jp_prefecture) }
+    it { is_expected.to respond_to(:jp_prefecture) }
   end
 
   describe 'include されていない' do
     subject { Class.new(ActiveRecord::Base) }
-    it { should_not respond_to(:jp_prefecture) }
+    it { is_expected.not_to respond_to(:jp_prefecture) }
   end
 
   describe '.setup' do
@@ -31,6 +31,6 @@ describe JpPrefecture do
       end
     end
 
-    it { JpPrefecture::Mapping.data.count.should eq 48 }
+    it { expect(JpPrefecture::Mapping.data.count).to eq 48 }
   end
 end
