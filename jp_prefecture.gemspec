@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = JpPrefecture::VERSION
 
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec", "~> 2.14.1"
+  gem.add_development_dependency "rspec", "~> 2.99"
   gem.add_development_dependency "activerecord", ">= 3.2.0"
   gem.add_development_dependency "sqlite3"
 end
