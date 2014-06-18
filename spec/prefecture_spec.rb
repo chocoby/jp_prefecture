@@ -4,29 +4,29 @@ require 'spec_helper'
 describe JpPrefecture::Prefecture do
   describe '.build' do
     let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido', 'ほっかいどう', 'ホッカイドウ') }
-    it { pref.code.should eq 1 }
-    it { pref.name.should eq '北海道' }
-    it { pref.name_e.should eq 'Hokkaido' }
-    it { pref.name_h.should eq 'ほっかいどう' }
-    it { pref.name_k.should eq 'ホッカイドウ' }
-    it { pref.zips.should eq [10000..70895, 400000..996509] }
+    it { expect(pref.code).to eq 1 }
+    it { expect(pref.name).to eq '北海道' }
+    it { expect(pref.name_e).to eq 'Hokkaido' }
+    it { expect(pref.name_h).to eq 'ほっかいどう' }
+    it { expect(pref.name_k).to eq 'ホッカイドウ' }
+    it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
   end
 
   describe '.find' do
     describe '検索結果について' do
       shared_examples "都道府県が見つかる" do |arg|
         let(:pref) { JpPrefecture::Prefecture.find(arg) }
-        it { pref.code.should eq 1 }
-        it { pref.name.should eq '北海道' }
-        it { pref.name_e.should eq 'Hokkaido' }
-        it { pref.name_h.should eq 'ほっかいどう' }
-        it { pref.name_k.should eq 'ホッカイドウ' }
-        it { pref.zips.should eq [10000..70895, 400000..996509] }
+        it { expect(pref.code).to eq 1 }
+        it { expect(pref.name).to eq '北海道' }
+        it { expect(pref.name_e).to eq 'Hokkaido' }
+        it { expect(pref.name_h).to eq 'ほっかいどう' }
+        it { expect(pref.name_k).to eq 'ホッカイドウ' }
+        it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
       end
 
       shared_examples '都道府県が見つからない' do |arg|
         let(:pref) { JpPrefecture::Prefecture.find(arg) }
-        it { pref.should be_nil }
+        it { expect(pref).to be_nil }
       end
 
       describe '都道府県コード' do
@@ -107,7 +107,7 @@ describe JpPrefecture::Prefecture do
         it '値が変更されないこと' do
           code = '1'
           JpPrefecture::Prefecture.find(code)
-          code.should eq '1'
+          expect(code).to eq '1'
         end
       end
 
@@ -115,7 +115,7 @@ describe JpPrefecture::Prefecture do
         it '値が変更されないこと' do
           code = '1'
           JpPrefecture::Prefecture.find(code: code)
-          code.should eq '1'
+          expect(code).to eq '1'
         end
       end
 
@@ -123,7 +123,7 @@ describe JpPrefecture::Prefecture do
         it '値が変更されないこと' do
           name = 'hokkaido'
           JpPrefecture::Prefecture.find(name: name)
-          name.should eq 'hokkaido'
+          expect(name).to eq 'hokkaido'
         end
       end
 
@@ -131,7 +131,7 @@ describe JpPrefecture::Prefecture do
         it '値が変更されないこと' do
           zip = '9999999'
           JpPrefecture::Prefecture.find(zip: zip)
-          zip.should eq '9999999'
+          expect(zip).to eq '9999999'
         end
       end
     end
@@ -139,9 +139,9 @@ describe JpPrefecture::Prefecture do
 
   describe '.all' do
     let(:prefs) { JpPrefecture::Prefecture.all }
-    it { prefs.first.should be_an_instance_of(JpPrefecture::Prefecture) }
+    it { expect(prefs.first).to be_an_instance_of(JpPrefecture::Prefecture) }
     it '都道府県の数が 47 であること' do
-      prefs.count.should eq 47
+      expect(prefs.count).to eq 47
     end
   end
 end
