@@ -1,4 +1,4 @@
-# {:prefecture_code => [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }
+# { prefecture_code: [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }
 ---
 1:
 - - 10000

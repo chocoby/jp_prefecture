@@ -2,7 +2,7 @@
 # coding: utf-8
 require "bundler/gem_tasks"
 
-task :default => [:spec]
+task default: [:spec]
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec) do |spec|
@@ -65,7 +65,7 @@ task :create_zips do
 
   # save result
   File.open('data/zip.yml', 'w') do |file|
-    file.write "# {:prefecture_code => [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }\n"
+    file.write "# { prefecture_code: [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }\n"
     file.write prefectures_to_zip.to_yaml
   end
 
