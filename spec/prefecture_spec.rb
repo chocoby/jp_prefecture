@@ -3,13 +3,14 @@ require 'spec_helper'
 
 describe JpPrefecture::Prefecture do
   describe '.build' do
-    let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido', 'ほっかいどう', 'ホッカイドウ') }
+    let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido', 'ほっかいどう', 'ホッカイドウ', '北海道') }
     it { expect(pref.code).to eq 1 }
     it { expect(pref.name).to eq '北海道' }
     it { expect(pref.name_e).to eq 'Hokkaido' }
     it { expect(pref.name_h).to eq 'ほっかいどう' }
     it { expect(pref.name_k).to eq 'ホッカイドウ' }
     it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
+    it { expect(pref.area).to eq '北海道' }
   end
 
   describe '.find' do
@@ -22,6 +23,7 @@ describe JpPrefecture::Prefecture do
         it { expect(pref.name_h).to eq 'ほっかいどう' }
         it { expect(pref.name_k).to eq 'ホッカイドウ' }
         it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
+        it { expect(pref.area).to eq '北海道' }
       end
 
       shared_examples '都道府県が見つからない' do |arg|
