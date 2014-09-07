@@ -51,11 +51,11 @@ require 'jp_prefecture'
 
 ### 都道府県コードから都道府県を検索
 
-単純に都道府県コードを渡すと、都道府県コードから都道府県を検索します:
+都道府県コードを渡すと、都道府県コードから都道府県を検索します:
 
 ```ruby
 pref = JpPrefecture::Prefecture.find 13
-# => #<JpPrefecture::Prefecture:0x007fd3c1838208 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
+# => #<JpPrefecture::Prefecture:0x007fceb11927d8 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035], @area="関東">
 pref.code
 # => 13
 pref.name
@@ -66,9 +66,11 @@ pref.name_h
 # => "とうきょうと"
 pref.name_k
 # => "トウキョウト"
+pref.area
+# => "関東"
 ```
 
-以下のように渡すことも可能です:
+以下のように書くことも可能です:
 
 ```ruby
 JpPrefecture::Prefecture.find code: 13
@@ -78,32 +80,21 @@ JpPrefecture::Prefecture.find code: 13
 
 ```ruby
 JpPrefecture::Prefecture.find name: "東京都"
-# => #<JpPrefecture::Prefecture:0x007fe7bb033040 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
-
 JpPrefecture::Prefecture.find name: "Tokyo"
-# => #<JpPrefecture::Prefecture:0x007fe7bb032758 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
-
 JpPrefecture::Prefecture.find name: "tokyo"
-# => #<JpPrefecture::Prefecture:0x007fe7bb031e70 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
-
 JpPrefecture::Prefecture.find name: "トウキョウト"
-# => #<JpPrefecture::Prefecture:0x007f8cc2038210 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
-
 JpPrefecture::Prefecture.find name: "とうきょうと"
-# => #<JpPrefecture::Prefecture:0x007f8cc2033760 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
-
 JpPrefecture::Prefecture.find name: "東京"
-# => #<JpPrefecture::Prefecture:0x007fe7bb0305c0 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035]>
 ```
 
 ### 都道府県の一覧を取得
 
 ```ruby
 JpPrefecture::Prefecture.all
-# => [#<JpPrefecture::Prefecture:0x007fea13830158 @code=1, @name="北海道", @name_e="Hokkaido", @name_h="ほっかいどう", @name_k="ホッカイドウ", @zips=[10000..70895, 400000..996509]>, ...]
+# => [#<JpPrefecture::Prefecture:0x007fceb119a2a8 @code=1, @name="北海道", @name_e="Hokkaido", @name_h="ほっかいどう", @name_k="ホッカイドウ", @zips=[10000..70895, 400000..996509], @area="北海道">, ...]
 ```
 
-### Rails(ActiveRecord) で使用する
+### Rails (ActiveRecord) で使用する
 
 `ActiveRecord::Base` を継承した Model で、都道府県コードを扱うことができます。
 
