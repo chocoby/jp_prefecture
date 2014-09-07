@@ -200,6 +200,15 @@ GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照�
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## テスト
+
+```
+git clone https://github.com/chocoby/jp_prefecture.git
+cd jp_prefecture
+bundle install --path .bundle
+bundle exec rspec
+```
+
 ## GitHub
 
 https://github.com/chocoby/jp_prefecture
