@@ -1,3 +1,7 @@
+## 0.8.0 (Sep 07, 2014)
+
+* 都道府県情報に八地方区分情報を追加 (PR [#14](https://github.com/chocoby/jp_prefecture/pull/14)/[@kkosuge](https://github.com/kkosuge))
+
 ## 0.7.0 (Jun 18, 2014)
 
 * 都道府県名にひらがな、カタカナを追加 (PR [#12](https://github.com/chocoby/jp_prefecture/pull/12)/[@yukihr](https://github.com/yukihr))
