@@ -1,8 +1,8 @@
 # JpPrefecture
 
+[![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg?style=flat)](https://rubygems.org/gems/jp_prefecture)
 [![Build Status](http://img.shields.io/travis/chocoby/jp_prefecture/master.svg?style=flat)](https://travis-ci.org/chocoby/jp_prefecture)
 [![Dependency Status](http://img.shields.io/gemnasium/chocoby/jp_prefecture.svg?style=flat)](https://gemnasium.com/chocoby/jp_prefecture)
-[![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg?style=flat)](https://rubygems.org/gems/jp_prefecture)
 
 https://rubygems.org/gems/jp_prefecture
 
@@ -178,10 +178,10 @@ end
 
 GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照してください。
 
-## 対象バージョン
+## サポートしているバージョン
 
-* Ruby: 1.9.3 / 2.0 / 2.1
-* Rails: 3.2 / 4.0 / 4.1
+* Ruby: 1.9.3 / 2.0.0 / 2.1 / 2.2
+* Rails: 3.2 / 4.0 / 4.1 / 4.2
 
 ## Contributing
 
@@ -206,4 +206,4 @@ https://github.com/chocoby/jp_prefecture
 
 ## ライセンス
 
-MIT: http://chocoby.mit-license.org/
+[MIT License](http://chocoby.mit-license.org/)
