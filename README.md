@@ -178,10 +178,10 @@ end
 
 GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照してください。
 
-## 対象バージョン
+## サポートしているバージョン
 
-* Ruby: 1.9.3 / 2.0 / 2.1
-* Rails: 3.2 / 4.0 / 4.1
+* Ruby: 1.9.3 / 2.0.0 / 2.1 / 2.2
+* Rails: 3.2 / 4.0 / 4.1 / 4.2
 
 ## Contributing
 
