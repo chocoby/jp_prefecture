@@ -1,8 +1,8 @@
 # JpPrefecture
 
+[![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg?style=flat)](https://rubygems.org/gems/jp_prefecture)
 [![Build Status](http://img.shields.io/travis/chocoby/jp_prefecture/master.svg?style=flat)](https://travis-ci.org/chocoby/jp_prefecture)
 [![Dependency Status](http://img.shields.io/gemnasium/chocoby/jp_prefecture.svg?style=flat)](https://gemnasium.com/chocoby/jp_prefecture)
-[![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg?style=flat)](https://rubygems.org/gems/jp_prefecture)
 
 https://rubygems.org/gems/jp_prefecture
 
@@ -206,4 +206,4 @@ https://github.com/chocoby/jp_prefecture
 
 ## ライセンス
 
-MIT: http://chocoby.mit-license.org/
+[MIT License](http://chocoby.mit-license.org/)
