@@ -1,4 +1,9 @@
 # coding: utf-8
+if ENV['CI']
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 require 'jp_prefecture'
 require "active_record"
 
