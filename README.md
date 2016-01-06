@@ -182,7 +182,7 @@ GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照�
 
 ## サポートしているバージョン
 
-* Ruby: 1.9.3 / 2.0.0 / 2.1 / 2.2
+* Ruby: 1.9.3 / 2.0.0 / 2.1 / 2.2 / 2.3
 * Rails: 3.2 / 4.0 / 4.1 / 4.2
 
 ## Contributing
