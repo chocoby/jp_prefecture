@@ -115,6 +115,8 @@ module JpPrefecture
     # @return [Integer] 見つかった場合は都道府県コード
     # @return [nil] 見つからない場合は nil
     def self.find_code_by_name(name)
+      return nil if name.nil? || name.empty?
+
       name = name.downcase
 
       Mapping.data.each do |m|
