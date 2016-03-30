@@ -127,6 +127,20 @@ describe JpPrefecture::Prefecture do
           JpPrefecture::Prefecture.find(name: name)
           expect(name).to eq 'hokkaido'
         end
+
+        context '空の文字列が与えられた場合' do
+          it 'nilを返すこと' do
+            actual = JpPrefecture::Prefecture.find(name: '')
+            expect(actual).to be_nil
+          end
+        end
+
+        context 'nilが与えられた場合' do
+          it 'nilを返すこと' do
+            actual = JpPrefecture::Prefecture.find(name: nil)
+            expect(actual).to be_nil
+          end
+        end
       end
 
       context 'zip の場合' do
