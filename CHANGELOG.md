@@ -1,3 +1,7 @@
+## 0.8.1 (Mar 30, 2016)
+
+* `JpPrefecture::Prefecture.find(name: name)` に `nil` や空文字を渡した時に `nil` を返す (Issue [#18](https://github.com/chocoby/jp_prefecture/issues/18)/PR [#19](https://github.com/chocoby/jp_prefecture/pull/19)/[@k-motoyan](https://github.com/k-motoyan))
+
 ## 0.8.0 (Sep 07, 2014)
 
 * 都道府県情報に八地方区分情報を追加 (PR [#14](https://github.com/chocoby/jp_prefecture/pull/14)/[@kkosuge](https://github.com/kkosuge))
