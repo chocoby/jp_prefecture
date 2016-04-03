@@ -202,6 +202,12 @@ bundle install --path .bundle
 bundle exec rspec
 ```
 
+複数バージョンの Active Record でテストを実行:
+
+```
+bundle exec appraisal rake spec
+```
+
 ## GitHub
 
 https://github.com/chocoby/jp_prefecture
