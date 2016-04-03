@@ -27,6 +27,7 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 また、Rails のプラグインとして使用することもできます。
 
+
 ## 使い方
 
 ### ライブラリの読み込み
@@ -156,6 +157,7 @@ end
 
 マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) を参考にしてください。
 
+
 ## インストール
 
 以下の行を `Gemfile` に記述してから:
@@ -172,6 +174,7 @@ gem 'jp_prefecture'
 $ gem install jp_prefecture
 ```
 
+
 ## ドキュメント
 
 [http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
@@ -179,7 +182,8 @@ $ gem install jp_prefecture
 ## サポートしているバージョン
 
 * Ruby: 1.9.3 / 2.0.0 / 2.1 / 2.2 / 2.3
-* Rails: 3.2 / 4.0 / 4.1 / 4.2
+* Rails: 3.2 / 4.0 / 4.1 / 4.2 / 5.0.0.beta3 (experimental)
+
 
 ## Contributing
 
@@ -188,6 +192,7 @@ $ gem install jp_prefecture
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
 
 ## テスト
 
@@ -204,9 +209,11 @@ bundle exec rspec
 bundle exec appraisal rake spec
 ```
 
+
 ## GitHub
 
 https://github.com/chocoby/jp_prefecture
+
 
 ## ライセンス
 
