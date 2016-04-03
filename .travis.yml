@@ -7,7 +7,20 @@ rvm:
   - 2.2.4
   - 2.3.0
   - ruby-head
+gemfile:
+  - gemfiles/rails32.gemfile
+  - gemfiles/rails40.gemfile
+  - gemfiles/rails41.gemfile
+  - gemfiles/rails42.gemfile
+  - gemfiles/rails50.gemfile
 matrix:
   allow_failures:
     - rvm: ruby-head
   fast_finish: true
+  exclude:
+    - rvm: 1.9.3
+      gemfile: gemfiles/rails50.gemfile
+    - rvm: 2.0.0
+      gemfile: gemfiles/rails50.gemfile
+    - rvm: 2.1.8
+      gemfile: gemfiles/rails50.gemfile

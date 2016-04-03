@@ -3,6 +3,7 @@
 .bundle
 .config
 .yardoc
+.ruby-version
 Gemfile.lock
 InstalledFiles
 _yardoc
@@ -16,3 +17,4 @@ test/tmp
 test/version_tmp
 tmp
 Guardfile
+gemfiles/*.lock
