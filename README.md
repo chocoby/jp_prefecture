@@ -27,22 +27,6 @@ JIS X 0402 で定義されている都道府県コードをベースに、
 
 また、Rails のプラグインとして使用することもできます。
 
-## インストール
-
-以下の行を `Gemfile` に記述してから:
-
-```
-gem 'jp_prefecture'
-```
-
-`bundle` を実行してください。
-
-または、手動でインストールしてください:
-
-```
-$ gem install jp_prefecture
-```
-
 ## 使い方
 
 ### ライブラリの読み込み
@@ -172,13 +156,25 @@ end
 
 マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) を参考にしてください。
 
+## インストール
+
+以下の行を `Gemfile` に記述してから:
+
+```
+gem 'jp_prefecture'
+```
+
+`bundle` を実行してください。
+
+または、手動でインストールしてください:
+
+```
+$ gem install jp_prefecture
+```
+
 ## ドキュメント
 
 [http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
-
-## TODO
-
-GitHub の [Issues](https://github.com/chocoby/jp_prefecture/issues) を参照してください。
 
 ## サポートしているバージョン
 
