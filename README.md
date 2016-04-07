@@ -206,6 +206,7 @@ bundle exec rspec
 複数バージョンの Active Record でテストを実行:
 
 ```
+bundle exec appraisal install
 bundle exec appraisal rake spec
 ```
 
