@@ -16,6 +16,7 @@ gemfile:
   - gemfiles/rails50.gemfile
 matrix:
   allow_failures:
+    - rvm: 1.9.3
     - rvm: ruby-head
   fast_finish: true
   exclude:
