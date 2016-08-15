@@ -16,6 +16,6 @@ end
 
 if RUBY_VERSION >= '2.2.2'
   appraise 'rails50' do
-    gem 'activerecord', '5.0.0.beta3'
+    gem 'activerecord', '~> 5.0.0'
   end
 end
