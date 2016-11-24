@@ -1,7 +1,5 @@
 # JpPrefecture
 
-[**English**](README_EN.md)
-
 [![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg?style=flat)](https://rubygems.org/gems/jp_prefecture)
 [![Build Status](http://img.shields.io/travis/chocoby/jp_prefecture/master.svg?style=flat)](https://travis-ci.org/chocoby/jp_prefecture)
 [![Coveralls](https://img.shields.io/coveralls/chocoby/jp_prefecture.svg)](https://coveralls.io/r/chocoby/jp_prefecture)
@@ -10,37 +8,34 @@
 
 https://rubygems.org/gems/jp_prefecture
 
-## jp_prefecture とは
+## Description
 
-都道府県コードと都道府県名を変換するライブラリです。
+Convert prefecture code to prefecture name in Japan.
 
-JIS X 0402 で定義されている都道府県コードをベースに、
-ゼロから始まるものはゼロを削除して使用しています。
+Based on JIS X 0402. Remove 0 when prefecture code start with 0.
 
 ```
-北海道: 01 -> 1
-東京都: 13 -> 13
+Hokkaido: 01 -> 1
+Tokyo: 13 -> 13
 ```
 
-参考: [Wikipedia: 全国地方公共団体コード](http://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89#.E9.83.BD.E9.81.93.E5.BA.9C.E7.9C.8C.E3.82.B3.E3.83.BC.E3.83.89)
+Reference(Japanese): [Wikipedia: 全国地方公共団体コード](http://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89#.E9.83.BD.E9.81.93.E5.BA.9C.E7.9C.8C.E3.82.B3.E3.83.BC.E3.83.89)
 
-都道府県コードと都道府県名のマッピングは変更することもできます。
-詳しくは「都道府県のマッピング情報を変更する」の項目を参照してください。
+You can change prefecture code and prefecture name's mapping data. Please check this [Customize mapping data](#customize-mapping-data)
 
-また、Rails のプラグインとして使用することもできます。
+Also available as a Rails plugin
 
+## Usage
 
-## 使い方
-
-### ライブラリの読み込み
+### Requirement
 
 ```ruby
 require 'jp_prefecture'
 ```
 
-### 都道府県コードから都道府県を検索
+### Search Prefecture by Code
 
-都道府県コードを渡すと、都道府県コードから都道府県を検索します:
+Provide prefecture code to search prefecture's data
 
 ```ruby
 pref = JpPrefecture::Prefecture.find 13
@@ -59,13 +54,13 @@ pref.area
 # => "関東"
 ```
 
-以下のように書くことも可能です:
+or
 
 ```ruby
 JpPrefecture::Prefecture.find code: 13
 ```
 
-### 都道府県名から都道府県を検索
+### Search by Prefecture Name
 
 ```ruby
 JpPrefecture::Prefecture.find name: "東京都"
@@ -76,16 +71,16 @@ JpPrefecture::Prefecture.find name: "とうきょうと"
 JpPrefecture::Prefecture.find name: "東京"
 ```
 
-### 都道府県の一覧を取得
+### All Prefectures
 
 ```ruby
 JpPrefecture::Prefecture.all
 # => [#<JpPrefecture::Prefecture:0x007fceb119a2a8 @code=1, @name="北海道", @name_e="Hokkaido", @name_h="ほっかいどう", @name_k="ホッカイドウ", @zips=[10000..70895, 400000..996509], @area="北海道">, ...]
 ```
 
-### Rails (ActiveRecord) で使用する
+### Usage on Rails (ActiveRecord)
 
-`ActiveRecord::Base` を継承した Model で、都道府県コードを扱うことができます。
+Include JpPrefecture to Model which `ActiveRecord::Base` inherited.
 
 app/models/place.rb:
 
@@ -98,16 +93,16 @@ class Place < ActiveRecord::Base
 end
 ```
 
-`prefecture` というメソッドが生成され、都道府県コード、都道府県名が参照できるようになります:
+By JpPrefecture included, `prefecture` method will be generated:
 
 ```ruby
 place = Place.new
 place.prefecture_code = 13
-place.prefecture.name
-# => "東京都"
+place.prefecture.name_e
+# => "Tokyo"
 ```
 
-生成されるメソッド名は `method_name` というオプションで指定することができます:
+Customize `prefecture` method name with `method_name` option:
 
 ```ruby
 # model
@@ -115,26 +110,27 @@ jp_prefecture :prefecture_code, method_name: :pref
 
 place = Place.new
 place.prefecture_code = 13
-place.pref.name
-# => "東京都"
+place.pref.name_e
+# => "Tokyo"
 ```
 
-### テンプレートで使用する
+### Template usage
 
-`collection_select` を使用して、都道府県のセレクトボックスを生成することができます。:
+Use `collection_select` to generate selector in view:
 
 ```ruby
-f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
-
-# 英語表記で出力
+# Selector prefecture name in English
 f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
+
+# Selector prefecture name in Japanese
+f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
 ```
 
-### マイグレーション
+### Migration
 
-カラムのタイプは `integer` か `string` で作成してください。
+Set `prefecture_code` column type to `integer` or `string`.
 
-マイグレーションのサンプル:
+Example:
 
 ```ruby
 class AddPrefectureCodeToPlaces < ActiveRecord::Migration
@@ -144,10 +140,9 @@ class AddPrefectureCodeToPlaces < ActiveRecord::Migration
 end
 ```
 
-### 都道府県のマッピング情報を変更する
+### Customize Mapping Data
 
-デフォルトのマッピング情報以外のものを使用したい場合、以下のようにカスタマイズされた
-マッピングデータを指定することができます:
+Customize mapping data with `custom_mapping_path`.
 
 ```ruby
 custom_mapping_path = "..." # /path/to/mapping_data
@@ -157,31 +152,35 @@ JpPrefecture.setup do |config|
 end
 ```
 
-マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) を参考にしてください。
+Check out [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) for data format.
 
 
-## インストール
+## Installation
 
-以下の行を `Gemfile` に記述してから:
+Add this line in Gemfile.
 
-```
+```ruby
 gem 'jp_prefecture'
 ```
 
-`bundle` を実行してください。
+Run
 
-または、手動でインストールしてください:
+```
+$ bundle
+```
+
+Or install gem with `gem install`
 
 ```
 $ gem install jp_prefecture
 ```
 
 
-## ドキュメント
+## Documentation
 
 [http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
 
-## サポートしているバージョン
+## Supports
 
 * Ruby: 1.9.3 / 2.0.0 / 2.1 / 2.2 / 2.3
 * Rails: 3.2 / 4.0 / 4.1 / 4.2 / 5.0
@@ -196,7 +195,7 @@ $ gem install jp_prefecture
 5. Create new Pull Request
 
 
-## テスト
+## Test
 
 ```
 git clone https://github.com/chocoby/jp_prefecture.git
@@ -205,7 +204,7 @@ bundle install --path .bundle
 bundle exec rspec
 ```
 
-複数バージョンの Active Record でテストを実行:
+Run test in multiple `ActiveRecord` versions
 
 ```
 bundle exec appraisal install
@@ -218,6 +217,6 @@ bundle exec appraisal rake spec
 https://github.com/chocoby/jp_prefecture
 
 
-## ライセンス
+## License
 
 [MIT License](http://chocoby.mit-license.org/)
