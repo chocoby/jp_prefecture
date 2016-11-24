@@ -216,8 +216,3 @@ bundle exec appraisal rake spec
 ## GitHub
 
 https://github.com/chocoby/jp_prefecture
-
-
-## ライセンス
-
-[MIT License](http://chocoby.mit-license.org/)
