@@ -54,7 +54,7 @@ pref.area
 # => "関東"
 ```
 
-以下のように書くことも可能です:
+or
 
 ```ruby
 JpPrefecture::Prefecture.find code: 13
@@ -157,7 +157,7 @@ Check out [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/
 
 ## Installation
 
-Add line below in Gemfile.
+Add this line in Gemfile.
 
 ```ruby
 gem 'jp_prefecture'
