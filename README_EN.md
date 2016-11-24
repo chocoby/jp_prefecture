@@ -21,7 +21,7 @@ Tokyo: 13 -> 13
 
 Reference(Japanese): [Wikipedia: 全国地方公共団体コード](http://ja.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E5%9C%B0%E6%96%B9%E5%85%AC%E5%85%B1%E5%9B%A3%E4%BD%93%E3%82%B3%E3%83%BC%E3%83%89#.E9.83.BD.E9.81.93.E5.BA.9C.E7.9C.8C.E3.82.B3.E3.83.BC.E3.83.89)
 
-You can change prefecture code and prefecture name's mapping data. Please check this [Customize mapping data]
+You can change prefecture code and prefecture name's mapping data. Please check this [Customize mapping data](#customize-mapping-data)
 
 Also available as a Rails plugin
 
