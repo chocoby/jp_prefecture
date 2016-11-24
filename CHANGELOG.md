@@ -1,3 +1,7 @@
+## Unreleased
+
+* Add English Readme (Issue [#21](https://github.com/chocoby/jp_prefecture/issues/21)/PR [#22](https://github.com/chocoby/jp_prefecture/pull/22)/[@PeterTeng](https://github.com/PeterTeng))
+
 ## 0.8.1 (Mar 30, 2016)
 
 * `JpPrefecture::Prefecture.find(name: name)` に `nil` や空文字を渡した時に `nil` を返す (Issue [#18](https://github.com/chocoby/jp_prefecture/issues/18)/PR [#19](https://github.com/chocoby/jp_prefecture/pull/19)/[@k-motoyan](https://github.com/k-motoyan))
