@@ -11,6 +11,7 @@ describe JpPrefecture::Prefecture do
     it { expect(pref.name_k).to eq 'ホッカイドウ' }
     it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
     it { expect(pref.area).to eq '北海道' }
+    it { expect(pref.type).to eq '道' }
   end
 
   describe '.find' do
@@ -24,6 +25,7 @@ describe JpPrefecture::Prefecture do
         it { expect(pref.name_k).to eq 'ホッカイドウ' }
         it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
         it { expect(pref.area).to eq '北海道' }
+        it { expect(pref.type).to eq '道' }
       end
 
       shared_examples '都道府県が見つからない' do |arg|
