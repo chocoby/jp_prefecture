@@ -33,14 +33,8 @@ module JpPrefecture
       pref.area    = area
       pref.type    =
         case pref.name[-1]
-        when "都"
-          "都"
-        when "道"
-          "道"
-        when "府"
-          "府"
-        when "県"
-          "県"
+        when "都", "道", "府", "県"
+          pref.name[-1]
         else
           nil
         end
