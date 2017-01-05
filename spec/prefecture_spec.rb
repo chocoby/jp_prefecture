@@ -12,6 +12,16 @@ describe JpPrefecture::Prefecture do
     it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
     it { expect(pref.area).to eq '北海道' }
     it { expect(pref.type).to eq '道' }
+
+    let(:nil_type_pref) { JpPrefecture::Prefecture.build(13, '東京', 'Tokyo', 'とうきょう', 'トウキョウ', '関東') }
+    it { expect(nil_type_pref.code).to eq 13 }
+    it { expect(nil_type_pref.name).to eq '東京' }
+    it { expect(nil_type_pref.name_e).to eq 'Tokyo' }
+    it { expect(nil_type_pref.name_h).to eq 'とうきょう' }
+    it { expect(nil_type_pref.name_k).to eq 'トウキョウ' }
+    it { expect(nil_type_pref.zips).to eq [1000000..2080035] }
+    it { expect(nil_type_pref.area).to eq '関東' }
+    it { expect(nil_type_pref.type).to eq nil }
   end
 
   describe '.find' do
