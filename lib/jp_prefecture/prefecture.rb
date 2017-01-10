@@ -6,7 +6,7 @@ module JpPrefecture
   # 都道府県のコードと名前を扱うクラス
   class Prefecture
 
-    attr_accessor :code, :name, :name_e, :name_h, :name_k, :zips, :area
+    attr_accessor :code, :name, :name_e, :name_h, :name_k, :zips, :area, :type
 
     # 配列から都道府県クラスを生成
     #
@@ -31,6 +31,13 @@ module JpPrefecture
       pref.name_k  = name_k
       pref.zips    = ZipMapping.data[code]
       pref.area    = area
+      pref.type    =
+        case pref.name[-1]
+        when "都", "道", "府", "県"
+          pref.name[-1]
+        else
+          nil
+        end
 
       pref
     end
