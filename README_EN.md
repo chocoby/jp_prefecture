@@ -52,6 +52,8 @@ pref.name_k
 # => "トウキョウト"
 pref.area
 # => "関東"
+pref.type
+# => "都"
 ```
 
 or

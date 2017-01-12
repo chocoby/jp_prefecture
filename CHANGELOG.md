@@ -1,6 +1,7 @@
 ## Unreleased
 
 * Add English Readme (Issue [#21](https://github.com/chocoby/jp_prefecture/issues/21)/PR [#22](https://github.com/chocoby/jp_prefecture/pull/22)/[@PeterTeng](https://github.com/PeterTeng))
+* add type to prefecture (PR [#23](https://github.com/chocoby/jp_prefecture/pull/23)/[@gazayas](https://github.com/gazayas))
 
 ## 0.8.1 (Mar 30, 2016)
 
