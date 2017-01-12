@@ -27,6 +27,10 @@ matrix:
       gemfile: gemfiles/rails50.gemfile
     - rvm: 2.1.8
       gemfile: gemfiles/rails50.gemfile
+    - rvm: 2.4.0
+      gemfile: gemfiles/rails41.gemfile
+    - rvm: 2.4.0
+      gemfile: gemfiles/rails42.gemfile
 notifications:
   email:
     - false
