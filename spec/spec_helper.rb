@@ -1,10 +1,16 @@
 # coding: utf-8
 if ENV['CI']
-  require 'coveralls'
-  Coveralls.wear!
+  require 'simplecov'
+  require 'simplecov-lcov'
+  SimpleCov::Formatter::LcovFormatter.config do |c|
+    c.report_with_single_file = true
+    c.single_report_path = "coverage/lcov.info"
+  end
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+  SimpleCov.start
 end
 
-require 'jp_prefecture'
+require "jp_prefecture"
 require "active_record"
 
 RSpec.configure do |config|
