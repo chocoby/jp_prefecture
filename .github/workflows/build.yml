@@ -1,6 +1,11 @@
 name: Build
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   matrix:
@@ -9,10 +14,11 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - v2.3.x
-          - v2.4.x
-          - v2.5.x
-          - v2.6.x
+          # インストールできないと言われる
+          # - 2.3.x
+          - 2.4.x
+          - 2.5.x
+          - 2.6.x
         gemfile:
           - rails42.gemfile
           - rails50.gemfile
@@ -20,16 +26,17 @@ jobs:
           - rails52.gemfile
           - rails60.gemfile
         exclude:
-          - ruby: v2.3.x
+          - ruby: 2.3.x
             gemfile: rails60.gemfile
-          - ruby: v2.4.x
+          - ruby: 2.4.x
             gemfile: rails60.gemfile
-          - ruby: v2.5.x
+          - ruby: 2.5.x
             gemfile: rails60.gemfile
 
     env:
-      BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}
       CI: true
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}
 
     steps:
       - uses: actions/checkout@v1
@@ -39,7 +46,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install libsqlite3-dev
 
-      - name: Set up Ruby
+      - name: Set up Ruby ${{ matrix.ruby }}
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -52,3 +59,16 @@ jobs:
       - name: Test
         run: |
           bundle exec rake
+
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel: true
+          path-to-lcov: ./coverage/lcov.info
+
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
