@@ -14,11 +14,10 @@ jobs:
     strategy:
       matrix:
         ruby:
-          # インストールできないと言われる
-          # - 2.3.x
-          - 2.4.x
-          - 2.5.x
-          - 2.6.x
+          - 2.3
+          - 2.4
+          - 2.5
+          - 2.6
         gemfile:
           - rails42.gemfile
           - rails50.gemfile
@@ -26,11 +25,11 @@ jobs:
           - rails52.gemfile
           - rails60.gemfile
         exclude:
-          - ruby: 2.3.x
+          - ruby: 2.3
             gemfile: rails60.gemfile
-          - ruby: 2.4.x
+          - ruby: 2.4
             gemfile: rails60.gemfile
-          - ruby: 2.5.x
+          - ruby: 2.5
             gemfile: rails60.gemfile
 
     env:
@@ -47,7 +46,7 @@ jobs:
           sudo apt-get install libsqlite3-dev
 
       - name: Set up Ruby ${{ matrix.ruby }}
-        uses: actions/setup-ruby@v1
+        uses: eregon/use-ruby-action@master
         with:
           ruby-version: ${{ matrix.ruby }}
 
