@@ -202,7 +202,7 @@ $ gem install jp_prefecture
 ```
 git clone https://github.com/chocoby/jp_prefecture.git
 cd jp_prefecture
-bundle install --path .bundle
+bundle install
 bundle exec rspec
 ```
 
@@ -210,7 +210,7 @@ Run test in multiple `ActiveRecord` versions
 
 ```
 bundle exec appraisal install
-bundle exec appraisal rake spec
+bundle exec appraisal rspec
 ```
 
 
