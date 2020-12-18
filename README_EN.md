@@ -185,7 +185,7 @@ $ gem install jp_prefecture
 ## Supports
 
 * Ruby: 1.9.3 / 2.0 / 2.1 / 2.2 / 2.3 / 2.4 / 2.5 / 2.6 / 2.7
-* Rails: 3.2 / 4.0 / 4.1 / 4.2 / 5.0 / 5.1 / 5.2 / 6.0
+* Rails: 3.2 / 4.0 / 4.1 / 4.2 / 5.0 / 5.1 / 5.2 / 6.0 / 6.1
 
 
 ## Contributing
@@ -202,7 +202,7 @@ $ gem install jp_prefecture
 ```
 git clone https://github.com/chocoby/jp_prefecture.git
 cd jp_prefecture
-bundle install --path .bundle
+bundle install
 bundle exec rspec
 ```
 
@@ -210,7 +210,7 @@ Run test in multiple `ActiveRecord` versions
 
 ```
 bundle exec appraisal install
-bundle exec appraisal rake spec
+bundle exec appraisal rspec
 ```
 
 
