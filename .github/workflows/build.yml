@@ -25,13 +25,20 @@ jobs:
           - rails51.gemfile
           - rails52.gemfile
           - rails60.gemfile
+          - rails61.gemfile
         exclude:
           - ruby: 2.3
             gemfile: rails60.gemfile
+          - ruby: 2.3
+            gemfile: rails61.gemfile
           - ruby: 2.4
             gemfile: rails60.gemfile
+          - ruby: 2.4
+            gemfile: rails61.gemfile
           - ruby: 2.5
             gemfile: rails60.gemfile
+          - ruby: 2.5
+            gemfile: rails61.gemfile
           - ruby: 2.7
             gemfile: rails42.gemfile
 
