@@ -60,7 +60,7 @@ jobs:
 
       - name: Test
         run: |
-          bundle exec rake
+          bundle exec rspec
 
       - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
