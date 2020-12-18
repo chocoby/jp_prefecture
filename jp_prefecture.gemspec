@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Convert japan prefecture code into prefecture name}
   gem.description   = %q{Convert japan prefecture code(JIS X 0402 based) into prefecture name.}
   gem.homepage      = 'https://github.com/chocoby/jp_prefecture'
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

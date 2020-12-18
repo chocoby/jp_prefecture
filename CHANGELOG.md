@@ -1,5 +1,8 @@
 ## Unreleased
 
+## 0.11.0 (Dec 18, 2020)
+
+* Rails 6.1 をサポート (PR [#37](https://github.com/chocoby/jp_prefecture/pull/37)/[@chocoby](https://github.com/chocoby))
 * GitHub Actions でビルドを実行するようにした (PR [#34](https://github.com/chocoby/jp_prefecture/pull/34)/[@chocoby](https://github.com/chocoby))
 
 ## 0.10.0 (Aug 19, 2019)
