@@ -213,6 +213,11 @@ bundle exec appraisal install
 bundle exec appraisal rspec
 ```
 
+## Lint
+
+```
+bundle exec rubocop -A
+```
 
 ## GitHub
 
