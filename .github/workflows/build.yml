@@ -19,7 +19,6 @@ jobs:
           - 2.6
           - 2.7
         gemfile:
-          - rails42.gemfile
           - rails50.gemfile
           - rails51.gemfile
           - rails52.gemfile
@@ -34,8 +33,6 @@ jobs:
             gemfile: rails60.gemfile
           - ruby: 2.5
             gemfile: rails61.gemfile
-          - ruby: 2.7
-            gemfile: rails42.gemfile
 
     env:
       CI: true
