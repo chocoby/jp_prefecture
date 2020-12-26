@@ -61,15 +61,16 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout source
+        uses: actions/checkout@v2
 
       - name: Setup System
         run: |
           sudo apt-get update
           sudo apt-get install libsqlite3-dev
 
-      - name: Set up Ruby ${{ matrix.ruby }}
-        uses: eregon/use-ruby-action@master
+      - name: Setup Ruby ${{ matrix.ruby }}
+        uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
 
