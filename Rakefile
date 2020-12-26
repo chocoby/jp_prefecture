@@ -1,6 +1,7 @@
 #!/usr/bin/env rake
-# coding: utf-8
-require "bundler/gem_tasks"
+# frozen_string_literal: true
+
+require 'bundler/gem_tasks'
 
 desc 'zip.yml を作成します'
 task :create_zips do
@@ -23,12 +24,12 @@ task :create_zips do
 
   # create sorted list of zips -> prefecture_code
   zips = zips
-    .collect { |zip, prefecture| [zip.to_i, JpPrefecture::Prefecture.find(name: prefecture).code] }
-    .sort{ |x, y| x[0] <=> y[0] }
+         .collect { |zip, prefecture| [zip.to_i, JpPrefecture::Prefecture.find(name: prefecture).code] }
+         .sort { |x, y| x[0] <=> y[0] }
 
   # prepare calculation
   ranged_zips = []
-  current = [ zips.first[0], zips.first[0], zips.first[1] ]
+  current = [zips.first[0], zips.first[0], zips.first[1]]
 
   # calculate the zip ranges of each prefecture
   zips.each do |zip, code|

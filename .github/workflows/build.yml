@@ -8,7 +8,28 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  matrix:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          # Set to `TargetRubyVersion` in `.rubocop.yml`
+          ruby-version: 2.4
+
+      - name: Bundle
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Lint
+        run: bundle exec rubocop
+
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -40,19 +61,20 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout source
+        uses: actions/checkout@v2
 
       - name: Setup System
         run: |
           sudo apt-get update
           sudo apt-get install libsqlite3-dev
 
-      - name: Set up Ruby ${{ matrix.ruby }}
-        uses: eregon/use-ruby-action@master
+      - name: Setup Ruby ${{ matrix.ruby }}
+        uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
 
-      - name: Build
+      - name: Bundle
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3

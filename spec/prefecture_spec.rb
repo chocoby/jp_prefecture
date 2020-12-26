@@ -1,4 +1,5 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe JpPrefecture::Prefecture do
@@ -9,7 +10,7 @@ describe JpPrefecture::Prefecture do
     it { expect(pref.name_e).to eq 'Hokkaido' }
     it { expect(pref.name_h).to eq 'ほっかいどう' }
     it { expect(pref.name_k).to eq 'ホッカイドウ' }
-    it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
+    it { expect(pref.zips).to eq [10_000..70_895, 400_000..996_509] }
     it { expect(pref.area).to eq '北海道' }
     it { expect(pref.type).to eq '道' }
 
@@ -19,21 +20,21 @@ describe JpPrefecture::Prefecture do
     it { expect(nil_type_pref.name_e).to eq 'Tokyo' }
     it { expect(nil_type_pref.name_h).to eq 'とうきょう' }
     it { expect(nil_type_pref.name_k).to eq 'トウキョウ' }
-    it { expect(nil_type_pref.zips).to eq [1000000..2080035] }
+    it { expect(nil_type_pref.zips).to eq [1_000_000..2_080_035] }
     it { expect(nil_type_pref.area).to eq '関東' }
     it { expect(nil_type_pref.type).to eq nil }
   end
 
   describe '.find' do
     describe '検索結果について' do
-      shared_examples "都道府県が見つかる" do |arg|
+      shared_examples '都道府県が見つかる' do |arg|
         let(:pref) { JpPrefecture::Prefecture.find(arg) }
         it { expect(pref.code).to eq 1 }
         it { expect(pref.name).to eq '北海道' }
         it { expect(pref.name_e).to eq 'Hokkaido' }
         it { expect(pref.name_h).to eq 'ほっかいどう' }
         it { expect(pref.name_k).to eq 'ホッカイドウ' }
-        it { expect(pref.zips).to eq [10000..70895, 400000..996509] }
+        it { expect(pref.zips).to eq [10_000..70_895, 400_000..996_509] }
         it { expect(pref.area).to eq '北海道' }
         it { expect(pref.type).to eq '道' }
       end
@@ -44,44 +45,44 @@ describe JpPrefecture::Prefecture do
       end
 
       describe '都道府県コード' do
-        it_behaves_like "都道府県が見つかる", 1
-        it_behaves_like "都道府県が見つからない", 99
-        it_behaves_like "都道府県が見つかる", "1"
-        it_behaves_like "都道府県が見つかる", "01"
-        it_behaves_like "都道府県が見つからない", "99"
+        it_behaves_like '都道府県が見つかる', 1
+        it_behaves_like '都道府県が見つからない', 99
+        it_behaves_like '都道府県が見つかる', '1'
+        it_behaves_like '都道府県が見つかる', '01'
+        it_behaves_like '都道府県が見つからない', '99'
       end
 
       describe '都道府県コード(キーワード引数)' do
-        it_behaves_like "都道府県が見つかる", code: 1
-        it_behaves_like "都道府県が見つからない", code: 99
-        it_behaves_like "都道府県が見つかる", code: "1"
-        it_behaves_like "都道府県が見つかる", code: "01"
-        it_behaves_like "都道府県が見つからない", code: "99"
+        it_behaves_like '都道府県が見つかる', code: 1
+        it_behaves_like '都道府県が見つからない', code: 99
+        it_behaves_like '都道府県が見つかる', code: '1'
+        it_behaves_like '都道府県が見つかる', code: '01'
+        it_behaves_like '都道府県が見つからない', code: '99'
       end
 
       describe '都道府県名' do
-        it_behaves_like "都道府県が見つかる", name: "北海道"
-        it_behaves_like "都道府県が見つからない", name: "うどん県"
+        it_behaves_like '都道府県が見つかる', name: '北海道'
+        it_behaves_like '都道府県が見つからない', name: 'うどん県'
       end
 
       describe '都道府県名(英語表記)' do
-        it_behaves_like "都道府県が見つかる", name: "Hokkaido"
-        it_behaves_like "都道府県が見つからない", name: "Udon"
+        it_behaves_like '都道府県が見つかる', name: 'Hokkaido'
+        it_behaves_like '都道府県が見つからない', name: 'Udon'
       end
 
       describe '都道府県名(英語表記-小文字)' do
-        it_behaves_like "都道府県が見つかる", name: "hokkaido"
-        it_behaves_like "都道府県が見つからない", name: "udon"
+        it_behaves_like '都道府県が見つかる', name: 'hokkaido'
+        it_behaves_like '都道府県が見つからない', name: 'udon'
       end
 
       describe '都道府県名(ひらがな表記)' do
-        it_behaves_like "都道府県が見つかる", name: "ほっかいどう"
-        it_behaves_like "都道府県が見つからない", name: "うどん"
+        it_behaves_like '都道府県が見つかる', name: 'ほっかいどう'
+        it_behaves_like '都道府県が見つからない', name: 'うどん'
       end
 
       describe '都道府県名(カタカナ表記)' do
-        it_behaves_like "都道府県が見つかる", name: "ホッカイドウ"
-        it_behaves_like "都道府県が見つからない", name: "ウドン"
+        it_behaves_like '都道府県が見つかる', name: 'ホッカイドウ'
+        it_behaves_like '都道府県が見つからない', name: 'ウドン'
       end
 
       describe '都道府県名(前方一致)' do

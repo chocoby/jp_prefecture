@@ -1,11 +1,11 @@
-# coding: utf-8
-require "jp_prefecture/mapping"
-require "jp_prefecture/zip_mapping"
+# frozen_string_literal: true
+
+require 'jp_prefecture/mapping'
+require 'jp_prefecture/zip_mapping'
 
 module JpPrefecture
   # 都道府県のコードと名前を扱うクラス
   class Prefecture
-
     attr_accessor :code, :name, :name_e, :name_h, :name_k, :zips, :area, :type
 
     # 配列から都道府県クラスを生成
@@ -22,7 +22,7 @@ module JpPrefecture
     # @param optional area [String] 地方名
     # @param zips [Array] 郵便番号の配列 (array of ranges, can be used in ARel, e.g. User.where(zip: prefecture.zips))
     def self.build(code, name, name_e, name_h = nil, name_k = nil, area = nil)
-      pref = self.new
+      pref = new
 
       pref.code    = code
       pref.name    = name
@@ -33,10 +33,8 @@ module JpPrefecture
       pref.area    = area
       pref.type    =
         case pref.name[-1]
-        when "都", "道", "府", "県"
+        when '都', '道', '府', '県'
           pref.name[-1]
-        else
-          nil
         end
 
       pref
@@ -69,27 +67,26 @@ module JpPrefecture
     def self.find(args)
       return if args.nil?
 
-      if args.is_a?(Integer) || args.is_a?(String)
-        code = args.to_i
-      else
-        code =
-          case args.keys[0]
-          when :name
-            self.find_code_by_name(args[:name])
-          when :code
-            args[:code].to_i
-          when :zip
-            ZipMapping.code_for_zip(args[:zip].to_i)
-          end
-      end
+      code = if args.is_a?(Integer) || args.is_a?(String)
+               args.to_i
+             else
+               case args.keys[0]
+               when :name
+                 find_code_by_name(args[:name])
+               when :code
+                 args[:code].to_i
+               when :zip
+                 ZipMapping.code_for_zip(args[:zip].to_i)
+               end
+             end
 
       names = Mapping.data[code]
 
       return unless names
 
-      self.build(code,
-                 names[:name], names[:name_e],
-                 names[:name_h], names[:name_k], names[:area])
+      build(code,
+            names[:name], names[:name_e],
+            names[:name_h], names[:name_k], names[:area])
     end
 
     # すべての都道府県クラスを返す
@@ -108,13 +105,11 @@ module JpPrefecture
     def self.all
       Mapping.data.map do |pref|
         names = pref[1]
-        self.build(pref[0],
-                   names[:name], names[:name_e],
-                   names[:name_h], names[:name_k], names[:area])
+        build(pref[0],
+              names[:name], names[:name_e],
+              names[:name_h], names[:name_k], names[:area])
       end
     end
-
-  protected
 
     # 名前から都道府県コードを前方一致で検索
     #
@@ -127,15 +122,12 @@ module JpPrefecture
       name = name.downcase
 
       Mapping.data.each do |m|
-        m[1].values.each do |v|
-          if v.start_with?(name)
-            return m[0]
-          end
+        m[1].each_value do |v|
+          return m[0] if v.start_with?(name)
         end
       end
 
       nil
     end
-
   end
 end
