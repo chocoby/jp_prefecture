@@ -184,8 +184,8 @@ $ gem install jp_prefecture
 
 ## Supports
 
-* Ruby: 2.4 / 2.5 / 2.6 / 2.7
-* Rails: 5.0 / 5.1 / 5.2 / 6.0 / 6.1
+* Ruby: 2.4 - 2.7
+* Rails: 5.0 - 6.1
 
 
 ## Contributing
