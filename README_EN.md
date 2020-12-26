@@ -184,40 +184,13 @@ $ gem install jp_prefecture
 
 ## Supports
 
-* Ruby: 2.4 / 2.5 / 2.6 / 2.7
-* Rails: 5.0 / 5.1 / 5.2 / 6.0 / 6.1
+* Ruby: 2.4 - 2.7
+* Rails: 5.0 - 6.1
 
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-
-## Test
-
-```
-git clone https://github.com/chocoby/jp_prefecture.git
-cd jp_prefecture
-bundle install
-bundle exec rspec
-```
-
-Run test in multiple `ActiveRecord` versions
-
-```
-bundle exec appraisal install
-bundle exec appraisal rspec
-```
-
-## Lint
-
-```
-bundle exec rubocop -A
-```
+See [CONTRIBUTING.md](https://github.com/chocoby/jp_prefecture/blob/master/CONTRIBUTING.md).
 
 ## GitHub
 
