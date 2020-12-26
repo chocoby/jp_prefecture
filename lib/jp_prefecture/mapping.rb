@@ -1,10 +1,10 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 require 'yaml'
 
 module JpPrefecture
   # コードと都道府県のマッピング
   module Mapping
-
     filepath = File.join(File.dirname(__FILE__), '../../data/prefecture.yml')
     @data = YAML.load_file(filepath)
 

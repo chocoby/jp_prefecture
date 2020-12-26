@@ -1,4 +1,5 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 module JpPrefecture
   module Base
     # モデル内で使用するための設定を行う
@@ -34,7 +35,7 @@ module JpPrefecture
       method_name = options[:method_name] || :prefecture
 
       define_method method_name do
-        JpPrefecture::Prefecture.find(self.send(column_name))
+        JpPrefecture::Prefecture.find(send(column_name))
       end
     end
   end

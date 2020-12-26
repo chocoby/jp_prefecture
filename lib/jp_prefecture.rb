@@ -1,8 +1,9 @@
-# coding: utf-8
-require "jp_prefecture/base"
-require "jp_prefecture/config"
-require "jp_prefecture/prefecture"
-require "jp_prefecture/version"
+# frozen_string_literal: true
+
+require 'jp_prefecture/base'
+require 'jp_prefecture/config'
+require 'jp_prefecture/prefecture'
+require 'jp_prefecture/version'
 
 module JpPrefecture
   @config = Config.new

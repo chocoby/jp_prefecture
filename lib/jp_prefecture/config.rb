@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
 
 module JpPrefecture
   class Config
-    attr_accessor :mapping_data
-    attr_accessor :zip_mapping_data
+    attr_accessor :mapping_data, :zip_mapping_data
   end
 end
-

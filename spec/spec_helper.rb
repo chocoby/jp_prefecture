@@ -1,17 +1,18 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 if ENV['CI']
   require 'simplecov'
   require 'simplecov-lcov'
   SimpleCov::Formatter::LcovFormatter.config do |c|
     c.report_with_single_file = true
-    c.single_report_path = "coverage/lcov.info"
+    c.single_report_path = 'coverage/lcov.info'
   end
   SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
   SimpleCov.start
 end
 
-require "jp_prefecture"
-require "active_record"
+require 'jp_prefecture'
+require 'active_record'
 
 RSpec.configure do |config|
   config.before(:suite) do
@@ -24,7 +25,7 @@ RSpec.configure do |config|
 end
 
 def setup_db
-  ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
+  ActiveRecord::Base.establish_connection adapter: 'sqlite3', database: ':memory:'
 
   ActiveRecord::Schema.define(version: 1) do
     create_table :places do |t|
