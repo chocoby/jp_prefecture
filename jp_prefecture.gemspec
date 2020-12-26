@@ -15,10 +15,11 @@ Gem::Specification.new do |gem|
   gem.name          = 'jp_prefecture'
   gem.require_paths = ['lib']
   gem.version       = JpPrefecture::VERSION
+  gem.required_ruby_version = '>= 2.4.0'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'activerecord', '>= 4.2.0'
+  gem.add_development_dependency 'activerecord', '>= 5.0.0'
   gem.add_development_dependency 'sqlite3'
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'simplecov-lcov'
