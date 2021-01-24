@@ -9,6 +9,7 @@ git clone https://github.com/chocoby/jp_prefecture.git
 cd jp_prefecture
 bundle install
 bundle exec appraisal install
+bundle exec appraisal update
 ```
 
 実装と実装に対応するテストを追加し、Pull Request を作成する前に、ユニットテストとコーディングスタイルがパスするか確認します。
