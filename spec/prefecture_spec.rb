@@ -66,23 +66,23 @@ describe JpPrefecture::Prefecture do
       end
 
       describe '都道府県名(英語表記)' do
-        it_behaves_like '都道府県が見つかる', name: 'Hokkaido'
-        it_behaves_like '都道府県が見つからない', name: 'Udon'
+        it_behaves_like '都道府県が見つかる', name_e: 'Hokkaido'
+        it_behaves_like '都道府県が見つからない', name_e: 'Udon'
       end
 
       describe '都道府県名(英語表記-小文字)' do
-        it_behaves_like '都道府県が見つかる', name: 'hokkaido'
-        it_behaves_like '都道府県が見つからない', name: 'udon'
+        it_behaves_like '都道府県が見つかる', name_e: 'hokkaido'
+        it_behaves_like '都道府県が見つからない', name_e: 'udon'
       end
 
       describe '都道府県名(ひらがな表記)' do
-        it_behaves_like '都道府県が見つかる', name: 'ほっかいどう'
-        it_behaves_like '都道府県が見つからない', name: 'うどん'
+        it_behaves_like '都道府県が見つかる', name_h: 'ほっかいどう'
+        it_behaves_like '都道府県が見つからない', name_h: 'うどん'
       end
 
       describe '都道府県名(カタカナ表記)' do
-        it_behaves_like '都道府県が見つかる', name: 'ホッカイドウ'
-        it_behaves_like '都道府県が見つからない', name: 'ウドン'
+        it_behaves_like '都道府県が見つかる', name_k: 'ホッカイドウ'
+        it_behaves_like '都道府県が見つからない', name_k: 'ウドン'
       end
 
       describe '都道府県名(前方一致)' do
@@ -98,22 +98,30 @@ describe JpPrefecture::Prefecture do
         end
 
         context 'マッチする都道府県が複数あった場合(英語表記)' do
-          let(:pref) { JpPrefecture::Prefecture.find(name: 'miya') }
+          let(:pref) { JpPrefecture::Prefecture.find(name_e: 'miya') }
           it { expect(pref.name_e).to eq 'Miyagi' }
 
-          let(:pref2) { JpPrefecture::Prefecture.find(name: 'Miya') }
+          let(:pref2) { JpPrefecture::Prefecture.find(name_e: 'Miya') }
           it { expect(pref2.name_e).to eq 'Miyagi' }
         end
 
         context 'マッチする都道府県が複数あった場合(ひらがな表記)' do
-          let(:pref) { JpPrefecture::Prefecture.find(name: 'みや') }
+          let(:pref) { JpPrefecture::Prefecture.find(name_h: 'みや') }
           it { expect(pref.name_h).to eq 'みやぎけん' }
         end
 
         context 'マッチする都道府県が複数あった場合(カタカナ表記)' do
-          let(:pref) { JpPrefecture::Prefecture.find(name: 'ミヤ') }
+          let(:pref) { JpPrefecture::Prefecture.find(name_k: 'ミヤ') }
           it { expect(pref.name_k).to eq 'ミヤギケン' }
         end
+      end
+    end
+
+    describe 'all_fields' do
+      context '指定する場合' do
+        let(:pref) { JpPrefecture::Prefecture.find(all_fields: '東') }
+        # area の「東北」が最初にマッチする
+        it { expect(pref.name).to eq '青森県' }
       end
     end
 

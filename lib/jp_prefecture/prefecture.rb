@@ -47,36 +47,49 @@ module JpPrefecture
     #   JpPrefecture::Prefecture.find(1)
     #   JpPrefecture::Prefecture.find(code: 1)
     #
-    #   # 都道府県名から検索
+    #   # 都道府県名から検索 (前方一致)
     #   JpPrefecture::Prefecture.find(name: '北海道')
-    #
-    #   # 都道府県名から検索(前方一致)
     #   JpPrefecture::Prefecture.find(name: '東京')
     #
     #   # 英語表記の都道府県名から検索
-    #   JpPrefecture::Prefecture.find(name: 'Hokkaido')
-    #   JpPrefecture::Prefecture.find(name: 'hokkaido')
+    #   JpPrefecture::Prefecture.find(name_e: 'Hokkaido')
+    #   JpPrefecture::Prefecture.find(name_e: 'hokkaido')
+    #
+    #   # ひらがな表記の都道府県名から検索
+    #   JpPrefecture::Prefecture.find(name_h: 'ほっかいどう')
+    #
+    #   # カタカナ表記の都道府県名から検索
+    #   JpPrefecture::Prefecture.find(name_k: 'ホッカイドウ')
+    #
+    #   # マッピングに定義しているすべてのフィールドから検索
+    #   JpPrefecture::Prefecture.find(all_fields: '東')
     #
     # @param args [Integer] 都道府県コード
-    # @param [Hash] args 検索条件
-    # @option args [Integer] :code 都道府県コード
-    # @option args [String] :name 都道府県名/英語/ひらがな/カタカナ表記の都道府県名
-    # @option args [Integer] :zip 郵便番号
+    # @param args [Hash<Symbol, Integer>] :code 都道府県コード
+    # @param args [Hash<Symbol, String>] :name 漢字表記/:name_e 英語表記/:name_h ひらがな表記/:name_k カタカナ表記
+    # @param args [Hash<Symbol, Integer>] :zip 郵便番号
+    # @param args [Hash<Symbol, (String, Integer)>] :all_fields マッピングに定義しているすべてのフィールドから検索
     # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
     # @return [nil] 都道府県が見つからない場合は nil
     def self.find(args)
       return if args.nil?
 
-      code = if args.is_a?(Integer) || args.is_a?(String)
+      code = case args
+             when Integer, String
                args.to_i
-             else
-               case args.keys[0]
-               when :name
-                 find_code_by_name(args[:name])
+             when Hash
+               search_field = args.keys.first
+               search_value = args.values.first
+
+               case search_field
+               when :all_fields
+                 find_code_by_name_from_all_fields(search_value)
+               when :name, :name_e, :name_h, :name_k, :area
+                 find_code_by_name(search_field, search_value)
                when :code
-                 args[:code].to_i
+                 search_value.to_i
                when :zip
-                 ZipMapping.code_for_zip(args[:zip].to_i)
+                 ZipMapping.code_for_zip(search_value.to_i)
                end
              end
 
@@ -116,8 +129,25 @@ module JpPrefecture
     # @param name [String] 検索する都道府県名
     # @return [Integer] 見つかった場合は都道府県コード
     # @return [nil] 見つからない場合は nil
-    def self.find_code_by_name(name)
-      return nil if name.nil? || name.empty?
+    def self.find_code_by_name(field, name)
+      return if name.nil? || name.empty?
+
+      name = name.downcase
+
+      Mapping.data.each do |m|
+        return m[0] if m[1][field].start_with?(name)
+      end
+
+      nil
+    end
+
+    # 名前から都道府県コードを前方一致で検索
+    #
+    # @param name [String] 検索する都道府県名
+    # @return [Integer] 見つかった場合は都道府県コード
+    # @return [nil] 見つからない場合は nil
+    def self.find_code_by_name_from_all_fields(name)
+      return if name.nil? || name.empty?
 
       name = name.downcase
 
