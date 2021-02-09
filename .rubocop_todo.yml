@@ -6,36 +6,20 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-# Configuration parameters: IgnoredMethods, CountRepeatedAttributes.
-Metrics/AbcSize:
-  Max: 23
-
 # Offense count: 9
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 # IgnoredMethods: refine
 Metrics/BlockLength:
   Max: 146
 
-# Offense count: 1
-# Configuration parameters: IgnoredMethods.
-Metrics/CyclomaticComplexity:
-  Max: 8
-
 # Offense count: 2
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 Metrics/MethodLength:
   Max: 18
 
-# Offense count: 1
-# Configuration parameters: CountKeywordArgs, MaxOptionalParameters.
-Metrics/ParameterLists:
-  Max: 6
-
 # Offense count: 2
 Style/Documentation:
   Exclude:
     - 'spec/**/*'
-    - 'test/**/*'
     - 'lib/jp_prefecture.rb'
     - 'lib/jp_prefecture/base.rb'

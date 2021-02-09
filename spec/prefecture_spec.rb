@@ -3,26 +3,24 @@
 require 'spec_helper'
 
 describe JpPrefecture::Prefecture do
-  describe '.build' do
-    let(:pref) { JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido', 'ほっかいどう', 'ホッカイドウ', '北海道') }
-    it { expect(pref.code).to eq 1 }
-    it { expect(pref.name).to eq '北海道' }
-    it { expect(pref.name_e).to eq 'Hokkaido' }
-    it { expect(pref.name_h).to eq 'ほっかいどう' }
-    it { expect(pref.name_k).to eq 'ホッカイドウ' }
-    it { expect(pref.zips).to eq [10_000..70_895, 400_000..996_509] }
-    it { expect(pref.area).to eq '北海道' }
-    it { expect(pref.type).to eq '道' }
+  describe '.build_by_code' do
+    context '都道府県が見つかる' do
+      let(:pref) { JpPrefecture::Prefecture.build_by_code(1) }
+      it { expect(pref).to be_an_instance_of(JpPrefecture::Prefecture) }
+      it { expect(pref.code).to eq(1) }
+      it { expect(pref.name).to eq('北海道') }
+      it { expect(pref.name_e).to eq('Hokkaido') }
+      it { expect(pref.name_h).to eq('ほっかいどう') }
+      it { expect(pref.name_k).to eq('ホッカイドウ') }
+      it { expect(pref.zips).to eq(JpPrefecture::ZipMapping.data[pref.code]) }
+      it { expect(pref.area).to eq('北海道') }
+      it { expect(pref.type).to eq('道') }
+    end
 
-    let(:nil_type_pref) { JpPrefecture::Prefecture.build(13, '東京', 'Tokyo', 'とうきょう', 'トウキョウ', '関東') }
-    it { expect(nil_type_pref.code).to eq 13 }
-    it { expect(nil_type_pref.name).to eq '東京' }
-    it { expect(nil_type_pref.name_e).to eq 'Tokyo' }
-    it { expect(nil_type_pref.name_h).to eq 'とうきょう' }
-    it { expect(nil_type_pref.name_k).to eq 'トウキョウ' }
-    it { expect(nil_type_pref.zips).to eq [1_000_000..2_080_035] }
-    it { expect(nil_type_pref.area).to eq '関東' }
-    it { expect(nil_type_pref.type).to eq nil }
+    context '都道府県が見つからない' do
+      let(:pref) { JpPrefecture::Prefecture.build_by_code(99) }
+      it { expect(pref).to be_nil }
+    end
   end
 
   describe '.all' do
