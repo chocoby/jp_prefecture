@@ -38,7 +38,7 @@ require 'jp_prefecture'
 Provide prefecture code to search prefecture's data
 
 ```ruby
-pref = JpPrefecture::Prefecture.find 13
+pref = JpPrefecture::Prefecture.find(13)
 # => #<JpPrefecture::Prefecture:0x007fceb11927d8 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035], @area="関東">
 pref.code
 # => 13
@@ -59,18 +59,27 @@ pref.type
 or
 
 ```ruby
-JpPrefecture::Prefecture.find code: 13
+JpPrefecture::Prefecture.find(code: 13)
 ```
 
 ### Search by Prefecture Name
 
+Search for a prefecture by forward match.
+
 ```ruby
-JpPrefecture::Prefecture.find name: "東京都"
-JpPrefecture::Prefecture.find name: "Tokyo"
-JpPrefecture::Prefecture.find name: "tokyo"
-JpPrefecture::Prefecture.find name: "トウキョウト"
-JpPrefecture::Prefecture.find name: "とうきょうと"
-JpPrefecture::Prefecture.find name: "東京"
+# Kanji
+JpPrefecture::Prefecture.find(name: "東京都")
+JpPrefecture::Prefecture.find(name: "東京")
+
+# English
+JpPrefecture::Prefecture.find(name_e: "Tokyo")
+JpPrefecture::Prefecture.find(name_e: "tokyo")
+
+# Hiragana
+JpPrefecture::Prefecture.find(name_h: "とうきょうと")
+
+# Kakatana
+JpPrefecture::Prefecture.find(name_k: "トウキョウト")
 ```
 
 ### All Prefectures
@@ -150,7 +159,7 @@ Customize mapping data with `custom_mapping_path`.
 custom_mapping_path = "..." # /path/to/mapping_data
 
 JpPrefecture.setup do |config|
-  config.mapping_data = YAML.load_file custom_mapping_path
+  config.mapping_data = YAML.load_file(custom_mapping_path)
 end
 ```
 

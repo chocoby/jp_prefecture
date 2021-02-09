@@ -41,7 +41,7 @@ require 'jp_prefecture'
 都道府県コードを渡すと、都道府県コードから都道府県を検索します:
 
 ```ruby
-pref = JpPrefecture::Prefecture.find 13
+pref = JpPrefecture::Prefecture.find(13)
 # => #<JpPrefecture::Prefecture:0x007fceb11927d8 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035], @area="関東">
 pref.code
 # => 13
@@ -62,18 +62,27 @@ pref.type
 以下のように書くことも可能です:
 
 ```ruby
-JpPrefecture::Prefecture.find code: 13
+JpPrefecture::Prefecture.find(code: 13)
 ```
 
 ### 都道府県名から都道府県を検索
 
+前方一致で都道府県を検索します:
+
 ```ruby
-JpPrefecture::Prefecture.find name: "東京都"
-JpPrefecture::Prefecture.find name: "Tokyo"
-JpPrefecture::Prefecture.find name: "tokyo"
-JpPrefecture::Prefecture.find name: "トウキョウト"
-JpPrefecture::Prefecture.find name: "とうきょうと"
-JpPrefecture::Prefecture.find name: "東京"
+# 漢字表記
+JpPrefecture::Prefecture.find(name: "東京都")
+JpPrefecture::Prefecture.find(name: "東京")
+
+# 英語表記
+JpPrefecture::Prefecture.find(name_e: "Tokyo")
+JpPrefecture::Prefecture.find(name_e: "tokyo")
+
+# ひらがな表記
+JpPrefecture::Prefecture.find(name_h: "とうきょうと")
+
+# カタカナ表記
+JpPrefecture::Prefecture.find(name_k: "トウキョウト")
 ```
 
 ### 都道府県の一覧を取得
@@ -153,7 +162,7 @@ end
 custom_mapping_path = "..." # /path/to/mapping_data
 
 JpPrefecture.setup do |config|
-  config.mapping_data = YAML.load_file custom_mapping_path
+  config.mapping_data = YAML.load_file(custom_mapping_path)
 end
 ```
 
