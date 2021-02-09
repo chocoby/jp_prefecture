@@ -9,30 +9,29 @@ module JpPrefecture
   class Prefecture
     attr_accessor :code, :name, :name_e, :name_h, :name_k, :zips, :area, :type
 
-    # 配列から都道府県クラスを生成
+    # 都道府県コードから都道府県インスタンスを作成
     #
     # @example
-    #   # コード/名前から都道府県クラスを生成
-    #   JpPrefecture::Prefecture.build(1, '北海道', 'Hokkaido')
+    #   # 都道府県コードから都道府県インスタンスを生成
+    #   JpPrefecture::Prefecture.build_by_code(1)
     #
-    # @param pref [Integer] 都道府県コード
-    # @param name [String] 都道府県名
-    # @param name_e [String] 都道府県名(英語表記)
-    # @param optional name_h [String] 都道府県名(ひらがな表記)
-    # @param optional name_k [String] 都道府県名(カタカナ表記)
-    # @param optional area [String] 地方名
-    # @param zips [Array] 郵便番号の配列 (array of ranges, can be used in ARel, e.g. User.where(zip: prefecture.zips))
-    def self.build(code, name, name_e, name_h = nil, name_k = nil, area = nil)
+    # @param code [Integer] 都道府県コード
+    # @return [JpPrefecture::Prefecture] 都道府県インスタンス
+    # @return [nil] 都道府県が見つからない場合は nil
+    def self.build_by_code(code) # rubocop:disable Metrics/AbcSize
+      result = Mapping.data[code]
+      return unless result
+
       pref = new
 
-      pref.code    = code
-      pref.name    = name
-      pref.name_e  = name_e.capitalize
-      pref.name_h  = name_h
-      pref.name_k  = name_k
-      pref.zips    = ZipMapping.data[code]
-      pref.area    = area
-      pref.type    =
+      pref.code = code
+      pref.name = result[:name]
+      pref.name_e = result[:name_e].capitalize
+      pref.name_h = result[:name_h]
+      pref.name_k = result[:name_k]
+      pref.zips = ZipMapping.data[code]
+      pref.area = result[:area]
+      pref.type =
         case pref.name[-1]
         when '都', '道', '府', '県'
           pref.name[-1]
@@ -41,7 +40,7 @@ module JpPrefecture
       pref
     end
 
-    # すべての都道府県クラスを返す
+    # すべての都道府県を取得
     #
     # @example
     #   # 都道府県の一覧を取得
@@ -53,14 +52,9 @@ module JpPrefecture
     #   # collection_select で選択肢を生成(英語表記)
     #   f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e
     #
-    # @return [Array] 都道府県クラスの配列
+    # @return [Array<JpPrefecture::Prefecture>] 都道府県インスタンスの配列
     def self.all
-      Mapping.data.map do |pref|
-        names = pref[1]
-        build(pref[0],
-              names[:name], names[:name_e],
-              names[:name_h], names[:name_k], names[:area])
-      end
+      Mapping.data.map { |code, _| build_by_code(code) }
     end
 
     # 都道府県を検索
@@ -94,7 +88,7 @@ module JpPrefecture
     # @param args [Hash<Symbol, String>] :name 漢字表記/:name_e 英語表記/:name_h ひらがな表記/:name_k カタカナ表記
     # @param args [Hash<Symbol, Integer>] :zip 郵便番号
     # @param args [Hash<Symbol, (String, Integer)>] :all_fields マッピングに定義しているすべてのフィールドから検索
-    # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
+    # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県インスタンス
     # @return [nil] 都道府県が見つからない場合は nil
     def self.find(args)
       return if args.nil?

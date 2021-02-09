@@ -15,21 +15,11 @@ module JpPrefecture
       #
       # @param field [Symbol] 検索する項目。nil の場合は都道府県コードとして扱う
       # @param value [String, Integer] 検索する内容
-      # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県クラス
+      # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県インスタンス
       # @return [nil] 都道府県が見つからない場合は nil
       def find(field:, value:)
         code = find_code(field, value)
-        prefecture = @mapping[code]
-        return unless prefecture
-
-        JpPrefecture::Prefecture.build(
-          code,
-          prefecture[:name],
-          prefecture[:name_e],
-          prefecture[:name_h],
-          prefecture[:name_k],
-          prefecture[:area]
-        )
+        JpPrefecture::Prefecture.build_by_code(code)
       end
 
       private
