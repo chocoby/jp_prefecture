@@ -3,18 +3,18 @@
 
 require 'bundler/gem_tasks'
 
-desc 'zip.yml を作成します'
-task :create_zips do
+desc '郵便番号のデータを作成/更新する'
+task :create_zip_code_data do
   require 'csv'
   require 'jp_prefecture'
 
   file_name = 'ken_all_utf8.csv'
 
   # download files
-  `wget http://www.post.japanpost.jp/zipcode/dl/kogaki/lzh/ken_all.lzh`
-  `lha x ken_all.lzh`
+  `curl -O https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip`
+  `unzip ken_all.zip`
   `iconv -f sjis -t utf-8 ken_all.csv > #{file_name}`
-  `rm ken_all.lzh`
+  `rm ken_all.zip`
   `rm ken_all.csv`
 
   zips = []
