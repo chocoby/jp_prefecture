@@ -65,7 +65,7 @@ pref.type
 JpPrefecture::Prefecture.find(code: 13)
 ```
 
-### 都道府県名から都道府県を検索
+### 都道府県を検索
 
 前方一致で都道府県を検索します:
 
@@ -83,6 +83,12 @@ JpPrefecture::Prefecture.find(name_h: "とうきょうと")
 
 # カタカナ表記
 JpPrefecture::Prefecture.find(name_k: "トウキョウト")
+```
+
+マッピングのすべての項目を検索します (推奨しません):
+
+```ruby
+JpPrefecture::Prefecture.find(all_fields: "東京")
 ```
 
 ### 都道府県の一覧を取得
