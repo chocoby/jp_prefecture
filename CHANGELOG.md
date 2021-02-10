@@ -15,7 +15,7 @@
 
   `JpPrefecture::Prefecture.find(name: '東')` を実行すると、青森県が取得されていた問題への対応です。これはマッピングのすべての項目を検索していたためです。
   対応として、`name` を指定した場合は漢字表記、`name_e` は英語表記など、指定した項目のみを検索するように変更しました。詳しい使い方は README を参照してください。
-  すべての項目から検索したい場合は `JpPrefecture::Prefecture.find(all_fields: 'string')` を使用してください。
+  以前のように、すべての項目から検索したい場合は `JpPrefecture::Prefecture.find(all_fields: 'string')` を使用してください。
 
 ### Features
 

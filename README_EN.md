@@ -78,8 +78,14 @@ JpPrefecture::Prefecture.find(name_e: "tokyo")
 # Hiragana
 JpPrefecture::Prefecture.find(name_h: "とうきょうと")
 
-# Kakatana
+# Katakana
 JpPrefecture::Prefecture.find(name_k: "トウキョウト")
+```
+
+Search all items in the mapping (not recommended).
+
+```ruby
+JpPrefecture::Prefecture.find(all_fields: "東京")
 ```
 
 ### All Prefectures
