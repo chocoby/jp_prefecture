@@ -210,6 +210,7 @@ $ gem install jp_prefecture
 * Ruby: 2.4 - 3.0
 * Rails: 5.0 - 6.1
 
+If you are using an older Ruby/Rails version, please use [`v0.11.0`](https://github.com/chocoby/jp_prefecture/tree/0.x).
 
 ## Contributing
 
