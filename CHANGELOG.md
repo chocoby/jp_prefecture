@@ -1,6 +1,6 @@
 ## Unreleased
 
-## 1.0.0.beta1 (2021-MM-DD Unreleased)
+## 1.0.0.rc1 (2021-02-10)
 
 ### Breaking changes
 
