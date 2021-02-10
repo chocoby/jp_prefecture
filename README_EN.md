@@ -153,10 +153,10 @@ end
 
 ### Customize Mapping Data
 
-Customize mapping data with `custom_mapping_path`.
+Customize mapping data with `mapping_data`.
 
 ```ruby
-custom_mapping_path = "..." # /path/to/mapping_data
+custom_mapping_path = "/path/to/mapping_data.yml"
 
 JpPrefecture.setup do |config|
   config.mapping_data = YAML.load_file(custom_mapping_path)
@@ -164,6 +164,20 @@ end
 ```
 
 Check out [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) for data format.
+
+### Customize Zip Code Data
+
+Customize zip code data with `zip_mapping_data`.
+
+```ruby
+custom_zip_mapping_path = "/path/to/zip_mapping_data.yml"
+
+JpPrefecture.setup do |config|
+  config.zip_mapping_data = YAML.load_file(custom_zip_mapping_path)
+end
+```
+
+Check out [zip.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/zip.yml) for data format.
 
 
 ## Installation
@@ -191,7 +205,7 @@ $ gem install jp_prefecture
 
 [http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
 
-## Supports
+## Supported versions
 
 * Ruby: 2.4 - 3.0
 * Rails: 5.0 - 6.1
