@@ -1,5 +1,41 @@
 ## Unreleased
 
+## 1.0.0.beta1 (2021-MM-DD Unreleased)
+
+### Breaking changes
+
+* Ruby 1.9.3 - 2.3/Rails 3.2 - 4.2 のサポートを終了 (PR [#39](https://github.com/chocoby/jp_prefecture/pull/39)/[@chocoby](https://github.com/chocoby))
+
+  古い Ruby/Rails のサポートを終了しました。今後も大きな不具合が見つかった場合、可能な限りは対応する予定です。
+
+  サポートするバージョンの範囲は Ruby/Rails のメンテナンスポリシーに則るのがシンプルですが、この Gem では厳しくする必要はないと考えています。
+  Ruby/Rails のメンテナンスポリシーで決められているバージョンは最低限サポートし、実装やテストのメンテナンスが困難になったバージョンからサポートを終了する方針で検討しています。ご意見があればください。
+
+### Features
+
+* Ruby 3.0 をサポートに追加 (PR [#42](https://github.com/chocoby/jp_prefecture/pull/42)/[@chocoby](https://github.com/chocoby))
+* 郵便番号データを更新 (PR [#46](https://github.com/chocoby/jp_prefecture/pull/46)/[@chocoby](https://github.com/chocoby))
+* `JpPrefecture::Prefecture` クラスに都道府県コードから都道府県インスタンスを作成する `build_by_code` メソッドを追加 (PR [#44](https://github.com/chocoby/jp_prefecture/pull/44)/[@chocoby](https://github.com/chocoby))
+
+  都道府県コードを指定すると、それに対応した都道府県の `JpPrefecture::Prefecture` インスタンスを取得するメソッドを追加しました。
+  `JpPrefecture::Prefecture.build` メソッドは参照している処理がなくなったため、削除しました。
+
+### Fixes
+
+* 文字列による検索は項目を指定して検索する (Issue [#24](https://github.com/chocoby/jp_prefecture/issues/24), [#27](https://github.com/chocoby/jp_prefecture/issues/27)/PR [#43](https://github.com/chocoby/jp_prefecture/pull/43)/[@chocoby](https://github.com/chocoby))
+
+  `JpPrefecture::Prefecture.find(name: '東')` を実行すると、青森県が取得されていた問題への対応です。これはマッピングのすべての項目を検索していたためです。
+  対応として、`name` を指定した場合は漢字表記、`name_e` は英語表記など、指定した項目のみを検索するように変更しました。
+  すべての項目から検索したい場合は `JpPrefecture::Prefecture.find(all_fields: 'string')` を使用してください。
+
+### Documentation
+
+* CONTRIBUTING.md を追加 (PR [#41](https://github.com/chocoby/jp_prefecture/pull/41)/[@chocoby](https://github.com/chocoby))
+
+### Misc
+
+* RuboCop を導入 (PR [#40](https://github.com/chocoby/jp_prefecture/pull/40)/[@chocoby](https://github.com/chocoby))
+
 ## 0.11.0 (2020-12-18)
 
 * Rails 6.1 をサポート (PR [#37](https://github.com/chocoby/jp_prefecture/pull/37)/[@chocoby](https://github.com/chocoby))
