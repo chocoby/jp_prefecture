@@ -57,6 +57,7 @@ task :create_zip_code_data do
   # save result
   File.open('data/zip.yml', 'w') do |file|
     file.write "# { prefecture_code: [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }\n"
+    file.write "# Last updated: #{Time.now.utc}\n"
     file.write prefectures_to_zip.to_yaml
   end
 
