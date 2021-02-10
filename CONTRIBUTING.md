@@ -40,3 +40,12 @@ bundle exec appraisal rails61 rspec
    ```
 1. [Releases](https://github.com/chocoby/jp_prefecture/releases) でリリースを作成
    - 内容は `CHANGELOG.md` と同様
+
+
+## 都道府県の郵便番号データの更新
+
+以下のタスクを実行します。変更がある場合は `data/zip.yml` に差分が発生します。
+
+```
+$ bundle exec rake create_zip_code_data
+```
