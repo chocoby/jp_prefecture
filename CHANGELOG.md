@@ -35,6 +35,7 @@
 ### Misc
 
 * RuboCop を導入 (PR [#40](https://github.com/chocoby/jp_prefecture/pull/40)/[@chocoby](https://github.com/chocoby))
+* Gem に含めるファイルを最低限のものにする (PR [#48](https://github.com/chocoby/jp_prefecture/pull/48)/[@chocoby](https://github.com/chocoby))
 
 ## 0.11.0 (2020-12-18)
 

@@ -3,14 +3,14 @@
 require File.expand_path('lib/jp_prefecture/version', __dir__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ['chocoby']
+  gem.authors       = ['@chocoby']
   gem.email         = ['chocoby@gmail.com']
   gem.summary       = 'Convert japan prefecture code into prefecture name'
-  gem.description   = 'Convert japan prefecture code(JIS X 0402 based) into prefecture name.'
+  gem.description   = 'Convert japan prefecture code (JIS X 0402 based) into prefecture name.'
   gem.homepage      = 'https://github.com/chocoby/jp_prefecture'
   gem.license       = 'MIT'
 
-  gem.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
+  gem.files         = Dir['{data,lib}/**/*', 'CHANGELOG.md', 'LICENSE', 'README.md', 'README_EN.md']
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = 'jp_prefecture'
