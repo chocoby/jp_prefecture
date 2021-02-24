@@ -7,7 +7,10 @@ module JpPrefecture
   module ZipMapping
     filepath = File.join(File.dirname(__FILE__), '../../data/zip.yml')
     @data = YAML.load_file(filepath)
+    # rubocop:disable Style/HashConversion
+    # https://github.com/rubocop-hq/rubocop/issues/9526
     @data = Hash[*@data.collect { |code, arr| [code, arr.collect { |zip_from, zip_to| zip_from..zip_to }] }.flatten(1)]
+    # rubocop:enable Style/HashConversion
 
     def self.data
       JpPrefecture.config.zip_mapping_data || @data

@@ -6,6 +6,8 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
+  schedule:
+    - cron:  '0 0 * * 1'
 
 jobs:
   lint:
