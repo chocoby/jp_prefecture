@@ -1,5 +1,11 @@
 ## Unreleased
 
+## 1.0.0 (2021-02-24)
+
+### Misc
+
+* 毎週月曜日の 09:00 (JST) にテストを実行する (PR [#52](https://github.com/chocoby/jp_prefecture/pull/52)/[@chocoby](https://github.com/chocoby))
+
 ## 1.0.0.rc1 (2021-02-10)
 
 ### Breaking changes
