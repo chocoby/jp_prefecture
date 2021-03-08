@@ -52,11 +52,7 @@ task :create_zip_code_data do
     prefectures_to_zip[code] << [r0, r1]
   end
 
-  # rubocop:disable Style/HashConversion
-  # https://github.com/rubocop-hq/rubocop/issues/9526
   prefectures_to_zip = Hash[*prefectures_to_zip.sort.flatten(1)]
-  # rubocop:enable Style/HashConversion
-
   # save result
   File.open('data/zip.yml', 'w') do |file|
     file.write "# { prefecture_code: [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }\n"
