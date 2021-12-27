@@ -31,7 +31,7 @@ bundle exec appraisal rails61 rspec
 1. `lib/jp_prefecture/version.rb` のバージョンを変更
    - バージョニングは [セマンティックバージョニング](https://semver.org/lang/ja/) に則る
 1. `CHANGELOG.md` を編集
-1. master ブランチに対して Pull Request を作成
+1. main ブランチに対して Pull Request を作成
    - CI がパスしたらマージ
 1. Gem をリリース
    ```
