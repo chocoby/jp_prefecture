@@ -49,15 +49,22 @@ jobs:
           - rails52.gemfile
           - rails60.gemfile
           - rails61.gemfile
+          - rails70.gemfile
         exclude:
           - ruby: '2.4'
             gemfile: rails60.gemfile
           - ruby: '2.4'
             gemfile: rails61.gemfile
+          - ruby: '2.4'
+            gemfile: rails70.gemfile
           - ruby: '2.5'
             gemfile: rails60.gemfile
           - ruby: '2.5'
             gemfile: rails61.gemfile
+          - ruby: '2.5'
+            gemfile: rails70.gemfile
+          - ruby: '2.6'
+            gemfile: rails70.gemfile
           - ruby: '3.0'
             gemfile: rails50.gemfile
           - ruby: '3.0'

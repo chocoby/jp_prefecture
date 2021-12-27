@@ -3,6 +3,7 @@
 ### Features
 
 * Ruby 3.1 をサポートに追加 (PR [#54](https://github.com/chocoby/jp_prefecture/pull/54)/[@chocoby](https://github.com/chocoby))
+* Rails 7.0 をサポート (PR [#55](https://github.com/chocoby/jp_prefecture/pull/55)/[@chocoby](https://github.com/chocoby))
 
 ## 1.0.0 (2021-02-24)
 
