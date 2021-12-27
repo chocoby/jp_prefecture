@@ -169,7 +169,7 @@ JpPrefecture.setup do |config|
 end
 ```
 
-Check out [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) for data format.
+Check out [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/main/data/prefecture.yml) for data format.
 
 ### Customize Zip Code Data
 
@@ -183,7 +183,7 @@ JpPrefecture.setup do |config|
 end
 ```
 
-Check out [zip.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/zip.yml) for data format.
+Check out [zip.yml](https://github.com/chocoby/jp_prefecture/blob/main/data/zip.yml) for data format.
 
 
 ## Installation
@@ -209,7 +209,7 @@ $ gem install jp_prefecture
 
 ## Documentation
 
-[http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
+[http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index)
 
 ## Supported versions
 
@@ -220,7 +220,7 @@ If you are using an older Ruby/Rails version, please use [`v0.11.0`](https://git
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/chocoby/jp_prefecture/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/chocoby/jp_prefecture/blob/main/CONTRIBUTING.md).
 
 ## GitHub
 

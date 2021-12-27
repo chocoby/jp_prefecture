@@ -172,7 +172,7 @@ JpPrefecture.setup do |config|
 end
 ```
 
-マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml) を参考にしてください。
+マッピングデータのフォーマットについては [prefecture.yml](https://github.com/chocoby/jp_prefecture/blob/main/data/prefecture.yml) を参考にしてください。
 
 ### 郵便番号の情報を変更する
 
@@ -184,7 +184,7 @@ JpPrefecture.setup do |config|
 end
 ```
 
-データのフォーマットについては [zip.yml](https://github.com/chocoby/jp_prefecture/blob/master/data/zip.yml) を参考にしてください。
+データのフォーマットについては [zip.yml](https://github.com/chocoby/jp_prefecture/blob/main/data/zip.yml) を参考にしてください。
 
 
 ## インストール
@@ -206,7 +206,7 @@ $ gem install jp_prefecture
 
 ## ドキュメント
 
-[http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/master/frames/index)
+[http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index)
 
 ## サポートしているバージョン
 
@@ -217,7 +217,7 @@ $ gem install jp_prefecture
 
 ## Contributing
 
-[CONTRIBUTING.md](https://github.com/chocoby/jp_prefecture/blob/master/CONTRIBUTING.md) を確認してください。
+[CONTRIBUTING.md](https://github.com/chocoby/jp_prefecture/blob/main/CONTRIBUTING.md) を確認してください。
 
 ## GitHub
 
