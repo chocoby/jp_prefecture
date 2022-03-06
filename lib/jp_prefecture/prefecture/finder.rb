@@ -34,7 +34,7 @@ module JpPrefecture
         case field
         when :all_fields
           find_code_by_name_from_all_fields(value)
-        when :name, :name_h, :name_k, :name_e
+        when :name, :name_h, :name_k, :name_e, :name_r
           find_code_by_name(field, value)
         when :code
           value.to_i

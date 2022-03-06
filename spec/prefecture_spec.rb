@@ -10,6 +10,7 @@ describe JpPrefecture::Prefecture do
       it { expect(pref.code).to eq(1) }
       it { expect(pref.name).to eq('北海道') }
       it { expect(pref.name_e).to eq('Hokkaido') }
+      it { expect(pref.name_r).to eq('Hokkaidō') }
       it { expect(pref.name_h).to eq('ほっかいどう') }
       it { expect(pref.name_k).to eq('ホッカイドウ') }
       it { expect(pref.zips).to eq(JpPrefecture::ZipMapping.data[pref.code]) }

@@ -7,7 +7,7 @@ require 'jp_prefecture/zip_mapping'
 module JpPrefecture
   # 都道府県のコードと名前を扱うクラス
   class Prefecture
-    attr_accessor :code, :name, :name_e, :name_h, :name_k, :zips, :area, :type
+    attr_accessor :code, :name, :name_e, :name_r, :name_h, :name_k, :zips, :area, :type
 
     # 都道府県コードから都道府県インスタンスを作成
     #
@@ -27,6 +27,7 @@ module JpPrefecture
       pref.code = code
       pref.name = result[:name]
       pref.name_e = result[:name_e].capitalize
+      pref.name_r = result[:name_r].capitalize
       pref.name_h = result[:name_h]
       pref.name_k = result[:name_k]
       pref.zips = ZipMapping.data[code]

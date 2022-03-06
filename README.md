@@ -42,13 +42,15 @@ require 'jp_prefecture'
 
 ```ruby
 pref = JpPrefecture::Prefecture.find(13)
-# => #<JpPrefecture::Prefecture:0x007fceb11927d8 @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @zips=[1000000..2080035], @area="関東">
+# => #<JpPrefecture::Prefecture:0x00000001126b6558 @area="関東", @code=13, @name="東京都", @name_e="Tokyo", @name_h="とうきょうと", @name_k="トウキョウト", @name_r="Tōkyō", @type="都", @zips=[1000000..2080035]>
 pref.code
 # => 13
 pref.name
 # => "東京都"
 pref.name_e
 # => "Tokyo"
+pref.name_r
+# => "Tōkyō"
 pref.name_h
 # => "とうきょうと"
 pref.name_k
@@ -78,6 +80,10 @@ JpPrefecture::Prefecture.find(name: "東京")
 JpPrefecture::Prefecture.find(name_e: "Tokyo")
 JpPrefecture::Prefecture.find(name_e: "tokyo")
 
+# ローマ字表記
+JpPrefecture::Prefecture.find(name_r: "Tōkyō")
+JpPrefecture::Prefecture.find(name_r: "tōkyō")
+
 # ひらがな表記
 JpPrefecture::Prefecture.find(name_h: "とうきょうと")
 
@@ -95,7 +101,7 @@ JpPrefecture::Prefecture.find(all_fields: "東京")
 
 ```ruby
 JpPrefecture::Prefecture.all
-# => [#<JpPrefecture::Prefecture:0x007fceb119a2a8 @code=1, @name="北海道", @name_e="Hokkaido", @name_h="ほっかいどう", @name_k="ホッカイドウ", @zips=[10000..70895, 400000..996509], @area="北海道">, ...]
+# => [#<JpPrefecture::Prefecture:0x0000000112555ab0 @area="北海道", @code=1, @name="北海道", @name_e="Hokkaido", @name_h="ほっかいどう", @name_k="ホッカイドウ", @name_r="Hokkaidō", @type="道", @zips=[10000..70895, 400000..996509]>, ...]
 ```
 
 ### Rails (ActiveRecord) で使用する
