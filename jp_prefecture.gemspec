@@ -3,8 +3,8 @@
 require File.expand_path('lib/jp_prefecture/version', __dir__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ['@chocoby']
-  gem.email         = ['chocoby@gmail.com']
+  gem.authors       = ['chocoby']
+  gem.email         = ['chocoby@himajin.dev']
   gem.summary       = 'Convert japan prefecture code into prefecture name'
   gem.description   = 'Convert japan prefecture code (JIS X 0402 based) into prefecture name.'
   gem.homepage      = 'https://github.com/chocoby/jp_prefecture'
