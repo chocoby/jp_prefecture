@@ -1,7 +1,10 @@
 ## Unreleased
 
+## 1.1.0 (2022-03-17)
+
 ### Features
 
+* 都道府県情報にローマ字表記を追加 (PR [#57](https://github.com/chocoby/jp_prefecture/pull/57)/[@sondh5](https://github.com/sondh5))
 * Ruby 3.1 をサポートに追加 (PR [#54](https://github.com/chocoby/jp_prefecture/pull/54)/[@chocoby](https://github.com/chocoby))
 * Rails 7.0 をサポート (PR [#55](https://github.com/chocoby/jp_prefecture/pull/55)/[@chocoby](https://github.com/chocoby))
 
