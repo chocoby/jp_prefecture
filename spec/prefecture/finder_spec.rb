@@ -34,6 +34,13 @@ describe JpPrefecture::Prefecture::Finder do
       it_behaves_like '都道府県が見つからない', :name_e, 'Udon'
     end
 
+    describe 'field に name_r (ローマ字表記) を指定する' do
+      it_behaves_like '都道府県が見つかる', :name_r, 'HOKKAIDŌ', '北海道'
+      it_behaves_like '都道府県が見つかる', :name_r, 'Hokkaidō', '北海道'
+      it_behaves_like '都道府県が見つかる', :name_r, 'hokkaidō', '北海道'
+      it_behaves_like '都道府県が見つからない', :name_r, 'Udōn'
+    end
+
     describe 'field に name_h (ひらがな表記) を指定する' do
       it_behaves_like '都道府県が見つかる', :name_h, 'ほっかいどう', '北海道'
       it_behaves_like '都道府県が見つかる', :name_h, 'ほっかい', '北海道'
