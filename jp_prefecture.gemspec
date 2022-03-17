@@ -18,6 +18,8 @@ Gem::Specification.new do |gem|
   gem.version       = JpPrefecture::VERSION
   gem.required_ruby_version = '>= 2.4.0'
 
+  gem.metadata['rubygems_mfa_required'] = 'true'
+
   gem.add_development_dependency 'activerecord', '>= 5.0.0'
   gem.add_development_dependency 'appraisal'
   gem.add_development_dependency 'rake'
