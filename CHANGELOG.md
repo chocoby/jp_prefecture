@@ -1,5 +1,11 @@
 ## Unreleased
 
+## 1.1.1 (2022-03-25)
+
+### Bug fix
+
+* マッピングに項目が存在しない場合にエラーが発生する問題を修正 (PR [#59](https://github.com/chocoby/jp_prefecture/pull/59)/[@chocoby](https://github.com/chocoby))
+
 ## 1.1.0 (2022-03-17)
 
 ### Features
