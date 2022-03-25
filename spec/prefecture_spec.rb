@@ -18,6 +18,35 @@ describe JpPrefecture::Prefecture do
       it { expect(pref.type).to eq('道') }
     end
 
+    context 'カスタマイズしたマッピング情報に定義されていない項目が存在する' do
+      before do
+        JpPrefecture.setup do |config|
+          config.mapping_data = YAML.load_file(File.join(File.dirname(__FILE__),
+                                                         'fixtures/prefecture_without_values.yml'))
+          config.zip_mapping_data = YAML.load_file(File.join(File.dirname(__FILE__), 'fixtures/zip_without_values.yml'))
+        end
+      end
+
+      after do
+        JpPrefecture.setup do |config|
+          config.mapping_data = nil
+          config.zip_mapping_data = nil
+        end
+      end
+
+      let(:pref) { JpPrefecture::Prefecture.build_by_code(1) }
+      it { expect(pref).to be_an_instance_of(JpPrefecture::Prefecture) }
+      it { expect(pref.code).to eq(1) }
+      it { expect(pref.name).to be_nil }
+      it { expect(pref.name_e).to be_nil }
+      it { expect(pref.name_r).to be_nil }
+      it { expect(pref.name_h).to be_nil }
+      it { expect(pref.name_k).to be_nil }
+      it { expect(pref.zips).to be_nil }
+      it { expect(pref.area).to be_nil }
+      it { expect(pref.type).to be_nil }
+    end
+
     context '都道府県が見つからない' do
       let(:pref) { JpPrefecture::Prefecture.build_by_code(99) }
       it { expect(pref).to be_nil }
