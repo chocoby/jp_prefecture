@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Features
+
+* Ruby 3.2 をサポートに追加 (PR [#61](https://github.com/chocoby/jp_prefecture/pull/61)/[@chocoby](https://github.com/chocoby))
+
 ## 1.1.1 (2022-03-25)
 
 ### Bug fix

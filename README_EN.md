@@ -3,7 +3,7 @@
 [**Japanese**](README.md)
 
 [![Gem Version](http://img.shields.io/gem/v/jp_prefecture.svg?style=flat)](https://rubygems.org/gems/jp_prefecture)
-[![GitHub Actions](https://github.com/chocoby/jp_prefecture/workflows/Build/badge.svg)](https://github.com/chocoby/jp_prefecture)
+[![GitHub Actions](https://github.com/chocoby/jp_prefecture/workflows/Build/badge.svg)](https://github.com/chocoby/jp_prefecture/actions)
 [![Coveralls](https://img.shields.io/coveralls/chocoby/jp_prefecture.svg)](https://coveralls.io/r/chocoby/jp_prefecture)
 
 https://rubygems.org/gems/jp_prefecture
