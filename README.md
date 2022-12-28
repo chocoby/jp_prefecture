@@ -216,7 +216,7 @@ $ gem install jp_prefecture
 
 ## サポートしているバージョン
 
-* Ruby: 2.4 - 3.1
+* Ruby: 2.4 - 3.2
 * Rails: 5.0 - 7.0
 
 これより古い Ruby/Rails バージョンを使用する場合は、[`v0.11.0`](https://github.com/chocoby/jp_prefecture/tree/0.x) を利用してください。
