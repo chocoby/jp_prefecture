@@ -215,7 +215,7 @@ $ gem install jp_prefecture
 
 ## Documentation
 
-[http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index)
+[https://rubydoc.info/gems/jp_prefecture](https://rubydoc.info/gems/jp_prefecture)
 
 ## Supported versions
 
