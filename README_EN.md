@@ -215,11 +215,11 @@ $ gem install jp_prefecture
 
 ## Documentation
 
-[http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index](http://rdoc.info/github/chocoby/jp_prefecture/main/frames/index)
+[https://rubydoc.info/gems/jp_prefecture](https://rubydoc.info/gems/jp_prefecture)
 
 ## Supported versions
 
-* Ruby: 2.4 - 3.1
+* Ruby: 2.4 - 3.2
 * Rails: 5.0 - 7.0
 
 If you are using an older Ruby/Rails version, please use [`v0.11.0`](https://github.com/chocoby/jp_prefecture/tree/0.x).

@@ -12,8 +12,11 @@ inherit_from: .rubocop_todo.yml
 # See https://docs.rubocop.org/rubocop/configuration
 
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
   NewCops: enable
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
 
 Style/AsciiComments:
   Enabled: false
