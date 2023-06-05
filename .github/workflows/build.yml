@@ -109,14 +109,18 @@ jobs:
         run: bundle exec rspec
 
       - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel: true
+          flag-name: run ${{ join(matrix.*, ' - ') }}
           path-to-lcov: ./coverage/lcov.info
 
+  finish:
+    needs: test
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
