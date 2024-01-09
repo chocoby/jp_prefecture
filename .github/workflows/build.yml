@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -42,6 +42,7 @@ jobs:
           - '3.0'
           - '3.1'
           - '3.2'
+          - '3.3'
         gemfile:
           - rails50.gemfile
           - rails51.gemfile
@@ -49,6 +50,7 @@ jobs:
           - rails60.gemfile
           - rails61.gemfile
           - rails70.gemfile
+          - rails71.gemfile
         exclude:
           - ruby: '2.4'
             gemfile: rails60.gemfile
@@ -56,14 +58,20 @@ jobs:
             gemfile: rails61.gemfile
           - ruby: '2.4'
             gemfile: rails70.gemfile
+          - ruby: '2.4'
+            gemfile: rails71.gemfile
           - ruby: '2.5'
             gemfile: rails60.gemfile
           - ruby: '2.5'
             gemfile: rails61.gemfile
           - ruby: '2.5'
             gemfile: rails70.gemfile
+          - ruby: '2.5'
+            gemfile: rails71.gemfile
           - ruby: '2.6'
             gemfile: rails70.gemfile
+          - ruby: '2.6'
+            gemfile: rails71.gemfile
           - ruby: '3.0'
             gemfile: rails50.gemfile
           - ruby: '3.0'
@@ -81,6 +89,12 @@ jobs:
           - ruby: '3.2'
             gemfile: rails51.gemfile
           - ruby: '3.2'
+            gemfile: rails52.gemfile
+          - ruby: '3.3'
+            gemfile: rails50.gemfile
+          - ruby: '3.3'
+            gemfile: rails51.gemfile
+          - ruby: '3.3'
             gemfile: rails52.gemfile
 
     env:
@@ -90,7 +104,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup System
         run: |
