@@ -35,4 +35,8 @@ if RUBY_VERSION >= '2.7.0'
   appraise 'rails71' do
     gem 'activerecord', '~> 7.1'
   end
+
+  appraise 'rails72' do
+    gem 'activerecord', '~> 7.2'
+  end
 end
