@@ -20,10 +20,12 @@ end
 if RUBY_VERSION >= '2.6.0'
   appraise 'rails60' do
     gem 'activerecord', '~> 6.0'
+    gem 'mutex_m'
   end
 
   appraise 'rails61' do
     gem 'activerecord', '~> 6.1'
+    gem 'mutex_m'
   end
 end
 
