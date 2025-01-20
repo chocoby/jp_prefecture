@@ -7,6 +7,7 @@
 * Ruby 3.3 をサポートに追加 (PR [#64](https://github.com/chocoby/jp_prefecture/pull/64)/[@chocoby](https://github.com/chocoby))
 * Rails 7.2 をサポートに追加 (PR [#65](https://github.com/chocoby/jp_prefecture/pull/65)/[@y-yagi](https://github.com/y-yagi))
 * Ruby 3.4 をサポートに追加 (PR [#67](https://github.com/chocoby/jp_prefecture/pull/67)/[@chocoby](https://github.com/chocoby))
+* Rails 8.0 をサポートに追加 (PR [#68](https://github.com/chocoby/jp_prefecture/pull/68)/[@chocoby](https://github.com/chocoby))
 
 ## 1.1.1 (2022-03-25)
 
