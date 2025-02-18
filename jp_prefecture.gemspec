@@ -20,16 +20,4 @@ Gem::Specification.new do |gem|
   gem.files         = Dir['{data,lib}/**/*', 'CHANGELOG.md', 'LICENSE', 'README.md', 'README_EN.md']
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.require_paths = ['lib']
-
-  gem.add_development_dependency 'activerecord', '>= 5.0.0'
-  gem.add_development_dependency 'appraisal'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'rubocop'
-  gem.add_development_dependency 'rubocop-performance'
-  gem.add_development_dependency 'rubocop-rake'
-  gem.add_development_dependency 'rubocop-rspec'
-  gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'simplecov-lcov'
-  gem.add_development_dependency 'sqlite3'
 end
