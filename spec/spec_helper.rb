@@ -12,6 +12,7 @@ if ENV['CI']
 end
 
 require 'jp_prefecture'
+require 'logger'
 require 'active_record'
 
 RSpec.configure do |config|
