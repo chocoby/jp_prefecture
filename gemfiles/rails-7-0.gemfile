@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+eval_gemfile '../Gemfile'
+
+gem 'activerecord', '~> 7.0'
+gem 'sqlite3', '~> 1.4'

@@ -7,23 +7,50 @@
 ```
 git clone https://github.com/chocoby/jp_prefecture.git
 cd jp_prefecture
-bundle install
-bundle exec appraisal install
-bundle exec appraisal update
 ```
 
-実装と実装に対応するテストを追加し、Pull Request を作成する前に、ユニットテストとコーディングスタイルがパスするか確認します。
+## テストの実行
 
-```
-bundle exec appraisal rspec
-bundle exec rubocop -A
-```
+ローカル環境ですべてのバージョンをテストするのは難しいため、最新のバージョンのテストがパスすることを最低限確認してください。
 
 特定バージョンの Active Record でテストを実行するには、以下のようにします。
 
 ```
-# バージョン 6.1 で実行する例
-bundle exec appraisal rails61 rspec
+# Rails 5.0
+BUNDLE_GEMFILE=gemfiles/rails-5-0.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-5-0.gemfile bundle exec rspec
+
+# Rails 5.1
+BUNDLE_GEMFILE=gemfiles/rails-5-1.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-5-1.gemfile bundle exec rspec
+
+# Rails 5.2
+BUNDLE_GEMFILE=gemfiles/rails-5-2.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-5-2.gemfile bundle exec rspec
+
+# Rails 7.0
+BUNDLE_GEMFILE=gemfiles/rails-7-0.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-7-0.gemfile bundle exec rspec
+
+# Rails 7.1
+BUNDLE_GEMFILE=gemfiles/rails-7-1.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-7-1.gemfile bundle exec rspec
+
+# Rails 7.2
+BUNDLE_GEMFILE=gemfiles/rails-7-2.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-7-2.gemfile bundle exec rspec
+
+# Rails 8.0
+BUNDLE_GEMFILE=gemfiles/rails-8-0.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-8-0.gemfile bundle exec rspec
+```
+
+## Lint の実行
+
+RuboCop でコーディングスタイルをチェックします。警告が出る場合は修正します。
+
+```
+bundle exec rubocop -A
 ```
 
 ## リリース手順
