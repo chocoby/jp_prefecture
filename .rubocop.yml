@@ -11,9 +11,16 @@ inherit_from: .rubocop_todo.yml
 #
 # See https://docs.rubocop.org/rubocop/configuration
 
+# TODO: Enable these plugins
+# require:
+#   - rubocop-performance
+#   - rubocop-rake
+#   - rubocop-rspec
+
 AllCops:
   TargetRubyVersion: 2.5
   NewCops: enable
+  SuggestExtensions: false
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
