@@ -26,14 +26,14 @@ module JpPrefecture
 
       pref.code = code
       pref.name = result[:name]
-      pref.name_e = result[:name_e].try(:capitalize)
-      pref.name_r = result[:name_r].try(:capitalize)
+      pref.name_e = result[:name_e]&.capitalize
+      pref.name_r = result[:name_r]&.capitalize
       pref.name_h = result[:name_h]
       pref.name_k = result[:name_k]
       pref.zips = ZipMapping.data[code]
       pref.area = result[:area]
       pref.type =
-        case pref.name.try(:slice, -1)
+        case pref.name&.slice(-1)
         when '都', '道', '府', '県'
           pref.name[-1]
         end

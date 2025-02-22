@@ -6,6 +6,7 @@ gemspec
 
 gem 'activerecord', '>= 5.0.0'
 gem 'appraisal'
+gem 'csv'
 gem 'rake'
 gem 'rspec'
 gem 'rubocop'
