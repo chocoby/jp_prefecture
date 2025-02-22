@@ -4,15 +4,18 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'activerecord', '>= 5.0.0'
-gem 'appraisal'
 gem 'csv'
 gem 'rake'
-gem 'rspec'
-gem 'rubocop'
-gem 'rubocop-performance'
-gem 'rubocop-rake'
-gem 'rubocop-rspec'
-gem 'simplecov'
-gem 'simplecov-lcov'
-gem 'sqlite3'
+
+group :development, :test do
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'rspec'
+  gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
+end

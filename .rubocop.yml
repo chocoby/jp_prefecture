@@ -27,3 +27,7 @@ Gemspec/RequiredRubyVersion:
 
 Style/AsciiComments:
   Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - 'gemfiles/**/*'
