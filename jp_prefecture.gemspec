@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['chocoby@himajin.dev']
 
   gem.summary       = 'Convert japan prefecture code into prefecture name'
-  gem.description   = 'Convert japan prefecture code (JIS X 0402 based) into prefecture name.'
+  gem.description   = 'Convert japan prefecture code (JIS X 0401 based) into prefecture name.'
   gem.homepage      = 'https://github.com/chocoby/jp_prefecture'
   gem.license       = 'MIT'
 

@@ -12,7 +12,7 @@ https://rubygems.org/gems/jp_prefecture
 
 Convert prefecture code to prefecture name in Japan.
 
-Based on JIS X 0402. Remove 0 when prefecture code start with 0.
+Based on JIS X 0401. Remove 0 when prefecture code start with 0.
 
 ```
 Hokkaido: 01 -> 1

@@ -1,6 +1,8 @@
-# JIS X 0402 で定義されている都道府県コードと都道府県名をベースに
+# JIS X 0401 で定義されている都道府県コードと都道府県名をベースに
 # コードがゼロから始まるもの(09 など)を 1 ケタにし、
 # さらに、「海外」をcode: 48として追加したもの
+# https://www.jisc.go.jp/app/jis/general/GnrJISNumberNameSearchList?show&jisStdNo=X0401
+
 ---
 1:
   :name: 北海道
