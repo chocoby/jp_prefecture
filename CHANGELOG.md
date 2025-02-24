@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 1.1.2 (2025-02-24)
+
 ### Features
 
 * Ruby 3.2 をサポートに追加 (PR [#61](https://github.com/chocoby/jp_prefecture/pull/61)/[@chocoby](https://github.com/chocoby))
@@ -8,6 +10,21 @@
 * Rails 7.2 をサポートに追加 (PR [#65](https://github.com/chocoby/jp_prefecture/pull/65)/[@y-yagi](https://github.com/y-yagi))
 * Ruby 3.4 をサポートに追加 (PR [#67](https://github.com/chocoby/jp_prefecture/pull/67)/[@chocoby](https://github.com/chocoby))
 * Rails 8.0 をサポートに追加 (PR [#68](https://github.com/chocoby/jp_prefecture/pull/68)/[@chocoby](https://github.com/chocoby))
+* 郵便番号データの更新 (PR [#74](https://github.com/chocoby/jp_prefecture/pull/74)/[@chocoby](https://github.com/chocoby))
+
+### Bug fix
+
+* `bundle exec rake create_zip_code_data` 実行時のランタイムエラーを修正/郵便番号データ更新 (PR [#70](https://github.com/chocoby/jp_prefecture/pull/70)/[@ydah](https://github.com/ydah))
+
+### Documentation
+
+* 都道府県コードの参照先を `JIS X 0401` に修正 (PR [#71](https://github.com/chocoby/jp_prefecture/pull/71)/[@ydah](https://github.com/ydah))
+
+### Misc
+
+* RuboCop の警告を修正 (PR [#69](https://github.com/chocoby/jp_prefecture/pull/69)/[@ydah](https://github.com/ydah))
+* appraisal gem の依存を削除 (PR [#73](https://github.com/chocoby/jp_prefecture/pull/73)/[@chocoby](https://github.com/chocoby))
+* concurrent-ruby gem v1.3.5 で `logger` の依存が削除されたことへの対応 (PR [#72](https://github.com/chocoby/jp_prefecture/pull/72)/[@chocoby](https://github.com/chocoby))
 
 ## 1.1.1 (2022-03-25)
 
