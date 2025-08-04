@@ -10,6 +10,7 @@ describe JpPrefecture::Base do
           klass = Class.new(ActiveRecord::Base) do
             self.table_name = :places
             include JpPrefecture
+
             jp_prefecture :prefecture_code
           end
 
@@ -26,6 +27,7 @@ describe JpPrefecture::Base do
           klass = Class.new(ActiveRecord::Base) do
             self.table_name = :places
             include JpPrefecture
+
             jp_prefecture :prefecture_id
           end
 
@@ -44,6 +46,7 @@ describe JpPrefecture::Base do
           klass = Class.new(ActiveRecord::Base) do
             self.table_name = :places
             include JpPrefecture
+
             jp_prefecture :prefecture_code, method_name: :prefecture_method
           end
 
@@ -61,6 +64,7 @@ describe JpPrefecture::Base do
         Class.new(ActiveRecord::Base) do
           self.table_name = :places
           include JpPrefecture
+
           jp_prefecture :prefecture_code
         end
       end
