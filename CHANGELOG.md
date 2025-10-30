@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Features
+
+* Rails 8.1 をサポートに追加 (PR [#78](https://github.com/chocoby/jp_prefecture/pull/78)/[@chocoby](https://github.com/chocoby))
+
 ## 1.1.2 (2025-02-24)
 
 ### Features

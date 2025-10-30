@@ -54,79 +54,105 @@ jobs:
           - rails-7-1.gemfile
           - rails-7-2.gemfile
           - rails-8-0.gemfile
+          - rails-8-1.gemfile
         exclude:
+          # Rails 5
+          - ruby: '3.0'
+            gemfile: rails-5-0.gemfile
+          - ruby: '3.1'
+            gemfile: rails-5-0.gemfile
+          - ruby: '3.2'
+            gemfile: rails-5-0.gemfile
+          - ruby: '3.3'
+            gemfile: rails-5-0.gemfile
+          - ruby: '3.4'
+            gemfile: rails-5-0.gemfile
+
+          - ruby: '3.0'
+            gemfile: rails-5-1.gemfile
+          - ruby: '3.1'
+            gemfile: rails-5-1.gemfile
+          - ruby: '3.2'
+            gemfile: rails-5-1.gemfile
+          - ruby: '3.3'
+            gemfile: rails-5-1.gemfile
+          - ruby: '3.4'
+            gemfile: rails-5-1.gemfile
+
+          - ruby: '3.0'
+            gemfile: rails-5-2.gemfile
+          - ruby: '3.1'
+            gemfile: rails-5-2.gemfile
+          - ruby: '3.2'
+            gemfile: rails-5-2.gemfile
+          - ruby: '3.3'
+            gemfile: rails-5-2.gemfile
+          - ruby: '3.4'
+            gemfile: rails-5-2.gemfile
+
+          # Rails 6
           - ruby: '2.4'
             gemfile: rails-6-0.gemfile
+          - ruby: '2.5'
+            gemfile: rails-6-0.gemfile
+
           - ruby: '2.4'
             gemfile: rails-6-1.gemfile
+          - ruby: '2.5'
+            gemfile: rails-6-1.gemfile
+
+          # Rails 7
           - ruby: '2.4'
             gemfile: rails-7-0.gemfile
+          - ruby: '2.5'
+            gemfile: rails-7-0.gemfile
+          - ruby: '2.6'
+            gemfile: rails-7-0.gemfile
+
           - ruby: '2.4'
             gemfile: rails-7-1.gemfile
+          - ruby: '2.5'
+            gemfile: rails-7-1.gemfile
+          - ruby: '2.6'
+            gemfile: rails-7-1.gemfile
+
           - ruby: '2.4'
             gemfile: rails-7-2.gemfile
+          - ruby: '2.5'
+            gemfile: rails-7-2.gemfile
+          - ruby: '2.6'
+            gemfile: rails-7-2.gemfile
+          - ruby: '2.7'
+            gemfile: rails-7-2.gemfile
+          - ruby: '3.0'
+            gemfile: rails-7-2.gemfile
+
+          # Rails 8
           - ruby: '2.4'
             gemfile: rails-8-0.gemfile
           - ruby: '2.5'
-            gemfile: rails-6-0.gemfile
-          - ruby: '2.5'
-            gemfile: rails-6-1.gemfile
-          - ruby: '2.5'
-            gemfile: rails-7-0.gemfile
-          - ruby: '2.5'
-            gemfile: rails-7-1.gemfile
-          - ruby: '2.5'
-            gemfile: rails-7-2.gemfile
-          - ruby: '2.5'
             gemfile: rails-8-0.gemfile
-          - ruby: '2.6'
-            gemfile: rails-7-0.gemfile
-          - ruby: '2.6'
-            gemfile: rails-7-1.gemfile
-          - ruby: '2.6'
-            gemfile: rails-7-2.gemfile
           - ruby: '2.6'
             gemfile: rails-8-0.gemfile
           - ruby: '2.7'
-            gemfile: rails-7-2.gemfile
+            gemfile: rails-8-0.gemfile
+          - ruby: '3.0'
+            gemfile: rails-8-0.gemfile
+          - ruby: '3.1'
+            gemfile: rails-8-0.gemfile
+
+          - ruby: '2.4'
+            gemfile: rails-8-1.gemfile
+          - ruby: '2.5'
+            gemfile: rails-8-1.gemfile
+          - ruby: '2.6'
+            gemfile: rails-8-1.gemfile
           - ruby: '2.7'
-            gemfile: rails-8-0.gemfile
+            gemfile: rails-8-1.gemfile
           - ruby: '3.0'
-            gemfile: rails-5-0.gemfile
-          - ruby: '3.0'
-            gemfile: rails-5-1.gemfile
-          - ruby: '3.0'
-            gemfile: rails-5-2.gemfile
-          - ruby: '3.0'
-            gemfile: rails-7-2.gemfile
-          - ruby: '3.0'
-            gemfile: rails-8-0.gemfile
+            gemfile: rails-8-1.gemfile
           - ruby: '3.1'
-            gemfile: rails-5-0.gemfile
-          - ruby: '3.1'
-            gemfile: rails-5-1.gemfile
-          - ruby: '3.1'
-            gemfile: rails-5-2.gemfile
-          - ruby: '3.1'
-            gemfile: rails-8-0.gemfile
-          - ruby: '3.2'
-            gemfile: rails-5-0.gemfile
-          - ruby: '3.2'
-            gemfile: rails-5-1.gemfile
-          - ruby: '3.2'
-            gemfile: rails-5-2.gemfile
-          - ruby: '3.3'
-            gemfile: rails-5-0.gemfile
-          - ruby: '3.3'
-            gemfile: rails-5-1.gemfile
-          - ruby: '3.3'
-            gemfile: rails-5-2.gemfile
-          - ruby: '3.4'
-            gemfile: rails-5-0.gemfile
-          - ruby: '3.4'
-            gemfile: rails-5-1.gemfile
-          - ruby: '3.4'
-            gemfile: rails-5-2.gemfile
+            gemfile: rails-8-1.gemfile
 
     env:
       CI: true
