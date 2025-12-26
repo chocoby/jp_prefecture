@@ -28,6 +28,14 @@ BUNDLE_GEMFILE=gemfiles/rails-5-1.gemfile bundle exec rspec
 BUNDLE_GEMFILE=gemfiles/rails-5-2.gemfile bundle install
 BUNDLE_GEMFILE=gemfiles/rails-5-2.gemfile bundle exec rspec
 
+# Rails 6.0
+BUNDLE_GEMFILE=gemfiles/rails-6-0.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-6-0.gemfile bundle exec rspec
+
+# Rails 6.1
+BUNDLE_GEMFILE=gemfiles/rails-6-1.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-6-1.gemfile bundle exec rspec
+
 # Rails 7.0
 BUNDLE_GEMFILE=gemfiles/rails-7-0.gemfile bundle install
 BUNDLE_GEMFILE=gemfiles/rails-7-0.gemfile bundle exec rspec
@@ -43,6 +51,10 @@ BUNDLE_GEMFILE=gemfiles/rails-7-2.gemfile bundle exec rspec
 # Rails 8.0
 BUNDLE_GEMFILE=gemfiles/rails-8-0.gemfile bundle install
 BUNDLE_GEMFILE=gemfiles/rails-8-0.gemfile bundle exec rspec
+
+# Rails 8.1
+BUNDLE_GEMFILE=gemfiles/rails-8-1.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-8-1.gemfile bundle exec rspec
 ```
 
 ## Lint の実行

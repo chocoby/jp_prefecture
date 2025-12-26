@@ -44,6 +44,7 @@ jobs:
           - '3.2'
           - '3.3'
           - '3.4'
+          - '4.0'
         gemfile:
           - rails-5-0.gemfile
           - rails-5-1.gemfile
@@ -67,6 +68,8 @@ jobs:
             gemfile: rails-5-0.gemfile
           - ruby: '3.4'
             gemfile: rails-5-0.gemfile
+          - ruby: '4.0'
+            gemfile: rails-5-0.gemfile
 
           - ruby: '3.0'
             gemfile: rails-5-1.gemfile
@@ -78,6 +81,8 @@ jobs:
             gemfile: rails-5-1.gemfile
           - ruby: '3.4'
             gemfile: rails-5-1.gemfile
+          - ruby: '4.0'
+            gemfile: rails-5-1.gemfile
 
           - ruby: '3.0'
             gemfile: rails-5-2.gemfile
@@ -88,6 +93,8 @@ jobs:
           - ruby: '3.3'
             gemfile: rails-5-2.gemfile
           - ruby: '3.4'
+            gemfile: rails-5-2.gemfile
+          - ruby: '4.0'
             gemfile: rails-5-2.gemfile
 
           # Rails 6
