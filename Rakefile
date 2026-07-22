@@ -11,7 +11,7 @@ task :create_zip_code_data do
   file_name = 'ken_all_utf8.csv'
 
   # download files
-  `curl -O https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip`
+  `curl -O https://www.post.japanpost.jp/service/search/zipcode/download/kogaki/zip/ken_all.zip`
   `unzip ken_all.zip`
   `iconv -f sjis -t utf-8 ken_all.csv > #{file_name}`
   `rm ken_all.zip`
