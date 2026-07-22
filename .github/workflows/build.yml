@@ -9,6 +9,9 @@ on:
   schedule:
     - cron:  '0 0 * * 1'
 
+env:
+  BUNDLE_RETRY: 3
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -22,9 +25,7 @@ jobs:
         with:
           # Set to `TargetRubyVersion` in `.rubocop.yml`
           ruby-version: '2.7'
-
-      - name: Bundle
-        run: bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Lint
         run: bundle exec rubocop
@@ -180,9 +181,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-
-      - name: Bundle
-        run:  bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Test
         run: bundle exec rspec
