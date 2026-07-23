@@ -13,9 +13,9 @@ task :create_zip_code_data do
   # download files
   `curl -O https://www.post.japanpost.jp/service/search/zipcode/download/kogaki/zip/ken_all.zip`
   `unzip ken_all.zip`
-  `iconv -f sjis -t utf-8 ken_all.csv > #{file_name}`
+  `iconv -f sjis -t utf-8 KEN_ALL.CSV > #{file_name}`
   `rm ken_all.zip`
-  `rm ken_all.csv`
+  `rm KEN_ALL.CSV`
 
   zips = []
 
