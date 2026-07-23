@@ -1,0 +1,55 @@
+name: Update zip code data
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+env:
+  BUNDLE_RETRY: 3
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 'ruby'
+          bundler-cache: true
+
+      - name: Update zip code data
+        run: bundle exec rake create_zip_code_data
+
+      - name: Check for changes
+        id: diff
+        # The `Last updated` header line changes on every run, so ignore it
+        # when deciding whether the data actually changed.
+        run: |
+          if git diff --quiet -I '^# Last updated:' -- data/zip.yml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore: update zip code data'
+          branch: update-zip-code-data
+          reviewers: chocoby
+          title: 'Update zip code data'
+          body: |
+            Update `data/zip.yml` from the latest `ken_all.zip` published by Japan Post.
+
+            This PR was created automatically by the `update-zip-code-data` workflow.
+          delete-branch: true
