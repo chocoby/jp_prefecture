@@ -108,5 +108,35 @@ module JpPrefecture
         JpPrefecture::Prefecture::Finder.new.find(field: search_field, value: search_value)
       end
     end
+
+    # 都道府県を検索し、一致したすべての都道府県を返す
+    #
+    # 文字列は前方一致で検索する
+    #
+    # @example
+    #   # 複数の都道府県に一致する検索
+    #   JpPrefecture::Prefecture.where(name: '山')
+    #   # => [山形県, 山梨県, 山口県]
+    #
+    #   # 英語表記で検索
+    #   JpPrefecture::Prefecture.where(name_e: 'o')
+    #   # => [大阪府, 岡山県, 大分県, 沖縄県]
+    #
+    # @param args [Hash<Symbol, String>] :name 漢字表記/:name_e 英語表記/:name_r ローマ字表記/:name_h ひらがな表記/:name_k カタカナ表記
+    # @return [Array<JpPrefecture::Prefecture>] 一致した都道府県インスタンスの配列 (コード順)。一致しない場合は空配列
+    # @raise [ArgumentError] 対応していない項目、または項目が 1 つでない場合
+    def self.where(args)
+      unless args.is_a?(Hash) && args.size == 1
+        raise ArgumentError, "expected a Hash with exactly one key, got: #{args.inspect}"
+      end
+
+      field, value = args.first
+
+      unless Finder::NAME_FIELDS.include?(field)
+        raise ArgumentError, "unsupported field: #{field.inspect} (supported: #{Finder::NAME_FIELDS.join(', ')})"
+      end
+
+      JpPrefecture::Prefecture::Finder.new.where(field: field, value: value)
+    end
   end
 end

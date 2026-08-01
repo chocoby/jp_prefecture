@@ -25,6 +25,21 @@ module JpPrefecture
         JpPrefecture::Prefecture.build_by_code(code)
       end
 
+      # 指定した項目を前方一致で検索し、一致したすべての都道府県を返す
+      #
+      # @param field [Symbol] 検索する項目。NAME_FIELDS 以外を指定した場合は空配列
+      # @param value [String] 検索する内容
+      # @return [Array<JpPrefecture::Prefecture>] 一致した都道府県インスタンスの配列 (コード順)
+      def where(field:, value:)
+        return [] unless NAME_FIELDS.include?(field)
+
+        value = value.to_s.downcase
+        return [] if value.empty?
+
+        @mapping.select { |_code, names| names[field].start_with?(value) }
+                .map { |code, _names| JpPrefecture::Prefecture.build_by_code(code) }
+      end
+
       private
 
       # @param field [Symbol] 検索する項目
