@@ -66,6 +66,8 @@ JpPrefecture::Prefecture.find(code: 13)
 
 ### Search by Prefecture Name
 
+`find` returns the first match in prefecture code order when multiple prefectures match.
+
 Search for a prefecture by forward match.
 
 ```ruby
@@ -93,6 +95,18 @@ Search all items in the mapping (not recommended).
 ```ruby
 JpPrefecture::Prefecture.find(all_fields: "東京")
 ```
+
+Use `where` when you need all matching prefectures.
+
+```ruby
+JpPrefecture::Prefecture.where(name: "山")
+# => [山形県, 山梨県, 山口県]
+
+JpPrefecture::Prefecture.where(name_e: "o")
+# => [大阪府, 岡山県, 大分県, 沖縄県]
+```
+
+`where` supports `name` / `name_e` / `name_r` / `name_h` / `name_k`. Specifying any other item raises `ArgumentError`.
 
 ### All Prefectures
 
@@ -191,7 +205,6 @@ end
 
 Check out [zip.yml](https://github.com/chocoby/jp_prefecture/blob/main/data/zip.yml) for data format.
 
-
 ## Installation
 
 Add this line in Gemfile.
@@ -212,15 +225,14 @@ Or install gem with `gem install`
 $ gem install jp_prefecture
 ```
 
-
 ## Documentation
 
 [https://rubydoc.info/gems/jp_prefecture](https://rubydoc.info/gems/jp_prefecture)
 
 ## Supported versions
 
-* Ruby: 2.4 - 4.0
-* Rails: 5.0 - 8.1
+- Ruby: 2.4 - 4.0
+- Rails: 5.0 - 8.1
 
 If you are using an older Ruby/Rails version, please use [`v0.11.0`](https://github.com/chocoby/jp_prefecture/tree/0.x).
 

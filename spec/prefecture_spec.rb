@@ -82,4 +82,41 @@ describe JpPrefecture::Prefecture do
       it { expect(result).to be_nil }
     end
   end
+
+  describe '.where' do
+    context '名前系の項目を指定' do
+      before do
+        finder = spy('finder')
+        allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
+        JpPrefecture::Prefecture.where(name: '山')
+      end
+
+      it { expect(JpPrefecture::Prefecture::Finder.new).to have_received(:where).with(field: :name, value: '山') }
+    end
+
+    context '複数の都道府県に一致' do
+      let(:result) { JpPrefecture::Prefecture.where(name: '山') }
+      it { expect(result.map(&:name)).to eq(%w[山形県 山梨県 山口県]) }
+    end
+
+    context '対応していない項目を指定' do
+      it { expect { JpPrefecture::Prefecture.where(code: 1) }.to raise_error(ArgumentError) }
+      it { expect { JpPrefecture::Prefecture.where(zip: 1_000_000) }.to raise_error(ArgumentError) }
+      it { expect { JpPrefecture::Prefecture.where(all_fields: '東') }.to raise_error(ArgumentError) }
+      it { expect { JpPrefecture::Prefecture.where(name_j: '山') }.to raise_error(ArgumentError) }
+    end
+
+    context '項目を複数指定' do
+      it { expect { JpPrefecture::Prefecture.where(name: '山', name_e: 'y') }.to raise_error(ArgumentError) }
+    end
+
+    context '空の Hash を指定' do
+      it { expect { JpPrefecture::Prefecture.where({}) }.to raise_error(ArgumentError) }
+    end
+
+    context 'Hash 以外を指定' do
+      it { expect { JpPrefecture::Prefecture.where('山') }.to raise_error(ArgumentError) }
+      it { expect { JpPrefecture::Prefecture.where(nil) }.to raise_error(ArgumentError) }
+    end
+  end
 end

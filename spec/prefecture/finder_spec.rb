@@ -86,4 +86,54 @@ describe JpPrefecture::Prefecture::Finder do
       it_behaves_like '都道府県が見つからない', nil, '999'
     end
   end
+
+  describe '#where' do
+    shared_examples '都道府県が見つかる' do |field, value, expected_names|
+      let(:result) { JpPrefecture::Prefecture::Finder.new.where(field: field, value: value) }
+      it { expect(result.map(&:name)).to eq(expected_names) }
+      it { expect(result).to all(be_an_instance_of(JpPrefecture::Prefecture)) }
+    end
+
+    shared_examples '都道府県が見つからない' do |field, value|
+      let(:result) { JpPrefecture::Prefecture::Finder.new.where(field: field, value: value) }
+      it { expect(result).to eq([]) }
+    end
+
+    describe '複数の都道府県に一致する' do
+      it_behaves_like '都道府県が見つかる', :name, '山', %w[山形県 山梨県 山口県]
+      it_behaves_like '都道府県が見つかる', :name_e, 'o', %w[大阪府 岡山県 大分県 沖縄県]
+    end
+
+    describe '一つの都道府県に一致する' do
+      it_behaves_like '都道府県が見つかる', :name, '北海道', %w[北海道]
+      it_behaves_like '都道府県が見つかる', :name_h, 'ほっかい', %w[北海道]
+      it_behaves_like '都道府県が見つかる', :name_k, 'ホッカイ', %w[北海道]
+      it_behaves_like '都道府県が見つかる', :name_r, 'hokkaidō', %w[北海道]
+    end
+
+    describe '大文字と小文字を区別しない' do
+      it_behaves_like '都道府県が見つかる', :name_e, 'O', %w[大阪府 岡山県 大分県 沖縄県]
+      it_behaves_like '都道府県が見つかる', :name_e, 'HOKKAIDO', %w[北海道]
+    end
+
+    describe 'String 以外の値を指定する' do
+      it_behaves_like '都道府県が見つかる', :name_e, :hokkaido, %w[北海道]
+    end
+
+    describe 'どの都道府県にも一致しない' do
+      it_behaves_like '都道府県が見つからない', :name, '饂飩'
+    end
+
+    describe '空の値を指定する' do
+      it_behaves_like '都道府県が見つからない', :name, ''
+      it_behaves_like '都道府県が見つからない', :name, nil
+    end
+
+    describe '名前以外の field を指定する' do
+      it_behaves_like '都道府県が見つからない', :code, 1
+      it_behaves_like '都道府県が見つからない', :zip, 10_000
+      it_behaves_like '都道府県が見つからない', :all_fields, '東'
+      it_behaves_like '都道府県が見つからない', nil, '山'
+    end
+  end
 end
