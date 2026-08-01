@@ -7,6 +7,9 @@ module JpPrefecture
   class Prefecture
     # 都道府県の検索を行うクラス
     class Finder
+      # 名前を前方一致で検索できる項目
+      NAME_FIELDS = %i[name name_e name_r name_h name_k].freeze
+
       def initialize
         @mapping = Mapping.data
       end
@@ -34,7 +37,7 @@ module JpPrefecture
         case field
         when :all_fields
           find_code_by_name_from_all_fields(value.to_s)
-        when :name, :name_h, :name_k, :name_e, :name_r
+        when *NAME_FIELDS
           find_code_by_name(field, value.to_s)
         when :code
           value.to_i
