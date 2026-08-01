@@ -92,7 +92,7 @@ module JpPrefecture
     # @param args [Hash<Symbol, Integer>] :code 都道府県コード
     # @param args [Hash<Symbol, String>] :name 漢字表記/:name_e 英語表記/:name_r ローマ字表記/:name_h ひらがな表記/:name_k カタカナ表記
     # @param args [Hash<Symbol, Integer>] :zip 郵便番号
-    # @param args [Hash<Symbol, (String, Integer)>] :all_fields マッピングに定義しているすべてのフィールドから検索
+    # @param args [Hash<Symbol, String>] :all_fields マッピングに定義しているすべてのフィールドから検索
     # @return [JpPrefecture::Prefecture] 都道府県が見つかった場合は都道府県インスタンス
     # @return [nil] 都道府県が見つからない場合は nil
     def self.find(args)
