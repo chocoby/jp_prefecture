@@ -27,7 +27,6 @@ JIS X 0401 で定義されている都道府県コードをベースに、
 
 また、Rails のプラグインとして使用することもできます。
 
-
 ## 使い方
 
 ### ライブラリの読み込み
@@ -69,6 +68,8 @@ JpPrefecture::Prefecture.find(code: 13)
 
 ### 都道府県を検索
 
+`find` は複数の都道府県に一致する場合、都道府県コード順で最初の 1 件を返します。
+
 前方一致で都道府県を検索します:
 
 ```ruby
@@ -91,11 +92,23 @@ JpPrefecture::Prefecture.find(name_h: "とうきょうと")
 JpPrefecture::Prefecture.find(name_k: "トウキョウト")
 ```
 
-マッピングのすべての項目を検索します (推奨しません):
+マッピングのすべての項目を検索します (非推奨):
 
 ```ruby
 JpPrefecture::Prefecture.find(all_fields: "東京")
 ```
+
+一致したすべての都道府県が必要な場合は `where` を使用します:
+
+```ruby
+JpPrefecture::Prefecture.where(name: "山")
+# => [山形県, 山梨県, 山口県]
+
+JpPrefecture::Prefecture.where(name_e: "o")
+# => [大阪府, 岡山県, 大分県, 沖縄県]
+```
+
+`where` で検索できる項目は `name` / `name_e` / `name_r` / `name_h` / `name_k` です。対応していない項目を指定した場合は `ArgumentError` が発生します。
 
 ### 都道府県の一覧を取得
 
@@ -192,7 +205,6 @@ end
 
 データのフォーマットについては [zip.yml](https://github.com/chocoby/jp_prefecture/blob/main/data/zip.yml) を参考にしてください。
 
-
 ## インストール
 
 以下の行を `Gemfile` に記述してから:
@@ -209,15 +221,14 @@ gem 'jp_prefecture'
 $ gem install jp_prefecture
 ```
 
-
 ## ドキュメント
 
 [https://rubydoc.info/gems/jp_prefecture](https://rubydoc.info/gems/jp_prefecture)
 
 ## サポートしているバージョン
 
-* Ruby: 2.4 - 4.0
-* Rails: 5.0 - 8.1
+- Ruby: 2.4 - 4.0
+- Rails: 5.0 - 8.1
 
 これより古い Ruby/Rails バージョンを使用する場合は、[`v0.11.0`](https://github.com/chocoby/jp_prefecture/tree/0.x) を利用してください。
 

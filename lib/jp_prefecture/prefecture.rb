@@ -62,6 +62,9 @@ module JpPrefecture
     #
     # 文字列は前方一致で検索する
     #
+    # 複数の都道府県に一致する場合は、都道府県コード順で最初の 1 件を返す。
+    # 一致したすべての都道府県が必要な場合は {.where} を使用する
+    #
     # @example
     #   # 都道府県コードを検索
     #   JpPrefecture::Prefecture.find(1)
