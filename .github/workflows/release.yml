@@ -1,0 +1,149 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+env:
+  BUNDLE_RETRY: 3
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Verify that the tag matches the gem version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          expected="${TAG#v}"
+          actual="$(ruby -e 'require_relative "lib/jp_prefecture/version"; print JpPrefecture::VERSION')"
+          if [ "$expected" != "$actual" ]; then
+            echo "::error::Tag ${TAG} does not match JpPrefecture::VERSION (${actual})"
+            exit 1
+          fi
+          echo "Tag ${TAG} matches JpPrefecture::VERSION (${actual})"
+
+  lint:
+    needs: verify
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          # Set to `TargetRubyVersion` in `.rubocop.yml`
+          ruby-version: '2.7'
+          bundler-cache: true
+
+      - name: Lint
+        run: bundle exec rubocop
+
+  test:
+    needs: verify
+
+    runs-on: ubuntu-latest
+
+    env:
+      CI: true
+      BUNDLE_GEMFILE: gemfiles/rails-8-1.gemfile
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+
+      - name: Test
+        run: bundle exec rspec
+
+  push:
+    needs: [lint, test]
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: release
+      url: https://rubygems.org/gems/jp_prefecture
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 'ruby'
+
+      - name: Configure RubyGems credentials
+        uses: rubygems/configure-rubygems-credentials@v2.1.0
+
+      - name: Build gem
+        run: gem build jp_prefecture.gemspec
+
+      - name: Push gem to RubyGems.org
+        run: gem push jp_prefecture-*.gem
+
+  update_release:
+    needs: push
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Fill in the release notes from CHANGELOG.md
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${TAG#v}"
+          awk -v ver="$version" '
+            /^## / { found = ($2 == ver); next }
+            found
+          ' CHANGELOG.md > release-notes.md
+          if ! grep -q '[^[:space:]]' release-notes.md; then
+            echo "::warning::No section for ${version} in CHANGELOG.md; falling back to generated notes"
+            gh api "repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
+              -f tag_name="$TAG" --jq '.body' > release-notes.md
+          fi
+          gh release edit "$TAG" --notes-file release-notes.md

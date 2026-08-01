@@ -67,18 +67,20 @@ bundle exec rubocop -A
 
 ## リリース手順
 
+gem の公開は GitHub Actions の `release` ワークフローが行います。ローカルで `gem push` を実行する必要はありません。
+
 1. `lib/jp_prefecture/version.rb` のバージョンを変更
    - バージョニングは [セマンティックバージョニング](https://semver.org/lang/ja/) に則る
-1. `CHANGELOG.md` を編集
+1. `CHANGELOG.md` の `## Unreleased` を `## X.Y.Z (YYYY-MM-DD)` に変更
+   - リリースノートはこの節の内容がそのまま使われる
 1. main ブランチに対して Pull Request を作成
    - CI がパスしたらマージ
-1. Gem をリリース
-   ```
-   gem build
-   gem push jp_prefecture-X.Y.Z.gem
-   ```
-1. [Releases](https://github.com/chocoby/jp_prefecture/releases) でリリースを作成
-   - 内容は `CHANGELOG.md` と同様
+1. [Releases](https://github.com/chocoby/jp_prefecture/releases) で新しいリリースを作成
+   - タグに `vX.Y.Z` を指定する。タグはこの操作で作成されるため、ローカルでタグを打つ必要はない
+   - **本文は空のまま Publish する**
+1. [Actions](https://github.com/chocoby/jp_prefecture/actions) で `release` environment の承認を行う
+   - 承認前にタグとバージョンの一致検証、RuboCop、RSpec が実行される
+   - 承認すると gem が RubyGems.org に公開され、その後リリースノートが `CHANGELOG.md` の内容で自動的に埋まる
 
 
 ## 都道府県の郵便番号データの更新
