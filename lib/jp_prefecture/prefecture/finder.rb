@@ -33,9 +33,9 @@ module JpPrefecture
 
         case field
         when :all_fields
-          find_code_by_name_from_all_fields(value)
+          find_code_by_name_from_all_fields(value.to_s)
         when :name, :name_h, :name_k, :name_e, :name_r
-          find_code_by_name(field, value)
+          find_code_by_name(field, value.to_s)
         when :code
           value.to_i
         when :zip
@@ -45,9 +45,8 @@ module JpPrefecture
 
       # すべての項目を前方一致で検索
       def find_code_by_name_from_all_fields(value)
-        return if value.nil? || value.empty?
-
         value = value.downcase
+        return if value.empty?
 
         @mapping.each do |m|
           m[1].each_value do |v|
@@ -58,9 +57,8 @@ module JpPrefecture
 
       # 指定した項目を前方一致で検索
       def find_code_by_name(field, value)
-        return if value.nil? || value.empty?
-
         value = value.downcase
+        return if value.empty?
 
         @mapping.each do |m|
           return m[0] if m[1][field].start_with?(value)

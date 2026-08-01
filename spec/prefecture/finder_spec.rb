@@ -68,6 +68,16 @@ describe JpPrefecture::Prefecture::Finder do
       it_behaves_like '都道府県が見つからない', :zip, '999999'
     end
 
+    describe 'value に String 以外を指定する' do
+      it_behaves_like '都道府県が見つかる', :all_fields, :東, '青森県'
+      it_behaves_like '都道府県が見つかる', :name, :北海道, '北海道'
+      it_behaves_like '都道府県が見つかる', :name_e, :hokkaido, '北海道'
+      it_behaves_like '都道府県が見つからない', :all_fields, 13
+      it_behaves_like '都道府県が見つからない', :name, 1
+      it_behaves_like '都道府県が見つからない', :all_fields, nil
+      it_behaves_like '都道府県が見つからない', :name, nil
+    end
+
     describe 'field を指定しない' do
       it_behaves_like '都道府県が見つかる', nil, 1, '北海道'
       it_behaves_like '都道府県が見つかる', nil, '1', '北海道'
