@@ -69,7 +69,7 @@ bundle exec rubocop -A
 
 `CHANGELOG.md` は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に準拠します。
 
-変更を加えた Pull Request では、`## [Unreleased]` に 1 行追記してください。
+`## [Unreleased]` への追記はメンテナがマージ後に行うため、Pull Request で書く必要はありません。自分で書く場合は以下の形式に従ってください。
 
 ### 変更種別
 
