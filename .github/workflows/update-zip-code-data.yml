@@ -35,10 +35,12 @@ jobs:
         # when deciding whether the data actually changed.
         run: |
           if git diff --quiet -I '^# Last updated:' -- data/zip.yml; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+            changed=false
           else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            changed=true
           fi
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+          echo "\`data/zip.yml\` changed: \`$changed\`" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Create pull request
         if: steps.diff.outputs.changed == 'true'
