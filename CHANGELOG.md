@@ -1,13 +1,13 @@
 ## [Unreleased]
 
-### Features
+### Added
 
 * Rails 8.1 をサポートに追加 ([#78](https://github.com/chocoby/jp_prefecture/pull/78), [@chocoby](https://github.com/chocoby))
 * Ruby 4.0 をサポートに追加 ([#80](https://github.com/chocoby/jp_prefecture/pull/80), [@chocoby](https://github.com/chocoby))
 
 ## [1.1.2] - 2025-02-24
 
-### Features
+### Added
 
 * Ruby 3.2 をサポートに追加 ([#61](https://github.com/chocoby/jp_prefecture/pull/61), [@chocoby](https://github.com/chocoby))
 * Rails 7.1 をサポートに追加 ([#63](https://github.com/chocoby/jp_prefecture/pull/63), [@chocoby](https://github.com/chocoby))
@@ -15,31 +15,28 @@
 * Rails 7.2 をサポートに追加 ([#65](https://github.com/chocoby/jp_prefecture/pull/65), [@y-yagi](https://github.com/y-yagi))
 * Ruby 3.4 をサポートに追加 ([#67](https://github.com/chocoby/jp_prefecture/pull/67), [@chocoby](https://github.com/chocoby))
 * Rails 8.0 をサポートに追加 ([#68](https://github.com/chocoby/jp_prefecture/pull/68), [@chocoby](https://github.com/chocoby))
+
+### Changed
+
 * 郵便番号データの更新 ([#74](https://github.com/chocoby/jp_prefecture/pull/74), [@chocoby](https://github.com/chocoby))
-
-### Bug fix
-
-* `bundle exec rake create_zip_code_data` 実行時のランタイムエラーを修正/郵便番号データ更新 ([#70](https://github.com/chocoby/jp_prefecture/pull/70), [@ydah](https://github.com/ydah))
-
-### Documentation
-
 * 都道府県コードの参照先を `JIS X 0401` に修正 ([#71](https://github.com/chocoby/jp_prefecture/pull/71), [@ydah](https://github.com/ydah))
-
-### Misc
-
 * RuboCop の警告を修正 ([#69](https://github.com/chocoby/jp_prefecture/pull/69), [@ydah](https://github.com/ydah))
 * appraisal gem の依存を削除 ([#73](https://github.com/chocoby/jp_prefecture/pull/73), [@chocoby](https://github.com/chocoby))
+
+### Fixed
+
+* `bundle exec rake create_zip_code_data` 実行時のランタイムエラーを修正/郵便番号データ更新 ([#70](https://github.com/chocoby/jp_prefecture/pull/70), [@ydah](https://github.com/ydah))
 * concurrent-ruby gem v1.3.5 で `logger` の依存が削除されたことへの対応 ([#72](https://github.com/chocoby/jp_prefecture/pull/72), [@chocoby](https://github.com/chocoby))
 
 ## [1.1.1] - 2022-03-25
 
-### Bug fix
+### Fixed
 
 * マッピングに項目が存在しない場合にエラーが発生する問題を修正 ([#59](https://github.com/chocoby/jp_prefecture/pull/59), [@chocoby](https://github.com/chocoby))
 
 ## [1.1.0] - 2022-03-17
 
-### Features
+### Added
 
 * 都道府県情報にローマ字表記を追加 ([#57](https://github.com/chocoby/jp_prefecture/pull/57), [@sondh5](https://github.com/sondh5))
 * Ruby 3.1 をサポートに追加 ([#54](https://github.com/chocoby/jp_prefecture/pull/54), [@chocoby](https://github.com/chocoby))
@@ -47,20 +44,21 @@
 
 ## [1.0.0] - 2021-02-24
 
-### Misc
+### Changed
 
 * 毎週月曜日の 09:00 (JST) にテストを実行する ([#52](https://github.com/chocoby/jp_prefecture/pull/52), [@chocoby](https://github.com/chocoby))
 
 ## [1.0.0.rc1] - 2021-02-10
 
-### Breaking changes
+### Added
 
-* Ruby 1.9.3 - 2.3/Rails 3.2 - 4.2 のサポートを終了 ([#39](https://github.com/chocoby/jp_prefecture/pull/39), [@chocoby](https://github.com/chocoby))
+* Ruby 3.0 をサポートに追加 ([#42](https://github.com/chocoby/jp_prefecture/pull/42), [@chocoby](https://github.com/chocoby))
+* `JpPrefecture::Prefecture` クラスに都道府県コードから都道府県インスタンスを作成する `build_by_code` メソッドを追加 ([#44](https://github.com/chocoby/jp_prefecture/pull/44), [@chocoby](https://github.com/chocoby))
 
-  古い Ruby/Rails のサポートを終了しました。今後も大きな不具合が見つかった場合、可能な限りは対応する予定です。
+  都道府県コードを指定すると、それに対応した都道府県の `JpPrefecture::Prefecture` インスタンスを取得するメソッドを追加しました。
+  `JpPrefecture::Prefecture.build` メソッドは参照している処理がなくなったため、削除しました。
 
-  サポートするバージョンの範囲は Ruby/Rails のメンテナンスポリシーに則るのがシンプルですが、この Gem では厳しくする必要はないと考えています。
-  Ruby/Rails のメンテナンスポリシーで決められているバージョンは最低限サポートし、実装やテストのメンテナンスが困難になったバージョンからサポートを終了する方針で検討しています。ご意見があればください。
+### Changed
 
 * 文字列による検索は項目を指定して検索する ([#43](https://github.com/chocoby/jp_prefecture/pull/43), [#24](https://github.com/chocoby/jp_prefecture/issues/24), [#27](https://github.com/chocoby/jp_prefecture/issues/27), [@chocoby](https://github.com/chocoby))
 
@@ -68,23 +66,19 @@
   対応として、`name` を指定した場合は漢字表記、`name_e` は英語表記など、指定した項目のみを検索するように変更しました。詳しい使い方は README を参照してください。
   以前のように、すべての項目から検索したい場合は `JpPrefecture::Prefecture.find(all_fields: 'string')` を使用してください。
 
-### Features
-
-* Ruby 3.0 をサポートに追加 ([#42](https://github.com/chocoby/jp_prefecture/pull/42), [@chocoby](https://github.com/chocoby))
 * 郵便番号データを更新 ([#46](https://github.com/chocoby/jp_prefecture/pull/46), [@chocoby](https://github.com/chocoby))
-* `JpPrefecture::Prefecture` クラスに都道府県コードから都道府県インスタンスを作成する `build_by_code` メソッドを追加 ([#44](https://github.com/chocoby/jp_prefecture/pull/44), [@chocoby](https://github.com/chocoby))
-
-  都道府県コードを指定すると、それに対応した都道府県の `JpPrefecture::Prefecture` インスタンスを取得するメソッドを追加しました。
-  `JpPrefecture::Prefecture.build` メソッドは参照している処理がなくなったため、削除しました。
-
-### Documentation
-
 * CONTRIBUTING.md を追加 ([#41](https://github.com/chocoby/jp_prefecture/pull/41), [@chocoby](https://github.com/chocoby))
-
-### Misc
-
 * RuboCop を導入 ([#40](https://github.com/chocoby/jp_prefecture/pull/40), [@chocoby](https://github.com/chocoby))
 * Gem に含めるファイルを最低限のものにする ([#48](https://github.com/chocoby/jp_prefecture/pull/48), [@chocoby](https://github.com/chocoby))
+
+### Removed
+
+* Ruby 1.9.3 - 2.3/Rails 3.2 - 4.2 のサポートを終了 ([#39](https://github.com/chocoby/jp_prefecture/pull/39), [@chocoby](https://github.com/chocoby))
+
+  古い Ruby/Rails のサポートを終了しました。今後も大きな不具合が見つかった場合、可能な限りは対応する予定です。
+
+  サポートするバージョンの範囲は Ruby/Rails のメンテナンスポリシーに則るのがシンプルですが、この Gem では厳しくする必要はないと考えています。
+  Ruby/Rails のメンテナンスポリシーで決められているバージョンは最低限サポートし、実装やテストのメンテナンスが困難になったバージョンからサポートを終了する方針で検討しています。ご意見があればください。
 
 ## [0.11.0] - 2020-12-18
 
