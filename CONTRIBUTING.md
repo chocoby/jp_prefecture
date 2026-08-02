@@ -65,14 +65,49 @@ RuboCop でコーディングスタイルをチェックします。警告が出
 bundle exec rubocop -A
 ```
 
+## CHANGELOG の書き方
+
+`CHANGELOG.md` は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に準拠します。
+
+変更を加えた Pull Request では、`## [Unreleased]` に 1 行追記してください。
+
+### 変更種別
+
+以下の 6 種類から選び、この順序で並べます。該当のない種別は書きません。
+
+| 種別 | 対象 |
+| --- | --- |
+| `Added` | 新機能、新 API、新しい Ruby/Rails サポートの追加 |
+| `Changed` | 既存挙動の変更、データ更新、依存の更新、CI/lint/ドキュメントの変更 |
+| `Deprecated` | 将来削除予定の機能の非推奨化 |
+| `Removed` | 機能の削除、サポートバージョンの終了 |
+| `Fixed` | バグ修正 |
+| `Security` | 脆弱性の修正 |
+
+破壊的変更のための専用の種別は設けていません。`Removed` または `Changed` に置き、破壊的である旨と移行方法を本文で説明してください。
+
+### エントリの書き方
+
+```
+* Rails 8.1 をサポートに追加 ([#78](https://github.com/chocoby/jp_prefecture/pull/78), [@chocoby](https://github.com/chocoby))
+```
+
+- 説明は日本語で書く
+- 括弧内は PR/Issue のリンクを先に並べ、作者のリンクを最後に置き、`, ` で区切る
+- 補足が必要な場合は、2 スペースインデントの段落を続ける
+
 ## リリース手順
 
 gem の公開は GitHub Actions の `release` ワークフローが行います。ローカルで `gem push` を実行する必要はありません。
 
 1. `lib/jp_prefecture/version.rb` のバージョンを変更
    - バージョニングは [セマンティックバージョニング](https://semver.org/lang/ja/) に則る
-1. `CHANGELOG.md` の `## Unreleased` を `## X.Y.Z (YYYY-MM-DD)` に変更
-   - リリースノートはこの節の内容がそのまま使われる
+1. `CHANGELOG.md` を更新
+   - `## [Unreleased]` を `## [X.Y.Z] - YYYY-MM-DD` に変更する
+   - 新しい空の `## [Unreleased]` をヘッダ直後に追加する
+   - ファイル末尾の `[Unreleased]:` を `compare/vX.Y.Z...HEAD` に張り替える
+   - ファイル末尾に `[X.Y.Z]: https://github.com/chocoby/jp_prefecture/compare/v<前バージョン>...vX.Y.Z` を追加する
+   - リリースノートは `## [X.Y.Z]` 節の内容がそのまま使われる
 1. main ブランチに対して Pull Request を作成
    - CI がパスしたらマージ
 1. [Releases](https://github.com/chocoby/jp_prefecture/releases) で新しいリリースを作成
