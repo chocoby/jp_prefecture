@@ -138,7 +138,14 @@ jobs:
         run: |
           version="${TAG#v}"
           awk -v ver="$version" '
-            /^## / { found = ($2 == ver); next }
+            /^\[[^]]+\]: / { found = 0; next }
+            /^## / {
+              h = $0
+              sub(/^## +\[?/, "", h)
+              sub(/\].*$|[ (].*$/, "", h)
+              found = (h == ver)
+              next
+            }
             found
           ' CHANGELOG.md > release-notes.md
           if ! grep -q '[^[:space:]]' release-notes.md; then
