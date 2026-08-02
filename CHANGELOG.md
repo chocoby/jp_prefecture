@@ -6,6 +6,22 @@
 
 * Rails 8.1 をサポートに追加 ([#78](https://github.com/chocoby/jp_prefecture/pull/78), [@chocoby](https://github.com/chocoby))
 * Ruby 4.0 をサポートに追加 ([#80](https://github.com/chocoby/jp_prefecture/pull/80), [@chocoby](https://github.com/chocoby))
+* 前方一致するすべての都道府県を返す `JpPrefecture::Prefecture.where` を追加 ([#90](https://github.com/chocoby/jp_prefecture/pull/90), [@chocoby](https://github.com/chocoby))
+
+### Changed
+
+* RuboCop の `TargetRubyVersion` を RuboCop がサポートする Ruby 2.7 に変更 ([#75](https://github.com/chocoby/jp_prefecture/pull/75), [@chocoby](https://github.com/chocoby))
+* Dependabot で GitHub Actions を更新するようにした ([#76](https://github.com/chocoby/jp_prefecture/pull/76), [@chocoby](https://github.com/chocoby))
+* テストする Ruby/Rails の組み合わせを代表的なものに絞る ([#82](https://github.com/chocoby/jp_prefecture/pull/82), [@chocoby](https://github.com/chocoby))
+* 郵便番号データを毎月更新するワークフローを追加 ([#85](https://github.com/chocoby/jp_prefecture/pull/85), [@chocoby](https://github.com/chocoby))
+* リリース時に RubyGems へ gem を自動公開するようにした ([#88](https://github.com/chocoby/jp_prefecture/pull/88), [@chocoby](https://github.com/chocoby))
+
+### Fixed
+
+* カスタムの `zip_mapping_data` で範囲検索が動作しない問題を修正 ([#83](https://github.com/chocoby/jp_prefecture/pull/83), [@chocoby](https://github.com/chocoby))
+* `ken_all.zip` のダウンロード URL を修正/郵便番号データ更新 ([#84](https://github.com/chocoby/jp_prefecture/pull/84), [@chocoby](https://github.com/chocoby))
+* `KEN_ALL.CSV` の参照時に大文字小文字が一致せず Linux で rake タスクが失敗する問題を修正 ([#86](https://github.com/chocoby/jp_prefecture/pull/86), [@chocoby](https://github.com/chocoby))
+* 都道府県名の検索で String 以外の値を渡すとエラーになる問題を修正 ([#89](https://github.com/chocoby/jp_prefecture/pull/89), [@chocoby](https://github.com/chocoby))
 
 ## [1.1.2] - 2025-02-24
 
