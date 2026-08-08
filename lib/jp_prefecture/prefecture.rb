@@ -140,7 +140,7 @@ module JpPrefecture
     # @raise [ArgumentError] 対応していない項目、または項目が 1 つでない場合
     def self.where(args)
       unless args.is_a?(Hash) && args.size == 1
-        raise ArgumentError, "expected a Hash with exactly one key, got: #{args.inspect}"
+        raise ArgumentError, "expected a Hash with exactly one key, got: #{inspect_args(args)}"
       end
 
       field, value = args.first

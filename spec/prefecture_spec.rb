@@ -113,6 +113,11 @@ describe JpPrefecture::Prefecture do
 
     context '項目を複数指定' do
       it { expect { JpPrefecture::Prefecture.where(name: '山', name_e: 'y') }.to raise_error(ArgumentError) }
+
+      it '例外メッセージに値が含まれず、キーだけが含まれること' do
+        expect { JpPrefecture::Prefecture.where(name: '山', name_e: 'y') }
+          .to raise_error(ArgumentError, /got: \[:name, :name_e\]\z/)
+      end
     end
 
     context '空の Hash を指定' do
@@ -122,6 +127,11 @@ describe JpPrefecture::Prefecture do
     context 'Hash 以外を指定' do
       it { expect { JpPrefecture::Prefecture.where('山') }.to raise_error(ArgumentError) }
       it { expect { JpPrefecture::Prefecture.where(nil) }.to raise_error(ArgumentError) }
+
+      it '例外メッセージに値ではなく型が含まれること' do
+        expect { JpPrefecture::Prefecture.where('山') }
+          .to raise_error(ArgumentError, /got: String\z/)
+      end
     end
   end
 end
