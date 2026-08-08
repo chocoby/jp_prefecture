@@ -62,18 +62,23 @@ describe JpPrefecture::Prefecture do
   end
 
   describe '.find' do
-    before do
-      finder = spy('finder')
-      allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
-    end
-
     context '引数に Integer を指定' do
-      before { JpPrefecture::Prefecture.find(1) }
+      before do
+        finder = spy('finder')
+        allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
+        JpPrefecture::Prefecture.find(1)
+      end
+
       it { expect(JpPrefecture::Prefecture::Finder.new).to have_received(:find).with(field: nil, value: 1) }
     end
 
     context '引数に Hash を指定' do
-      before { JpPrefecture::Prefecture.find(code: 1) }
+      before do
+        finder = spy('finder')
+        allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
+        JpPrefecture::Prefecture.find(code: 1)
+      end
+
       it { expect(JpPrefecture::Prefecture::Finder.new).to have_received(:find).with(field: :code, value: 1) }
     end
 
