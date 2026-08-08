@@ -96,6 +96,8 @@ Search all items in the mapping (not recommended).
 JpPrefecture::Prefecture.find(all_fields: "東京")
 ```
 
+`find` supports `name` / `name_e` / `name_r` / `name_h` / `name_k` / `code` / `zip` / `all_fields`. Specifying any other item, or specifying a Hash that does not have exactly one key, prints a deprecation warning. It will raise `ArgumentError` in jp_prefecture 2.0.0.
+
 Use `where` when you need all matching prefectures.
 
 ```ruby

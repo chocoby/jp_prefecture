@@ -92,11 +92,13 @@ JpPrefecture::Prefecture.find(name_h: "とうきょうと")
 JpPrefecture::Prefecture.find(name_k: "トウキョウト")
 ```
 
-マッピングのすべての項目を検索します (非推奨):
+マッピングのすべての項目を検索します (推奨しません):
 
 ```ruby
 JpPrefecture::Prefecture.find(all_fields: "東京")
 ```
+
+`find` で検索できる項目は `name` / `name_e` / `name_r` / `name_h` / `name_k` / `code` / `zip` / `all_fields` です。対応していない項目を指定した場合、または項目がちょうど 1 つでない場合は非推奨の警告を出力します。jp_prefecture 2.0.0 では `ArgumentError` が発生する予定です。
 
 一致したすべての都道府県が必要な場合は `where` を使用します:
 
