@@ -10,6 +10,9 @@ module JpPrefecture
       # 名前を前方一致で検索できる項目
       NAME_FIELDS = %i[name name_e name_r name_h name_k].freeze
 
+      # find で検索できる項目
+      FIELDS = (NAME_FIELDS + %i[code zip all_fields]).freeze
+
       def initialize
         @mapping = Mapping.data
       end
