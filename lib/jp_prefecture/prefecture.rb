@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'jp_prefecture/deprecation'
 require 'jp_prefecture/prefecture/finder'
 require 'jp_prefecture/mapping'
 require 'jp_prefecture/zip_mapping'
