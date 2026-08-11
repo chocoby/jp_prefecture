@@ -2,6 +2,7 @@
 
 require 'jp_prefecture/base'
 require 'jp_prefecture/config'
+require 'jp_prefecture/deprecation'
 require 'jp_prefecture/prefecture'
 require 'jp_prefecture/version'
 

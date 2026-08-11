@@ -62,18 +62,23 @@ describe JpPrefecture::Prefecture do
   end
 
   describe '.find' do
-    before do
-      finder = spy('finder')
-      allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
-    end
-
     context '引数に Integer を指定' do
-      before { JpPrefecture::Prefecture.find(1) }
+      before do
+        finder = spy('finder')
+        allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
+        JpPrefecture::Prefecture.find(1)
+      end
+
       it { expect(JpPrefecture::Prefecture::Finder.new).to have_received(:find).with(field: nil, value: 1) }
     end
 
     context '引数に Hash を指定' do
-      before { JpPrefecture::Prefecture.find(code: 1) }
+      before do
+        finder = spy('finder')
+        allow(JpPrefecture::Prefecture::Finder).to receive(:new).and_return(finder)
+        JpPrefecture::Prefecture.find(code: 1)
+      end
+
       it { expect(JpPrefecture::Prefecture::Finder.new).to have_received(:find).with(field: :code, value: 1) }
     end
 
@@ -108,6 +113,11 @@ describe JpPrefecture::Prefecture do
 
     context '項目を複数指定' do
       it { expect { JpPrefecture::Prefecture.where(name: '山', name_e: 'y') }.to raise_error(ArgumentError) }
+
+      it '例外メッセージに値が含まれず、キーだけが含まれること' do
+        expect { JpPrefecture::Prefecture.where(name: '山', name_e: 'y') }
+          .to raise_error(ArgumentError, /got: \[:name, :name_e\]\z/)
+      end
     end
 
     context '空の Hash を指定' do
@@ -117,6 +127,11 @@ describe JpPrefecture::Prefecture do
     context 'Hash 以外を指定' do
       it { expect { JpPrefecture::Prefecture.where('山') }.to raise_error(ArgumentError) }
       it { expect { JpPrefecture::Prefecture.where(nil) }.to raise_error(ArgumentError) }
+
+      it '例外メッセージに値ではなく型が含まれること' do
+        expect { JpPrefecture::Prefecture.where('山') }
+          .to raise_error(ArgumentError, /got: String\z/)
+      end
     end
   end
 end

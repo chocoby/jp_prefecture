@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'jp_prefecture/deprecation'
 require 'jp_prefecture/prefecture/finder'
 require 'jp_prefecture/mapping'
 require 'jp_prefecture/zip_mapping'
@@ -8,6 +9,10 @@ module JpPrefecture
   # 都道府県のコードと名前を扱うクラス
   class Prefecture
     attr_accessor :code, :name, :name_e, :name_r, :name_h, :name_k, :zips, :area, :type
+
+    # 非推奨の警告の末尾に付ける、例外化の予告文
+    DEPRECATION_SUFFIX = 'This will raise ArgumentError in jp_prefecture 2.0.0.'
+    private_constant :DEPRECATION_SUFFIX
 
     # 都道府県コードから都道府県インスタンスを作成
     #
@@ -65,6 +70,9 @@ module JpPrefecture
     # 複数の都道府県に一致する場合は、都道府県コード順で最初の 1 件を返す。
     # 一致したすべての都道府県が必要な場合は {.where} を使用する
     #
+    # 対応していない項目を指定した場合、または項目がちょうど 1 つでない場合は非推奨の警告を出力する。
+    # jp_prefecture 2.0.0 では ArgumentError になる予定
+    #
     # @example
     #   # 都道府県コードを検索
     #   JpPrefecture::Prefecture.find(1)
@@ -105,6 +113,8 @@ module JpPrefecture
       when Integer, String
         JpPrefecture::Prefecture::Finder.new.find(field: nil, value: args)
       when Hash
+        warn_unsupported_args(args)
+
         search_field = args.keys.first
         search_value = args.values.first
 
@@ -130,7 +140,7 @@ module JpPrefecture
     # @raise [ArgumentError] 対応していない項目、または項目が 1 つでない場合
     def self.where(args)
       unless args.is_a?(Hash) && args.size == 1
-        raise ArgumentError, "expected a Hash with exactly one key, got: #{args.inspect}"
+        raise ArgumentError, "expected a Hash with exactly one key, got: #{inspect_args(args)}"
       end
 
       field, value = args.first
@@ -141,5 +151,40 @@ module JpPrefecture
 
       JpPrefecture::Prefecture::Finder.new.where(field: field, value: value)
     end
+
+    # find に対応していない引数が渡された場合に非推奨の警告を出力する
+    #
+    # 空の Hash は「項目が 1 つでない」と「対応していない項目 (nil)」の両方に該当するため、
+    # 警告が二重に出ないよう elsif で判定する
+    #
+    # @param args [Hash] find に渡された引数
+    # @return [void]
+    def self.warn_unsupported_args(args)
+      field = args.keys.first
+
+      message =
+        if args.size != 1
+          "expected a Hash with exactly one key, got: #{inspect_args(args)}"
+        elsif field.nil?
+          'the nil key is deprecated; use find(code) or find(code: code) instead'
+        elsif !Finder::FIELDS.include?(field)
+          "unsupported field: #{field.inspect} (supported: #{Finder::FIELDS.join(', ')})"
+        end
+      return unless message
+
+      Deprecation.warn("#{message}. #{DEPRECATION_SUFFIX}")
+    end
+    private_class_method :warn_unsupported_args
+
+    # メッセージに埋め込む引数の表現を返す
+    #
+    # 値には利用者の入力が入りうるため、Hash はキーだけを、それ以外は型名を出す
+    #
+    # @param args [Object] find / where に渡された引数
+    # @return [String] Hash ならキーの配列の inspect、それ以外はクラス名
+    def self.inspect_args(args)
+      args.is_a?(Hash) ? args.keys.inspect : args.class.to_s
+    end
+    private_class_method :inspect_args
   end
 end
