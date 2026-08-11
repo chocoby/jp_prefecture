@@ -7,8 +7,8 @@ module JpPrefecture
   module ZipMapping
     # [from, to] のペア配列を Range へ変換する
     def self.convert_to_ranges(data)
-      data.each_with_object({}) do |(code, pairs), ranges|
-        ranges[code] = pairs.collect { |zip_from, zip_to| zip_from..zip_to }
+      data.transform_values do |pairs|
+        pairs.collect { |zip_from, zip_to| zip_from..zip_to }
       end
     end
 
