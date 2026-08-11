@@ -144,6 +144,9 @@ jobs:
               sub(/^## +\[?/, "", h)
               sub(/\].*$|[ (].*$/, "", h)
               found = (h == ver)
+              if (found && match($0, /[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/)) {
+                print substr($0, RSTART, RLENGTH) > "release-date.txt"
+              }
               next
             }
             found
@@ -153,4 +156,9 @@ jobs:
             gh api "repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
               -f tag_name="$TAG" --jq '.body' > release-notes.md
           fi
-          gh release edit "$TAG" --notes-file release-notes.md
+          if [ -s release-date.txt ]; then
+            gh release edit "$TAG" --title "${version} ($(cat release-date.txt))" --notes-file release-notes.md
+          else
+            echo "::warning::No release date for ${version} in CHANGELOG.md; keeping the current release title"
+            gh release edit "$TAG" --notes-file release-notes.md
+          fi
