@@ -9,6 +9,7 @@ gem 'logger'
 gem 'rake'
 
 group :development, :test do
+  gem 'irb', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
