@@ -18,6 +18,7 @@
 - CHANGELOG を Keep a Changelog 形式に変更 ([#91](https://github.com/chocoby/jp_prefecture/pull/91), [@chocoby](https://github.com/chocoby))
 - Pull Request テンプレートを追加 ([#92](https://github.com/chocoby/jp_prefecture/pull/92), [@chocoby](https://github.com/chocoby))
 - 開発用の対話コンソール `bin/console` を追加し、CONTRIBUTING.md の開発手順を整備 ([#96](https://github.com/chocoby/jp_prefecture/pull/96), [@chocoby](https://github.com/chocoby))
+- RuboCop の `.rubocop_todo.yml` を削除し、`rubocop-performance` と `rubocop-rake` を有効化 ([#97](https://github.com/chocoby/jp_prefecture/pull/97), [@chocoby](https://github.com/chocoby))
 
 ### Deprecated
 

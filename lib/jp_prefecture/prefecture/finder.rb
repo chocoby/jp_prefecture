@@ -49,7 +49,7 @@ module JpPrefecture
       # @param value [String, Integer] 検索する内容
       # @return [Integer] 見つかった場合は都道府県コード
       # @return [nil] 見つからない場合は nil
-      def find_code(field, value)
+      def find_code(field, value) # rubocop:disable Metrics/MethodLength
         return value.to_i if field.nil?
 
         case field

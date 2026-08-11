@@ -25,7 +25,7 @@ task :create_zip_code_data do
   # create sorted list of zips -> prefecture_code
   zips = zips
          .collect { |zip, prefecture| [zip.to_i, JpPrefecture::Prefecture.find(name: prefecture).code] }
-         .sort { |x, y| x[0] <=> y[0] }
+         .sort_by { |a| a[0] }
 
   # prepare calculation
   ranged_zips = []

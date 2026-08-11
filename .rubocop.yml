@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 # The behavior of RuboCop can be controlled via the .rubocop.yml
 # configuration file. It makes it possible to enable/disable
 # certain cops (checks) and to alter their behavior if they accept
@@ -11,11 +9,9 @@ inherit_from: .rubocop_todo.yml
 #
 # See https://docs.rubocop.org/rubocop/configuration
 
-# TODO: Enable these plugins
-# require:
-#   - rubocop-performance
-#   - rubocop-rake
-#   - rubocop-rspec
+plugins:
+  - rubocop-performance
+  - rubocop-rake
 
 AllCops:
   TargetRubyVersion: 2.7
@@ -31,3 +27,8 @@ Style/AsciiComments:
 Naming/FileName:
   Exclude:
     - 'gemfiles/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'Rakefile'
