@@ -23,7 +23,7 @@ module JpPrefecture
     # @param code [Integer] 都道府県コード
     # @return [JpPrefecture::Prefecture] 都道府県インスタンス
     # @return [nil] 都道府県が見つからない場合は nil
-    def self.build_by_code(code) # rubocop:disable Metrics/AbcSize
+    def self.build_by_code(code) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       result = Mapping.data[code]
       return unless result
 
@@ -159,7 +159,7 @@ module JpPrefecture
     #
     # @param args [Hash] find に渡された引数
     # @return [void]
-    def self.warn_unsupported_args(args)
+    def self.warn_unsupported_args(args) # rubocop:disable Metrics/MethodLength
       field = args.keys.first
 
       message =

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module JpPrefecture
+  # モデルに変換メソッドを追加する
   module Base
     # モデル内で使用するための設定を行う
     #
