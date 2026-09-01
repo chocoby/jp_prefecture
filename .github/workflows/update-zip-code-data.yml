@@ -47,6 +47,7 @@ jobs:
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: 'chore: update zip code data'
+          add-paths: data/zip.yml
           branch: update-zip-code-data
           reviewers: chocoby
           title: 'Update zip code data'
