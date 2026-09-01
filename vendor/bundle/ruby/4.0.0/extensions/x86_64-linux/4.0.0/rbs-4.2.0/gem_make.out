@@ -1,0 +1,44 @@
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/rbs-4.2.0/ext/rbs_extension
+/opt/hostedtoolcache/Ruby/4.0.6/x64/bin/ruby extconf.rb
+checking for whether -std=gnu99 is accepted as CFLAGS... yes
+checking for whether -Wimplicit-fallthrough is accepted as CFLAGS... yes
+checking for whether -Wunused-result is accepted as CFLAGS... yes
+checking for whether -Wc++-compat is accepted as CFLAGS... yes
+checking for whether -Wnullable-to-nonnull-conversion is accepted as CFLAGS... no
+checking for whether -DNDEBUG is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/rbs-4.2.0/ext/rbs_extension
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260901-2071-da4cof sitelibdir\=./.gem.20260901-2071-da4cof clean
+make: warning: -j3 forced in submake: resetting jobserver mode.
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/rbs-4.2.0/ext/rbs_extension
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260901-2071-da4cof sitelibdir\=./.gem.20260901-2071-da4cof
+make: warning: -j3 forced in submake: resetting jobserver mode.
+compiling ./../../src/ast.c
+compiling ./../../src/lexer.c
+compiling ./../../src/lexstate.c
+compiling ./../../src/location.c
+compiling ./../../src/parser.c
+compiling ./../../src/serialize.c
+compiling ./../../src/string.c
+compiling ./../../src/util/rbs_allocator.c
+compiling ./../../src/util/rbs_assert.c
+compiling ./../../src/util/rbs_buffer.c
+compiling ./../../src/util/rbs_constant_pool.c
+compiling ./../../src/util/rbs_encoding.c
+compiling ./../../src/util/rbs_unescape.c
+compiling ast_translation.c
+compiling class_constants.c
+compiling legacy_location.c
+compiling main.c
+compiling rbs_string_bridging.c
+linking shared-object rbs_extension.so
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/rbs-4.2.0/ext/rbs_extension
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260901-2071-da4cof sitelibdir\=./.gem.20260901-2071-da4cof install
+make: warning: -j3 forced in submake: resetting jobserver mode.
+/usr/bin/install -c -m 0755 rbs_extension.so ./.gem.20260901-2071-da4cof
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/rbs-4.2.0/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-da4cof sitelibdir\=./.gem.20260901-2071-da4cof clean

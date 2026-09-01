@@ -1,0 +1,33 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Represents the signature of something callable. A signature
+      # can have a label, like a function-name, a doc-comment, and
+      # a set of parameters.
+      #
+      class SignatureInformation
+        def initialize: (label: String, ?documentation: untyped, ?parameters: Array[untyped], ?active_parameter: Integer) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def label: () -> String
+
+        %a{pure}
+        def documentation: () -> untyped
+
+        %a{pure}
+        def parameters: () -> Array[untyped]
+
+        %a{pure}
+        def active_parameter: () -> Integer
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

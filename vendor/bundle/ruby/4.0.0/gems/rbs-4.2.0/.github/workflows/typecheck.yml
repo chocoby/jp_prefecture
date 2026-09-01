@@ -1,0 +1,39 @@
+name: Type check
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+  merge_group: {}
+
+permissions:
+  contents: read
+
+jobs:
+  steep:
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: "4.0"
+          bundler: none
+      - name: Set working directory as safe
+        run: git config --global --add safe.directory $(pwd)
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libdb-dev curl
+      - name: Update rubygems & bundler
+        run: |
+          ruby -v
+          gem update --system
+      - name: bin/setup
+        run: |
+          bin/setup
+      - name: Run steep check
+        run: |
+          bin/steep check -j 2

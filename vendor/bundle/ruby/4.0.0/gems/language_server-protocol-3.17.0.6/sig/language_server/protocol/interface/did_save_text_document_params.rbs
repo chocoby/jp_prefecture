@@ -1,0 +1,25 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # The parameters sent in a save text document notification
+      #
+      class DidSaveTextDocumentParams
+        def initialize: (text_document: untyped, ?text: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def text_document: () -> untyped
+
+        %a{pure}
+        def text: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

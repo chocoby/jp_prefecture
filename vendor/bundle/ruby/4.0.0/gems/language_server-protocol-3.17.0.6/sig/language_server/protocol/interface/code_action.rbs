@@ -1,0 +1,46 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A code action represents a change that can be performed in code, e.g. to fix a problem or
+      # to refactor code.
+      #
+      # A CodeAction must set either `edit` and/or a `command`. If both are supplied, the `edit` is applied first, then the `command` is executed.
+      #
+      class CodeAction
+        def initialize: (title: String, ?kind: untyped, ?diagnostics: Array[untyped], ?is_preferred: bool, ?disabled: untyped, ?edit: untyped, ?command: untyped, ?data: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def title: () -> String
+
+        %a{pure}
+        def kind: () -> untyped
+
+        %a{pure}
+        def diagnostics: () -> Array[untyped]
+
+        %a{pure}
+        def is_preferred: () -> bool
+
+        %a{pure}
+        def disabled: () -> untyped
+
+        %a{pure}
+        def edit: () -> untyped
+
+        %a{pure}
+        def command: () -> untyped
+
+        %a{pure}
+        def data: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/json-2.21.2/ext/json/ext/parser
+/opt/hostedtoolcache/Ruby/4.0.6/x64/bin/ruby extconf.rb
+checking for rb_enc_interned_str() in ruby/encoding.h... yes
+checking for rb_str_to_interned_str() in ruby.h... yes
+checking for rb_hash_new_capa() in ruby.h... yes
+checking for rb_hash_bulk_insert() in ruby.h... yes
+checking for ruby_xfree_sized() in ruby.h... no
+checking for x86intrin.h... yes
+checking for _lzcnt_u64() in x86intrin.h... no
+checking for intrin.h... no
+checking for RUBY_TYPED_EMBEDDABLE in ruby.h... yes
+checking for whether -std=c99 is accepted as CFLAGS... yes
+checking for whether -mno-outline is accepted as CFLAGS... no
+checking for x86intrin.h... yes
+checking for cpuid.h... yes
+creating Makefile
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/json-2.21.2/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-yyojej sitelibdir\=./.gem.20260901-2071-yyojej clean
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/json-2.21.2/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-yyojej sitelibdir\=./.gem.20260901-2071-yyojej
+compiling parser.c
+linking shared-object json/ext/parser.so
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/json-2.21.2/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-yyojej sitelibdir\=./.gem.20260901-2071-yyojej install
+/usr/bin/install -c -m 0755 parser.so ./.gem.20260901-2071-yyojej/json/ext
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/json-2.21.2/ext/json/ext/parser
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-yyojej sitelibdir\=./.gem.20260901-2071-yyojej clean

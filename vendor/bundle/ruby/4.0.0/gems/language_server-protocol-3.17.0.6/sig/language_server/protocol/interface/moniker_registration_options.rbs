@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class MonikerRegistrationOptions
+        def initialize: (document_selector: untyped, ?work_done_progress: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def document_selector: () -> untyped
+
+        %a{pure}
+        def work_done_progress: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

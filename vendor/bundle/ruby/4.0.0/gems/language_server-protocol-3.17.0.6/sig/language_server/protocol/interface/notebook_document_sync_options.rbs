@@ -1,0 +1,37 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Options specific to a notebook plus its cells
+      # to be synced to the server.
+      #
+      # If a selector provides a notebook document
+      # filter but no cell selector all cells of a
+      # matching notebook document will be synced.
+      #
+      # If a selector provides no notebook document
+      # filter but only a cell selector all notebook
+      # document that contain at least one matching
+      # cell will be synced.
+      #
+      # @since 3.17.0
+      #
+      class NotebookDocumentSyncOptions
+        def initialize: (notebook_selector: Array[untyped], ?save: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def notebook_selector: () -> Array[untyped]
+
+        %a{pure}
+        def save: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

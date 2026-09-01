@@ -1,0 +1,19 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class DidChangeConfigurationRegistrationOptions
+        def initialize: (?section: (String | Array[String])) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def section: () -> (String | Array[String])
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

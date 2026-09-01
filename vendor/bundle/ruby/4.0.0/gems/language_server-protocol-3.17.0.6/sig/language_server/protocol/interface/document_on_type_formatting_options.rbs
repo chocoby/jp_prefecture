@@ -1,0 +1,25 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Provider options for a {@link DocumentOnTypeFormattingRequest}.
+      #
+      class DocumentOnTypeFormattingOptions
+        def initialize: (first_trigger_character: String, ?more_trigger_character: Array[String]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def first_trigger_character: () -> String
+
+        %a{pure}
+        def more_trigger_character: () -> Array[String]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

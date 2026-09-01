@@ -1,0 +1,25 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # The change text document notification's parameters.
+      #
+      class DidChangeTextDocumentParams
+        def initialize: (text_document: untyped, content_changes: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def text_document: () -> untyped
+
+        %a{pure}
+        def content_changes: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

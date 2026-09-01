@@ -1,0 +1,26 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Represents a location inside a resource, such as a line
+      # inside a text file.
+      #
+      class Location
+        def initialize: (uri: String, range: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def uri: () -> String
+
+        %a{pure}
+        def range: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

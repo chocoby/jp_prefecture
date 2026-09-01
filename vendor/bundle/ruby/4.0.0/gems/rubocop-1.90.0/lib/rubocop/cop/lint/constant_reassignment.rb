@@ -1,0 +1,227 @@
+# frozen_string_literal: true
+
+module RuboCop
+  module Cop
+    module Lint
+      # Checks for constant reassignments.
+      #
+      # Emulates Ruby's runtime warning "already initialized constant X"
+      # when a constant is reassigned in the same file and namespace.
+      #
+      # The cop tracks constants defined via `NAME = value` syntax as well as
+      # class/module keyword definitions. It detects reassignment when a constant
+      # is first defined one way and then redefined using the `NAME = value` syntax.
+      #
+      # The cop cannot catch all offenses, like, for example, when using metaprogramming
+      # (`Module#const_set`).
+      #
+      # By default the cop also cannot detect reassignment across files.
+      # When `AllCops/UseProjectIndex` is enabled and the `rubydex` gem is installed,
+      # the cop additionally consults the project-wide index and reports reassignments
+      # whose previous definition lives in another file.
+      #
+      # The cop only takes into account constants assigned in a "simple" way: directly
+      # inside class/module definition, or within another constant. Other type of assignments
+      # (e.g., inside a conditional) are disregarded.
+      #
+      # The cop also tracks constant removal using `Module#remove_const` with symbol
+      # or string argument.
+      #
+      # @example
+      #   # bad
+      #   X = :foo
+      #   X = :bar
+      #
+      #   # bad
+      #   class A
+      #     X = :foo
+      #     X = :bar
+      #   end
+      #
+      #   # bad
+      #   module A
+      #     X = :foo
+      #     X = :bar
+      #   end
+      #
+      #   # bad
+      #   class FooError < StandardError; end
+      #   FooError = Class.new(RuntimeError)
+      #
+      #   # bad
+      #   module M; end
+      #   M = 1
+      #
+      #   # good - keep only one assignment
+      #   X = :bar
+      #
+      #   class A
+      #     X = :bar
+      #   end
+      #
+      #   module A
+      #     X = :bar
+      #   end
+      #
+      #   # good - use OR assignment
+      #   X = :foo
+      #   X ||= :bar
+      #
+      #   # good - use conditional assignment
+      #   X = :foo
+      #   X = :bar unless defined?(X)
+      #
+      #   # good - remove the assigned constant first
+      #   class A
+      #     X = :foo
+      #     remove_const :X
+      #     X = :bar
+      #   end
+      #
+      class ConstantReassignment < Base
+        include ProjectIndexHelp
+
+        MSG = 'Constant `%<constant>s` is already assigned in this namespace.'
+        CROSS_FILE_MSG = 'Constant `%<constant>s` is already assigned in `%<path>s`.'
+
+        RESTRICT_ON_SEND = %i[remove_const].freeze
+
+        # @!method remove_constant(node)
+        def_node_matcher :remove_constant, <<~PATTERN
+          (send {nil? self} :remove_const
+            ({sym str} $_))
+        PATTERN
+
+        def on_class(node)
+          return unless unconditional_definition?(node)
+
+          constant_definitions[definition_name(node)] ||= :class
+        end
+
+        def on_module(node)
+          return unless unconditional_definition?(node)
+
+          constant_definitions[definition_name(node)] ||= :module
+        end
+
+        def on_casgn(node)
+          return unless fixed_constant_path?(node)
+          return unless simple_assignment?(node)
+
+          name = fully_qualified_constant_name(node)
+
+          if constant_definitions.key?(name)
+            add_offense(node, message: format(MSG, constant: constant_display_name(node)))
+            return
+          end
+
+          constant_definitions[name] = :casgn
+          report_cross_file_collision(node, name, constant_display_name(node))
+        end
+
+        def on_send(node)
+          constant = remove_constant(node)
+
+          return unless constant
+
+          namespaces = ancestor_namespaces(node)
+
+          return if namespaces.none?
+
+          constant_definitions.delete(fully_qualified_name_for(namespaces, constant))
+        end
+
+        private
+
+        def fixed_constant_path?(node)
+          node.each_path.all? { |path| path.type?(:cbase, :const, :self) }
+        end
+
+        def simple_assignment?(node)
+          node.ancestors.all? do |ancestor|
+            return true if ancestor.type?(:module, :class)
+
+            ancestor.begin_type? || ancestor.literal? || ancestor.casgn_type? ||
+              ancestor.type?(:masgn, :mlhs) || freeze_method?(ancestor)
+          end
+        end
+
+        def freeze_method?(node)
+          node.send_type? && node.method?(:freeze)
+        end
+
+        def fully_qualified_constant_name(node)
+          if node.absolute?
+            namespace = node.namespace.const_type? ? node.namespace.source : nil
+
+            "#{namespace}::#{node.name}"
+          else
+            constant_namespaces = ancestor_namespaces(node) + constant_namespaces(node)
+
+            fully_qualified_name_for(constant_namespaces, node.name)
+          end
+        end
+
+        def fully_qualified_name_for(namespaces, constant)
+          ['', *namespaces, constant].join('::')
+        end
+
+        def constant_display_name(node)
+          [*constant_namespaces(node), node.name].join('::')
+        end
+
+        def constant_namespaces(node)
+          node.each_path.select(&:const_type?).map(&:short_name)
+        end
+
+        def ancestor_namespaces(node)
+          ancestors = node.each_ancestor(:class, :module).reverse_each
+
+          ancestors.with_object([]) do |ancestor, namespaces|
+            append_namespaces(namespaces, ancestor.identifier)
+          end
+        end
+
+        # Compact definitions (e.g. `module A::B`) contribute every path segment,
+        # and an absolute one (e.g. `module ::A::B`) discards the enclosing namespaces.
+        def append_namespaces(namespaces, identifier)
+          namespaces.clear if identifier.absolute?
+          namespaces.concat(identifier_namespaces(identifier))
+          namespaces << identifier.short_name
+        end
+
+        def unconditional_definition?(node)
+          node.each_ancestor.all? do |ancestor|
+            ancestor.type?(:begin, :module, :class)
+          end
+        end
+
+        def definition_name(node)
+          namespaces = ancestor_namespaces(node)
+          append_namespaces(namespaces, node.identifier)
+          constant = namespaces.pop
+
+          fully_qualified_name_for(namespaces, constant)
+        end
+
+        def identifier_namespaces(identifier)
+          identifier.each_path.select(&:const_type?).map(&:short_name)
+        end
+
+        def constant_definitions
+          @constant_definitions ||= {}
+        end
+
+        def report_cross_file_collision(node, fully_qualified_name, display_name)
+          return unless project_index
+          return unless (declaration = project_index[fully_qualified_name.delete_prefix('::')])
+          return unless (prior = prior_definition_in_other_file(declaration.definitions))
+
+          msg = format(CROSS_FILE_MSG, constant: display_name, path: prior.location.to_file_path)
+
+          add_offense(node, message: msg)
+        end
+      end
+    end
+  end
+end

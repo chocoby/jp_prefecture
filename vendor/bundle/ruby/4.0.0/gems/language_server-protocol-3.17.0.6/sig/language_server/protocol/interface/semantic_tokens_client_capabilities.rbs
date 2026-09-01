@@ -1,0 +1,46 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # @since 3.16.0
+      #
+      class SemanticTokensClientCapabilities
+        def initialize: (?dynamic_registration: bool, requests: untyped, token_types: Array[String], token_modifiers: Array[String], formats: Array[untyped], ?overlapping_token_support: bool, ?multiline_token_support: bool, ?server_cancel_support: bool, ?augments_syntax_tokens: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def dynamic_registration: () -> bool
+
+        %a{pure}
+        def requests: () -> untyped
+
+        %a{pure}
+        def token_types: () -> Array[String]
+
+        %a{pure}
+        def token_modifiers: () -> Array[String]
+
+        %a{pure}
+        def formats: () -> Array[untyped]
+
+        %a{pure}
+        def overlapping_token_support: () -> bool
+
+        %a{pure}
+        def multiline_token_support: () -> bool
+
+        %a{pure}
+        def server_cancel_support: () -> bool
+
+        %a{pure}
+        def augments_syntax_tokens: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

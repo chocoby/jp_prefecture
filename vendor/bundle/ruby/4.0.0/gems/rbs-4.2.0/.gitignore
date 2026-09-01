@@ -1,0 +1,39 @@
+/.bundle/
+/vendor/bundle/
+/steep/.bundle/
+/steep/vendor/bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/pkg/
+/spec/reports/
+/tmp/
+**/.ruby-version
+**/.rvmrc
+**/.rbfu-version
+**/.rbenv-version
+**/.versions.conf
+/vendor/sigs
+
+lib/**/*.bundle
+lib/**/*.so
+lib/**/*.dll
+doc/
+
+**/*.gem
+
+# For clangd's editor integration
+ext/rbs_extension/compile_commands.json
+ext/rbs_extension/.cache
+
+# Rust crate vendored RBS source (managed by rake rust:rbs:sync or rust:rbs:symlink)
+rust/ruby-rbs-sys/vendor/rbs/
+rust/ruby-rbs/vendor/rbs/
+
+# Compiled WebAssembly module (built by rake wasm:build)
+wasm/*.wasm
+
+# JRuby runtime artifact (built by rake wasm:jruby_setup, bundled in the -java
+# gem). The require_jar file lib/rbs_jars.rb is committed; the Chicory/ASM jars
+# themselves live in ~/.m2 (jar-dependencies), not here.
+lib/rbs/wasm/*.wasm

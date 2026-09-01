@@ -1,0 +1,37 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A notebook cell.
+      #
+      # A cell's document URI must be unique across ALL notebook
+      # cells and can therefore be used to uniquely identify a
+      # notebook cell or the cell's text document.
+      #
+      # @since 3.17.0
+      #
+      class NotebookCell
+        def initialize: (kind: untyped, document: String, ?metadata: untyped, ?execution_summary: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def kind: () -> untyped
+
+        %a{pure}
+        def document: () -> String
+
+        %a{pure}
+        def metadata: () -> untyped
+
+        %a{pure}
+        def execution_summary: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

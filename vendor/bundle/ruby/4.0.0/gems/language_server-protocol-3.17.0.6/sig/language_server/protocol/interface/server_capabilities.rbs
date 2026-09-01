@@ -1,0 +1,125 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Defines the capabilities provided by a language
+      # server.
+      #
+      class ServerCapabilities
+        def initialize: (?position_encoding: untyped, ?text_document_sync: untyped, ?notebook_document_sync: untyped, ?completion_provider: untyped, ?hover_provider: untyped, ?signature_help_provider: untyped, ?declaration_provider: untyped, ?definition_provider: untyped, ?type_definition_provider: untyped, ?implementation_provider: untyped, ?references_provider: untyped, ?document_highlight_provider: untyped, ?document_symbol_provider: untyped, ?code_action_provider: untyped, ?code_lens_provider: untyped, ?document_link_provider: untyped, ?color_provider: untyped, ?workspace_symbol_provider: untyped, ?document_formatting_provider: untyped, ?document_range_formatting_provider: untyped, ?document_on_type_formatting_provider: untyped, ?rename_provider: untyped, ?folding_range_provider: untyped, ?selection_range_provider: untyped, ?execute_command_provider: untyped, ?call_hierarchy_provider: untyped, ?linked_editing_range_provider: untyped, ?semantic_tokens_provider: untyped, ?moniker_provider: untyped, ?type_hierarchy_provider: untyped, ?inline_value_provider: untyped, ?inlay_hint_provider: untyped, ?diagnostic_provider: untyped, ?workspace: untyped, ?experimental: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def position_encoding: () -> untyped
+
+        %a{pure}
+        def text_document_sync: () -> untyped
+
+        %a{pure}
+        def notebook_document_sync: () -> untyped
+
+        %a{pure}
+        def completion_provider: () -> untyped
+
+        %a{pure}
+        def hover_provider: () -> untyped
+
+        %a{pure}
+        def signature_help_provider: () -> untyped
+
+        %a{pure}
+        def declaration_provider: () -> untyped
+
+        %a{pure}
+        def definition_provider: () -> untyped
+
+        %a{pure}
+        def type_definition_provider: () -> untyped
+
+        %a{pure}
+        def implementation_provider: () -> untyped
+
+        %a{pure}
+        def references_provider: () -> untyped
+
+        %a{pure}
+        def document_highlight_provider: () -> untyped
+
+        %a{pure}
+        def document_symbol_provider: () -> untyped
+
+        %a{pure}
+        def code_action_provider: () -> untyped
+
+        %a{pure}
+        def code_lens_provider: () -> untyped
+
+        %a{pure}
+        def document_link_provider: () -> untyped
+
+        %a{pure}
+        def color_provider: () -> untyped
+
+        %a{pure}
+        def workspace_symbol_provider: () -> untyped
+
+        %a{pure}
+        def document_formatting_provider: () -> untyped
+
+        %a{pure}
+        def document_range_formatting_provider: () -> untyped
+
+        %a{pure}
+        def document_on_type_formatting_provider: () -> untyped
+
+        %a{pure}
+        def rename_provider: () -> untyped
+
+        %a{pure}
+        def folding_range_provider: () -> untyped
+
+        %a{pure}
+        def selection_range_provider: () -> untyped
+
+        %a{pure}
+        def execute_command_provider: () -> untyped
+
+        %a{pure}
+        def call_hierarchy_provider: () -> untyped
+
+        %a{pure}
+        def linked_editing_range_provider: () -> untyped
+
+        %a{pure}
+        def semantic_tokens_provider: () -> untyped
+
+        %a{pure}
+        def moniker_provider: () -> untyped
+
+        %a{pure}
+        def type_hierarchy_provider: () -> untyped
+
+        %a{pure}
+        def inline_value_provider: () -> untyped
+
+        %a{pure}
+        def inlay_hint_provider: () -> untyped
+
+        %a{pure}
+        def diagnostic_provider: () -> untyped
+
+        %a{pure}
+        def workspace: () -> untyped
+
+        %a{pure}
+        def experimental: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

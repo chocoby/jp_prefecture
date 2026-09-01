@@ -1,0 +1,30 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A special text edit with an additional change annotation.
+      #
+      # @since 3.16.0.
+      #
+      class AnnotatedTextEdit
+        def initialize: (annotation_id: untyped, range: untyped, new_text: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def annotation_id: () -> untyped
+
+        %a{pure}
+        def range: () -> untyped
+
+        %a{pure}
+        def new_text: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

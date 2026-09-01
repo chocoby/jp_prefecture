@@ -1,0 +1,24 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Client capabilities specific to the moniker request.
+      #
+      # @since 3.16.0
+      #
+      class MonikerClientCapabilities
+        def initialize: (?dynamic_registration: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def dynamic_registration: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

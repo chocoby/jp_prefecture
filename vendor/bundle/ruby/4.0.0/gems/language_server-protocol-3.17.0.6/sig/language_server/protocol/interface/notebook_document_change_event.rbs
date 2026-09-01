@@ -1,0 +1,27 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A change event for a notebook document.
+      #
+      # @since 3.17.0
+      #
+      class NotebookDocumentChangeEvent
+        def initialize: (?metadata: untyped, ?cells: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def metadata: () -> untyped
+
+        %a{pure}
+        def cells: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Value-object that contains additional information when
+      # requesting references.
+      #
+      class ReferenceContext
+        def initialize: (include_declaration: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def include_declaration: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

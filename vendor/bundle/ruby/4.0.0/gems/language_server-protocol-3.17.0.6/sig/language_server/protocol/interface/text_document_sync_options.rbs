@@ -1,0 +1,31 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class TextDocumentSyncOptions
+        def initialize: (?open_close: bool, ?change: untyped, ?will_save: bool, ?will_save_wait_until: bool, ?save: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def open_close: () -> bool
+
+        %a{pure}
+        def change: () -> untyped
+
+        %a{pure}
+        def will_save: () -> bool
+
+        %a{pure}
+        def will_save_wait_until: () -> bool
+
+        %a{pure}
+        def save: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

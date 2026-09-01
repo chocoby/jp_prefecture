@@ -1,0 +1,28 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Describes textual changes on a text document. A TextDocumentEdit describes all changes
+      # on a document version Si and after they are applied move the document to version Si+1.
+      # So the creator of a TextDocumentEdit doesn't need to sort the array of edits or do any
+      # kind of ordering. However the edits must be non overlapping.
+      #
+      class TextDocumentEdit
+        def initialize: (text_document: untyped, edits: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def text_document: () -> untyped
+
+        %a{pure}
+        def edits: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

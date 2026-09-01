@@ -1,0 +1,32 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A document link is a range in a text document that links to an internal or external resource, like another
+      # text document or a web site.
+      #
+      class DocumentLink
+        def initialize: (range: untyped, ?target: String, ?tooltip: String, ?data: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def range: () -> untyped
+
+        %a{pure}
+        def target: () -> String
+
+        %a{pure}
+        def tooltip: () -> String
+
+        %a{pure}
+        def data: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

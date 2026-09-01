@@ -1,0 +1,46 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class InitializeParams
+        def initialize: (process_id: Integer?, ?client_info: untyped, ?locale: String, ?root_path: String?, root_uri: String?, capabilities: untyped, ?initialization_options: untyped, ?trace: untyped, ?work_done_token: untyped, ?workspace_folders: Array[untyped]?) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def process_id: () -> Integer?
+
+        %a{pure}
+        def client_info: () -> untyped
+
+        %a{pure}
+        def locale: () -> String
+
+        %a{pure}
+        def root_path: () -> String
+
+        %a{pure}
+        def root_uri: () -> String?
+
+        %a{pure}
+        def capabilities: () -> untyped
+
+        %a{pure}
+        def initialization_options: () -> untyped
+
+        %a{pure}
+        def trace: () -> untyped
+
+        %a{pure}
+        def work_done_token: () -> untyped
+
+        %a{pure}
+        def workspace_folders: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A diagnostic report indicating that the last returned
+      # report is still accurate.
+      #
+      # @since 3.17.0
+      #
+      class UnchangedDocumentDiagnosticReport
+        def initialize: (kind: "unchanged", result_id: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def kind: () -> "unchanged"
+
+        %a{pure}
+        def result_id: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

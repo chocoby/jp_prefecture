@@ -1,0 +1,33 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Params to show a document.
+      #
+      # @since 3.16.0
+      #
+      class ShowDocumentParams
+        def initialize: (uri: String, ?external: bool, ?take_focus: bool, ?selection: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def uri: () -> String
+
+        %a{pure}
+        def external: () -> bool
+
+        %a{pure}
+        def take_focus: () -> bool
+
+        %a{pure}
+        def selection: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

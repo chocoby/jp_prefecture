@@ -1,0 +1,33 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # General client capabilities.
+      #
+      # @since 3.16.0
+      #
+      class GeneralClientCapabilities
+        def initialize: (?stale_request_support: untyped, ?regular_expressions: untyped, ?markdown: untyped, ?position_encodings: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def stale_request_support: () -> untyped
+
+        %a{pure}
+        def regular_expressions: () -> untyped
+
+        %a{pure}
+        def markdown: () -> untyped
+
+        %a{pure}
+        def position_encodings: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

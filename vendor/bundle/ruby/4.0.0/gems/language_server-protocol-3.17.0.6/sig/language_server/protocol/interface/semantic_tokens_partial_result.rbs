@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # @since 3.16.0
+      #
+      class SemanticTokensPartialResult
+        def initialize: (data: Array[Integer]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def data: () -> Array[Integer]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

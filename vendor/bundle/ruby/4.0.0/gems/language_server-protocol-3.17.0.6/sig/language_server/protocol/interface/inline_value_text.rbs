@@ -1,0 +1,27 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Provide inline value as text.
+      #
+      # @since 3.17.0
+      #
+      class InlineValueText
+        def initialize: (range: untyped, text: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def range: () -> untyped
+
+        %a{pure}
+        def text: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

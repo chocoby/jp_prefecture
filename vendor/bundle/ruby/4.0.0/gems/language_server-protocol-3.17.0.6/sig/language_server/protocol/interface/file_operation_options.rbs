@@ -1,0 +1,39 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Options for notifications/requests for user operations on files.
+      #
+      # @since 3.16.0
+      #
+      class FileOperationOptions
+        def initialize: (?did_create: untyped, ?will_create: untyped, ?did_rename: untyped, ?will_rename: untyped, ?did_delete: untyped, ?will_delete: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def did_create: () -> untyped
+
+        %a{pure}
+        def will_create: () -> untyped
+
+        %a{pure}
+        def did_rename: () -> untyped
+
+        %a{pure}
+        def will_rename: () -> untyped
+
+        %a{pure}
+        def did_delete: () -> untyped
+
+        %a{pure}
+        def will_delete: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

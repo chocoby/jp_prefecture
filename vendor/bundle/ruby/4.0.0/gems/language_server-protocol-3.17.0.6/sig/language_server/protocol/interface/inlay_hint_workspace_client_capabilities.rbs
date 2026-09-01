@@ -1,0 +1,24 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Client workspace capabilities specific to inlay hints.
+      #
+      # @since 3.17.0
+      #
+      class InlayHintWorkspaceClientCapabilities
+        def initialize: (?refresh_support: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def refresh_support: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

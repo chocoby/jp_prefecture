@@ -1,0 +1,45 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Capabilities relating to events from file operations by the user in the client.
+      #
+      # These events do not come from the file system, they come from user operations
+      # like renaming a file in the UI.
+      #
+      # @since 3.16.0
+      #
+      class FileOperationClientCapabilities
+        def initialize: (?dynamic_registration: bool, ?did_create: bool, ?will_create: bool, ?did_rename: bool, ?will_rename: bool, ?did_delete: bool, ?will_delete: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def dynamic_registration: () -> bool
+
+        %a{pure}
+        def did_create: () -> bool
+
+        %a{pure}
+        def will_create: () -> bool
+
+        %a{pure}
+        def did_rename: () -> bool
+
+        %a{pure}
+        def will_rename: () -> bool
+
+        %a{pure}
+        def did_delete: () -> bool
+
+        %a{pure}
+        def will_delete: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

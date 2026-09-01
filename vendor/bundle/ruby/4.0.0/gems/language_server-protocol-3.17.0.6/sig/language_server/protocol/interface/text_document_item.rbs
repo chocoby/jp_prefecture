@@ -1,0 +1,32 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # An item to transfer a text document from the client to the
+      # server.
+      #
+      class TextDocumentItem
+        def initialize: (uri: String, language_id: String, version: Integer, text: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def uri: () -> String
+
+        %a{pure}
+        def language_id: () -> String
+
+        %a{pure}
+        def version: () -> Integer
+
+        %a{pure}
+        def text: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

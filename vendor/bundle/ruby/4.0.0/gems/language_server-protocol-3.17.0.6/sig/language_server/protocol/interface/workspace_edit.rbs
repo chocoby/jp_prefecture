@@ -1,0 +1,39 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A workspace edit represents changes to many resources managed in the workspace. The edit
+      # should either provide `changes` or `documentChanges`. If documentChanges are present
+      # they are preferred over `changes` if the client can handle versioned document edits.
+      #
+      # Since version 3.13.0 a workspace edit can contain resource operations as well. If resource
+      # operations are present clients need to execute the operations in the order in which they
+      # are provided. So a workspace edit for example can consist of the following two changes:
+      # (1) a create file a.txt and (2) a text document edit which insert text into file a.txt.
+      #
+      # An invalid sequence (e.g. (1) delete file a.txt and (2) insert text into file a.txt) will
+      # cause failure of the operation. How the client recovers from the failure is described by
+      # the client capability: `workspace.workspaceEdit.failureHandling`
+      #
+      class WorkspaceEdit
+        def initialize: (?changes: untyped, ?document_changes: Array[untyped], ?change_annotations: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def changes: () -> untyped
+
+        %a{pure}
+        def document_changes: () -> Array[untyped]
+
+        %a{pure}
+        def change_annotations: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

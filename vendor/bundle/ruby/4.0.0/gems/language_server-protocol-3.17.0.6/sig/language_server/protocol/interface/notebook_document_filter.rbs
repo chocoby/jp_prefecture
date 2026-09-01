@@ -1,0 +1,32 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A notebook document filter denotes a notebook document by
+      # different properties. The properties will be match
+      # against the notebook's URI (same as with documents)
+      #
+      # @since 3.17.0
+      #
+      class NotebookDocumentFilter
+        def initialize: (?notebook_type: String, ?scheme: String, ?pattern: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def notebook_type: () -> String
+
+        %a{pure}
+        def scheme: () -> String
+
+        %a{pure}
+        def pattern: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

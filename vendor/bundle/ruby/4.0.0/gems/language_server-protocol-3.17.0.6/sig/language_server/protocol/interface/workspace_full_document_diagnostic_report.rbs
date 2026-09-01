@@ -1,0 +1,36 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A full document diagnostic report for a workspace diagnostic result.
+      #
+      # @since 3.17.0
+      #
+      class WorkspaceFullDocumentDiagnosticReport
+        def initialize: (uri: String, version: Integer?, kind: "full", ?result_id: String, items: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def uri: () -> String
+
+        %a{pure}
+        def version: () -> Integer?
+
+        %a{pure}
+        def kind: () -> "full"
+
+        %a{pure}
+        def result_id: () -> String
+
+        %a{pure}
+        def items: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

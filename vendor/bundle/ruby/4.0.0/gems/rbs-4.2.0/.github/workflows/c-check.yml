@@ -1,0 +1,66 @@
+name: C Code Generation and Formatting Check
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+  merge_group: {}
+
+permissions:
+  contents: read
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: "4.0"
+          bundler-cache: none
+      - name: Set working directory as safe
+        run: git config --global --add safe.directory $(pwd)
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libdb-dev curl autoconf automake m4 libtool
+      - name: Install clang-format from LLVM
+        run: |
+          # The codename must match the `runs-on` image: `ubuntu-latest` is 24.04 (noble).
+          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key \
+            | sudo gpg --dearmor -o /usr/share/keyrings/llvm-archive-keyring.gpg
+          # Written directly rather than through `apt-add-repository`, which cannot
+          # parse `[signed-by=...]` inside a one-line `deb` shortcut.
+          echo "deb [signed-by=/usr/share/keyrings/llvm-archive-keyring.gpg] http://apt.llvm.org/noble/ llvm-toolchain-noble-20 main" \
+            | sudo tee /etc/apt/sources.list.d/llvm.list
+          sudo apt-get update
+          sudo apt-get install -y clang-format-20
+          sudo ln -sf /usr/bin/clang-format-20 /usr/local/bin/clang-format
+          clang-format --version
+      - name: Count processors
+        run: nproc
+      - name: Install Re2c
+        run: |
+          cd /tmp
+          curl -L https://github.com/skvadrik/re2c/archive/refs/tags/4.5.1.tar.gz > re2c-4.5.1.tar.gz
+          tar xf re2c-4.5.1.tar.gz
+          cd re2c-4.5.1
+          cmake --preset=linux-gcc-release-ootree-skeleton-fast
+          cmake --build --preset=linux-gcc-release-ootree-skeleton-fast --parallel="$(nproc)"
+          sudo ln -sf "$(pwd)"/.build/linux-gcc-release-ootree-skeleton-fast/re2c /usr/local/bin/re2c
+          re2c --version
+      - name: Update rubygems & bundler
+        run: |
+          ruby -v
+          gem update --system
+      - name: install erb
+        run: gem install erb
+      - name: bin/setup
+        run: |
+          bin/setup
+      - name: Check C code generation and formatting
+        run: |
+          clang-format --version
+          bundle exec rake lexer templates compile confirm_lexer confirm_templates
+          bundle exec rake format:c_check

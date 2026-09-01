@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class DidChangeWatchedFilesClientCapabilities
+        def initialize: (?dynamic_registration: bool, ?relative_pattern_support: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def dynamic_registration: () -> bool
+
+        %a{pure}
+        def relative_pattern_support: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

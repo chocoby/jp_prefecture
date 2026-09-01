@@ -1,0 +1,109 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Text document specific client capabilities.
+      #
+      class TextDocumentClientCapabilities
+        def initialize: (?synchronization: untyped, ?completion: untyped, ?hover: untyped, ?signature_help: untyped, ?declaration: untyped, ?definition: untyped, ?type_definition: untyped, ?implementation: untyped, ?references: untyped, ?document_highlight: untyped, ?document_symbol: untyped, ?code_action: untyped, ?code_lens: untyped, ?document_link: untyped, ?color_provider: untyped, ?formatting: untyped, ?range_formatting: untyped, ?on_type_formatting: untyped, ?rename: untyped, ?folding_range: untyped, ?selection_range: untyped, ?publish_diagnostics: untyped, ?call_hierarchy: untyped, ?semantic_tokens: untyped, ?linked_editing_range: untyped, ?moniker: untyped, ?type_hierarchy: untyped, ?inline_value: untyped, ?inlay_hint: untyped, ?diagnostic: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def synchronization: () -> untyped
+
+        %a{pure}
+        def completion: () -> untyped
+
+        %a{pure}
+        def hover: () -> untyped
+
+        %a{pure}
+        def signature_help: () -> untyped
+
+        %a{pure}
+        def declaration: () -> untyped
+
+        %a{pure}
+        def definition: () -> untyped
+
+        %a{pure}
+        def type_definition: () -> untyped
+
+        %a{pure}
+        def implementation: () -> untyped
+
+        %a{pure}
+        def references: () -> untyped
+
+        %a{pure}
+        def document_highlight: () -> untyped
+
+        %a{pure}
+        def document_symbol: () -> untyped
+
+        %a{pure}
+        def code_action: () -> untyped
+
+        %a{pure}
+        def code_lens: () -> untyped
+
+        %a{pure}
+        def document_link: () -> untyped
+
+        %a{pure}
+        def color_provider: () -> untyped
+
+        %a{pure}
+        def formatting: () -> untyped
+
+        %a{pure}
+        def range_formatting: () -> untyped
+
+        %a{pure}
+        def on_type_formatting: () -> untyped
+
+        %a{pure}
+        def rename: () -> untyped
+
+        %a{pure}
+        def folding_range: () -> untyped
+
+        %a{pure}
+        def selection_range: () -> untyped
+
+        %a{pure}
+        def publish_diagnostics: () -> untyped
+
+        %a{pure}
+        def call_hierarchy: () -> untyped
+
+        %a{pure}
+        def semantic_tokens: () -> untyped
+
+        %a{pure}
+        def linked_editing_range: () -> untyped
+
+        %a{pure}
+        def moniker: () -> untyped
+
+        %a{pure}
+        def type_hierarchy: () -> untyped
+
+        %a{pure}
+        def inline_value: () -> untyped
+
+        %a{pure}
+        def inlay_hint: () -> untyped
+
+        %a{pure}
+        def diagnostic: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

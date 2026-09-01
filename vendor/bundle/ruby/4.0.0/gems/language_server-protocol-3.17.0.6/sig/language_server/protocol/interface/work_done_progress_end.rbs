@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class WorkDoneProgressEnd
+        def initialize: (kind: "end", ?message: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def kind: () -> "end"
+
+        %a{pure}
+        def message: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

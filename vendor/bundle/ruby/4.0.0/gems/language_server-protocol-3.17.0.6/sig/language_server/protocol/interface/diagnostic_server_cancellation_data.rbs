@@ -1,0 +1,24 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Cancellation data returned from a diagnostic request.
+      #
+      # @since 3.17.0
+      #
+      class DiagnosticServerCancellationData
+        def initialize: (retrigger_request: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def retrigger_request: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

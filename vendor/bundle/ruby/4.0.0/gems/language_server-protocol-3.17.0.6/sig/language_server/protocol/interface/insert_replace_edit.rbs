@@ -1,0 +1,30 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A special text edit to provide an insert and a replace operation.
+      #
+      # @since 3.16.0
+      #
+      class InsertReplaceEdit
+        def initialize: (new_text: String, insert: untyped, replace: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def new_text: () -> String
+
+        %a{pure}
+        def insert: () -> untyped
+
+        %a{pure}
+        def replace: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

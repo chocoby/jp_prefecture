@@ -1,0 +1,28 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # The parameters of a {@link ExecuteCommandRequest}.
+      #
+      class ExecuteCommandParams
+        def initialize: (command: String, ?arguments: Array[untyped], ?work_done_token: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def command: () -> String
+
+        %a{pure}
+        def arguments: () -> Array[untyped]
+
+        %a{pure}
+        def work_done_token: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

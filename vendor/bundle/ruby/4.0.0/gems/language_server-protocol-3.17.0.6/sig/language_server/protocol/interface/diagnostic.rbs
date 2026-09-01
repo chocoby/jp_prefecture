@@ -1,0 +1,47 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Represents a diagnostic, such as a compiler error or warning. Diagnostic objects
+      # are only valid in the scope of a resource.
+      #
+      class Diagnostic
+        def initialize: (range: untyped, ?severity: untyped, ?code: (Integer | String), ?code_description: untyped, ?source: String, message: String, ?tags: Array[untyped], ?related_information: Array[untyped], ?data: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def range: () -> untyped
+
+        %a{pure}
+        def severity: () -> untyped
+
+        %a{pure}
+        def code: () -> (Integer | String)
+
+        %a{pure}
+        def code_description: () -> untyped
+
+        %a{pure}
+        def source: () -> String
+
+        %a{pure}
+        def message: () -> String
+
+        %a{pure}
+        def tags: () -> Array[untyped]
+
+        %a{pure}
+        def related_information: () -> Array[untyped]
+
+        %a{pure}
+        def data: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

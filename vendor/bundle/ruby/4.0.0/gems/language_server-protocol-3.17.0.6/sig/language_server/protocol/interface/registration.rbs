@@ -1,0 +1,28 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # General parameters to register for a notification or to register a provider.
+      #
+      class Registration
+        def initialize: (id: String, method: String, ?register_options: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def id: () -> String
+
+        %a{pure}
+        def method: () -> String
+
+        %a{pure}
+        def register_options: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

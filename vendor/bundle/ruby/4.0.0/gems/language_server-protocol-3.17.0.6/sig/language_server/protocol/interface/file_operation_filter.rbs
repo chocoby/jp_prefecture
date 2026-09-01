@@ -1,0 +1,28 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A filter to describe in which file operation requests or notifications
+      # the server is interested in receiving.
+      #
+      # @since 3.16.0
+      #
+      class FileOperationFilter
+        def initialize: (?scheme: String, pattern: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def scheme: () -> String
+
+        %a{pure}
+        def pattern: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # The result of a document diagnostic pull request. A report can
+      # either be a full report containing all diagnostics for the
+      # requested document or an unchanged report indicating that nothing
+      # has changed in terms of diagnostics in comparison to the last
+      # pull request.
+      #
+      # @since 3.17.0
+      #
+      class DocumentDiagnosticReport
+        def initialize: (?related_documents: untyped, kind: ("full" | "unchanged"), ?result_id: String, ?items: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def related_documents: () -> untyped
+
+        %a{pure}
+        def kind: () -> ("full" | "unchanged")
+
+        %a{pure}
+        def result_id: () -> String
+
+        %a{pure}
+        def items: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module LanguageServer
+  module Protocol
+    module Transport
+      module Io
+        class Reader
+          @io: IO
+          attr_reader io: IO
+
+          def initialize: (IO) -> void
+
+          def read: () { (untyped) -> untyped } -> untyped
+
+          def close: () -> void
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A base for all symbol information.
+      #
+      class BaseSymbolInformation
+        def initialize: (name: String, kind: untyped, ?tags: Array[untyped], ?container_name: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def name: () -> String
+
+        %a{pure}
+        def kind: () -> untyped
+
+        %a{pure}
+        def tags: () -> Array[untyped]
+
+        %a{pure}
+        def container_name: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

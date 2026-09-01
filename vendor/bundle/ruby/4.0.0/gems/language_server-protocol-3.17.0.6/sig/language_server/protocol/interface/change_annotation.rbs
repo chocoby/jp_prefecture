@@ -1,0 +1,30 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Additional information that describes document changes.
+      #
+      # @since 3.16.0
+      #
+      class ChangeAnnotation
+        def initialize: (label: String, ?needs_confirmation: bool, ?description: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def label: () -> String
+
+        %a{pure}
+        def needs_confirmation: () -> bool
+
+        %a{pure}
+        def description: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

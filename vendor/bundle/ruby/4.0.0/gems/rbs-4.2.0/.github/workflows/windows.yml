@@ -1,0 +1,49 @@
+name: Ruby on Windows
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+  merge_group: {}
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: "windows-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['4.0', ucrt, mswin]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: load ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      # ucrt and mswin have the dev version Ruby.
+      # It introduce checksum mismatches for bundled gems. So remove them before `bundle install`
+      - name: Purge gem caches
+        run: |
+          ruby -e '
+            exit if "${{ matrix.ruby }}" != "ucrt" && "${{ matrix.ruby }}" != "mswin"
+
+            require "open-uri"
+            require "json"
+
+            res = URI.parse("https://stdgems.org/bundled_gems.json").read
+            bundled_gems = JSON.parse(res)["gems"].map{_1["gem"]}
+            system "gem uninstall #{bundled_gems.join(" ")} --force", exception: true
+          '
+      - name: Ignore Gemfile.lock's BUNDLED WITH on dev Ruby
+        if: ${{ matrix.ruby == 'ucrt' || matrix.ruby == 'mswin' }}
+        run: bundle config set --local version system
+      - name: bundle install
+        run: |
+          bundle config set without profilers libs
+          bundle install
+      - name: compile
+        run: bundle exec rake compile

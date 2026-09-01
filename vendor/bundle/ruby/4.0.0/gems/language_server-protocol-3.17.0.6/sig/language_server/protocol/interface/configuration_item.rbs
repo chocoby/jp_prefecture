@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class ConfigurationItem
+        def initialize: (?scope_uri: String, ?section: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def scope_uri: () -> String
+
+        %a{pure}
+        def section: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

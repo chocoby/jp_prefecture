@@ -1,0 +1,27 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Additional details for a completion item label.
+      #
+      # @since 3.17.0
+      #
+      class CompletionItemLabelDetails
+        def initialize: (?detail: String, ?description: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def detail: () -> String
+
+        %a{pure}
+        def description: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

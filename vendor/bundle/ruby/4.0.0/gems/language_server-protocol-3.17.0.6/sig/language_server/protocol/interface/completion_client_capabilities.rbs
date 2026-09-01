@@ -1,0 +1,37 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Completion client capabilities
+      #
+      class CompletionClientCapabilities
+        def initialize: (?dynamic_registration: bool, ?completion_item: untyped, ?completion_item_kind: untyped, ?insert_text_mode: untyped, ?context_support: bool, ?completion_list: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def dynamic_registration: () -> bool
+
+        %a{pure}
+        def completion_item: () -> untyped
+
+        %a{pure}
+        def completion_item_kind: () -> untyped
+
+        %a{pure}
+        def insert_text_mode: () -> untyped
+
+        %a{pure}
+        def context_support: () -> bool
+
+        %a{pure}
+        def completion_list: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

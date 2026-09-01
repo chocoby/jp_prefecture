@@ -1,0 +1,19 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class Message
+        def initialize: (jsonrpc: String) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def jsonrpc: () -> String
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

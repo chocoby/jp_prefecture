@@ -1,0 +1,25 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Delete file options
+      #
+      class DeleteFileOptions
+        def initialize: (?recursive: bool, ?ignore_if_not_exists: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def recursive: () -> bool
+
+        %a{pure}
+        def ignore_if_not_exists: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

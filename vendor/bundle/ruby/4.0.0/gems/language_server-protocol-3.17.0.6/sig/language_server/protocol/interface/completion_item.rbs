@@ -1,0 +1,77 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A completion item represents a text snippet that is
+      # proposed to complete text that is being typed.
+      #
+      class CompletionItem
+        def initialize: (label: String, ?label_details: untyped, ?kind: untyped, ?tags: Array[untyped], ?detail: String, ?documentation: untyped, ?deprecated: bool, ?preselect: bool, ?sort_text: String, ?filter_text: String, ?insert_text: String, ?insert_text_format: untyped, ?insert_text_mode: untyped, ?text_edit: untyped, ?text_edit_text: String, ?additional_text_edits: Array[untyped], ?commit_characters: Array[String], ?command: untyped, ?data: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def label: () -> String
+
+        %a{pure}
+        def label_details: () -> untyped
+
+        %a{pure}
+        def kind: () -> untyped
+
+        %a{pure}
+        def tags: () -> Array[untyped]
+
+        %a{pure}
+        def detail: () -> String
+
+        %a{pure}
+        def documentation: () -> untyped
+
+        %a{pure}
+        def deprecated: () -> bool
+
+        %a{pure}
+        def preselect: () -> bool
+
+        %a{pure}
+        def sort_text: () -> String
+
+        %a{pure}
+        def filter_text: () -> String
+
+        %a{pure}
+        def insert_text: () -> String
+
+        %a{pure}
+        def insert_text_format: () -> untyped
+
+        %a{pure}
+        def insert_text_mode: () -> untyped
+
+        %a{pure}
+        def text_edit: () -> untyped
+
+        %a{pure}
+        def text_edit_text: () -> String
+
+        %a{pure}
+        def additional_text_edits: () -> Array[untyped]
+
+        %a{pure}
+        def commit_characters: () -> Array[String]
+
+        %a{pure}
+        def command: () -> untyped
+
+        %a{pure}
+        def data: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

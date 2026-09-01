@@ -1,0 +1,32 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Provide inline value through a variable lookup.
+      # If only a range is specified, the variable name will be extracted from the underlying document.
+      # An optional variable name can be used to override the extracted name.
+      #
+      # @since 3.17.0
+      #
+      class InlineValueVariableLookup
+        def initialize: (range: untyped, ?variable_name: String, case_sensitive_lookup: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def range: () -> untyped
+
+        %a{pure}
+        def variable_name: () -> String
+
+        %a{pure}
+        def case_sensitive_lookup: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

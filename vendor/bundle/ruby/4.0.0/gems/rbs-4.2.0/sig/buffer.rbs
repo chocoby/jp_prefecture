@@ -1,0 +1,108 @@
+module RBS
+  class Buffer
+    # Location in a buffer.
+    # A pair of line number (1 origin) and column number (0 origin).
+    #
+    type loc = [Integer, Integer]
+
+    # Name to identify Buffer.
+    attr_reader name: Pathname
+
+    # The content of the buffer.
+    attr_reader content: String
+
+    attr_reader parent: [Buffer, Array[Range[Integer]]]?
+
+    def initialize: (name: Pathname name, content: String content) -> void
+                  | (content: String content, parent: [Buffer, Array[Range[Integer]]] parent) -> void
+
+    # Array of lines of the content, without the EOL
+    #
+    # ```rb
+    # buffer = Buffer.new(name: name, content: "123\nabc")
+    # buffer.lines   # => ["123", "abc"]
+    # ```
+    #
+    # If the input has EOL at the end of the file, the `lines` has an empty string at the end.
+    #
+    # ```rb
+    # buffer = Buffer.new(name: name, content: "123\nabc\n")
+    # buffer.lines   # => ["123", "abc", ""]
+    # ```
+    #
+    def lines: () -> Array[String]
+
+    @ranges: Array[Range[Integer]]?
+    # Array of ranges that stores the ranges of the each line, without the EOL
+    #
+    # ```rb
+    # buffer = Buffer.new(name: name, content: "123\nabc\n")
+    # buffer.ranges  # => [0...3, 4...7, 8...8]
+    # ```
+    #
+    def ranges: () -> Array[Range[Integer]]
+
+    # Returns the number of the lines
+    def line_count: () -> Integer
+
+    # Translate position to location.
+    def pos_to_loc: (Integer pos) -> loc
+
+    # Translate location to position.
+    def loc_to_pos: (loc loc) -> Integer
+
+    def last_position: () -> Integer
+
+    # Translate `Prism::Location` to `RBS::Location` attached to this buffer
+    #
+    # It assumes the `Prism::Location` has a source which is equivalent to `self`.
+    #
+    def rbs_location: (Prism::Location) -> Location
+                    | (Prism::Location, Prism::Location) -> Location
+
+    # Translate a byte offset (into the top buffer's source) to a character offset.
+    #
+    # Resolution is delegated to the top buffer, which keeps a sparse cache of
+    # resolved (byte, char) pairs so successive calls scan only the delta from the
+    # nearest cached pair. Amortizes to O(content_size) across all calls; a single
+    # call is one byteslice + length.
+    #
+    def character_offset: (Integer byte_offset) -> Integer
+
+    # Sparse cache backing `#character_offset`: a pair `[byte_keys, char_values]`
+    # kept in ascending byte order to support binary search.
+    @character_offset_cache: [Array[Integer], Array[Integer]]?
+
+    # Construct a buffer from substrings of this buffer.
+    #
+    # The returned buffer contains lines from given ranges.
+    #
+    # ```rb
+    # buffer = Buffer.new(name: name, content: <<TEXT)
+    # 12345
+    # abcde
+    # ABCDE
+    # TEXT
+    #
+    # buffer.sub_buffer(lines: [0...1, 2...3])  # => Buffer with content = 1\n34
+    # buffer.sub_buffer(lines: [5..7])          # => Raises an error because the range contains newline
+    # ```
+    #
+    # `byte_lines_hint:` is an optional performance hint: byte ranges corresponding
+    # to `lines:`. When provided, slicing uses `byteslice` (O(slice_size) per line)
+    # instead of `content[char_range]`, which on a multi-byte string is O(content_size)
+    # per call. Result is identical either way.
+    #
+    %a{pure} def sub_buffer: (lines: Array[Range[Integer]], ?byte_lines_hint: Array[Range[Integer]]?) -> Buffer
+
+    %a{pure} def parent_buffer: () -> Buffer?
+
+    %a{pure} def parent_position: (Integer) -> Integer?
+
+    %a{pure} def absolute_position: (Integer) -> Integer?
+
+    %a{pure} def top_buffer: () -> Buffer
+
+    %a{pure} def detach: () -> Buffer
+  end
+end

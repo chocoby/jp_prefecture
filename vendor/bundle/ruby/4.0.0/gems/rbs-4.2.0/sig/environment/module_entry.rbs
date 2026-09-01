@@ -1,0 +1,65 @@
+module RBS
+  class Environment
+    # Represents a class entry in the environment
+    #
+    # ```rb
+    # entry = ModuleEntry.new(TypeName.parse("::Kernel"))
+    # entry << [nil, declaration]
+    # entry << [[nil, TypeName.parse("::Object")], declaration]
+    # ```
+    #
+    class ModuleEntry
+      attr_reader name: TypeName
+
+      type declaration = AST::Declarations::Module | AST::Ruby::Declarations::ModuleDecl
+
+      type context_decl = [Resolver::context, declaration]
+
+      attr_reader context_decls: Array[context_decl]
+
+      def initialize: (TypeName) -> void
+
+      def <<: (context_decl) -> self
+
+      def each_decl: { (declaration) -> void } -> void
+                   | () -> Enumerator[declaration]
+
+      # Returns true if the entry doesn't have any declaration
+      #
+      def empty?: () -> bool
+
+      # Returns the first declaration
+      #
+      # This method helps using the class with `ClassEntry` objects.
+      #
+      def primary_decl: () -> declaration
+
+      # Returns the generics declaration
+      #
+      def type_params: () -> Array[AST::TypeParam]
+
+      # Confirms if the type parameters in the declaration are compatible
+      #
+      # * Raises `GenericParameterMismatchError` if incompatible declaration is detected.
+      #
+      def validate_type_params: () -> void
+
+      # Returns the self types of the declarations
+      #
+      # The type variables in the self types are aligned to `#type_params`,
+      # so that the self types from declarations with different type parameter
+      # names can be compared and used with `#type_params`.
+      #
+      # Note that the returned objects may be different from the ones in the
+      # declarations, but `#location` points to the original declaration.
+      #
+      def self_types: () -> Array[AST::Declarations::Module::Self]
+
+      # Returns a substitution that renames the type parameters of the declaration to the entry's type parameters (`#type_params`)
+      #
+      # Returns `nil` if the declaration uses the same type parameter names as `#type_params`.
+      #
+      def align_params: (declaration | ClassEntry::declaration) -> Substitution?
+    end
+  end
+end

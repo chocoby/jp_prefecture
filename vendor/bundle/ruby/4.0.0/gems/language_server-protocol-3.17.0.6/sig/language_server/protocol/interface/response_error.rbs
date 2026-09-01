@@ -1,0 +1,25 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class ResponseError
+        def initialize: (code: Integer, message: String, ?data: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def code: () -> Integer
+
+        %a{pure}
+        def message: () -> String
+
+        %a{pure}
+        def data: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

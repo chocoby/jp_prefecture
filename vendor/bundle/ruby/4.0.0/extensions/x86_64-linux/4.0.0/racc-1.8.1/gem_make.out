@@ -1,0 +1,18 @@
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+/opt/hostedtoolcache/Ruby/4.0.6/x64/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-bl3mwu sitelibdir\=./.gem.20260901-2071-bl3mwu clean
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-bl3mwu sitelibdir\=./.gem.20260901-2071-bl3mwu
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-bl3mwu sitelibdir\=./.gem.20260901-2071-bl3mwu install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20260901-2071-bl3mwu/racc
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-bl3mwu sitelibdir\=./.gem.20260901-2071-bl3mwu clean

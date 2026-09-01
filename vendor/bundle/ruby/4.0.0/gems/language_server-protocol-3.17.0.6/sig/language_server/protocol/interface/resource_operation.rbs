@@ -1,0 +1,25 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A generic resource operation.
+      #
+      class ResourceOperation
+        def initialize: (kind: String, ?annotation_id: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def kind: () -> String
+
+        %a{pure}
+        def annotation_id: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

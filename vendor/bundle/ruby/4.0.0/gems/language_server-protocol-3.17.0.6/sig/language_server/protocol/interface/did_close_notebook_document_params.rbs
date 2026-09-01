@@ -1,0 +1,27 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # The params sent in a close notebook document notification.
+      #
+      # @since 3.17.0
+      #
+      class DidCloseNotebookDocumentParams
+        def initialize: (notebook_document: untyped, cell_text_documents: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def notebook_document: () -> untyped
+
+        %a{pure}
+        def cell_text_documents: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

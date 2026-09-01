@@ -1,0 +1,83 @@
+# frozen_string_literal: true
+
+module RuboCop
+  module Cop
+    module Lint
+      # Checks for interpolation in a single quoted string.
+      #
+      # @safety
+      #   This cop's autocorrection is unsafe because although it always replaces single quotes as
+      #   if it were miswritten double quotes, it is not always the case. For example,
+      #   `'#{foo} bar'` would be replaced by `"#{foo} bar"`, so the replaced code would evaluate
+      #   the expression `foo`.
+      #
+      # @example
+      #
+      #   # bad
+      #   foo = 'something with #{interpolation} inside'
+      #
+      #   # good
+      #   foo = "something with #{interpolation} inside"
+      class InterpolationCheck < Base
+        extend AutoCorrector
+
+        MSG = 'Interpolation in single quoted string detected. ' \
+              'Use double quoted strings if you need interpolation.'
+
+        def on_str(node)
+          check(node)
+        end
+
+        # A multiline single-quoted string is parsed as a `dstr` of `str` segments, so it
+        # is not covered by `on_str`. Inspect single-quoted `dstr`s here; double-quoted
+        # interpolation is also a `dstr`, hence the delimiter check.
+        def on_dstr(node)
+          # A heredoc is also a `dstr`, but its `loc` is a `Parser::Source::Map::Heredoc`
+          # with no `begin`, so bail before touching it.
+          return if heredoc?(node)
+
+          check(node) if node.loc.begin&.source == "'"
+        end
+
+        private
+
+        # rubocop:disable-next Metrics/CyclomaticComplexity
+        def check(node)
+          return if node.parent&.regexp_type?
+          return unless /(?<!\\)#\{.*\}/.match?(node.source)
+          return if heredoc?(node)
+          return unless node.loc.begin && node.loc.end
+          return unless valid_syntax?(node)
+
+          add_offense(node) { |corrector| autocorrect(corrector, node) }
+        end
+
+        def autocorrect(corrector, node)
+          starting_token, ending_token = if node.source.include?('"')
+                                           ['%{', '}']
+                                         else
+                                           ['"', '"']
+                                         end
+
+          corrector.replace(node.loc.begin, starting_token)
+          corrector.replace(node.loc.end, ending_token)
+        end
+
+        def heredoc?(node)
+          node.loc.is_a?(Parser::Source::Map::Heredoc) || (node.parent && heredoc?(node.parent))
+        end
+
+        def valid_syntax?(node)
+          double_quoted_string = if node.source.include?('"')
+                                   node.source.sub(/\A'/, '%{').sub(/'\z/, '}')
+                                 else
+                                   node.source.gsub(/\A'|'\z/, '"')
+                                 end
+
+          processed_source = parse(double_quoted_string)
+          processed_source.valid_syntax? && processed_source.ast.dstr_type?
+        end
+      end
+    end
+  end
+end

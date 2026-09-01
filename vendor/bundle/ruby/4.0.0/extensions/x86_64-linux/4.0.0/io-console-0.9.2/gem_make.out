@@ -1,0 +1,35 @@
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/io-console-0.9.2/ext/io/console
+/opt/hostedtoolcache/Ruby/4.0.6/x64/bin/ruby extconf.rb
+checking for rb_interned_str_cstr()... yes
+checking for rb_ractor_local_storage_value_newkey()... yes
+checking for rb_io_descriptor() in ruby/io.h... yes
+checking for rb_io_path() in ruby/io.h... yes
+checking for rb_io_closed_p() in ruby/io.h... yes
+checking for rb_io_open_descriptor() in ruby/io.h... yes
+checking for termios.h... yes
+checking for cfmakeraw() in termios.h... yes
+checking for sys/ioctl.h... yes
+checking for HAVE_RUBY_FIBER_SCHEDULER_H... yes
+checking for rb_category_warn()... yes
+checking for RB_WARN_CATEGORY_DEPRECATED... yes
+checking for ttyname_r()... yes
+checking for rb_prepend_module()... yes
+creating Makefile
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/io-console-0.9.2/ext/io/console
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260901-2071-t66e11 sitelibdir\=./.gem.20260901-2071-t66e11 clean
+make: warning: -j3 forced in submake: resetting jobserver mode.
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/io-console-0.9.2/ext/io/console
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260901-2071-t66e11 sitelibdir\=./.gem.20260901-2071-t66e11
+make: warning: -j3 forced in submake: resetting jobserver mode.
+compiling console.c
+linking shared-object io/console.so
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/io-console-0.9.2/ext/io/console
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260901-2071-t66e11 sitelibdir\=./.gem.20260901-2071-t66e11 install
+make: warning: -j3 forced in submake: resetting jobserver mode.
+/usr/bin/install -c -m 0755 console.so ./.gem.20260901-2071-t66e11/io
+
+current directory: /home/runner/work/jp_prefecture/jp_prefecture/vendor/bundle/ruby/4.0.0/gems/io-console-0.9.2/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20260901-2071-t66e11 sitelibdir\=./.gem.20260901-2071-t66e11 clean

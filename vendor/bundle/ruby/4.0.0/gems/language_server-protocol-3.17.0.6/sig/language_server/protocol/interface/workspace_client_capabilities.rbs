@@ -1,0 +1,61 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Workspace specific client capabilities.
+      #
+      class WorkspaceClientCapabilities
+        def initialize: (?apply_edit: bool, ?workspace_edit: untyped, ?did_change_configuration: untyped, ?did_change_watched_files: untyped, ?symbol: untyped, ?execute_command: untyped, ?workspace_folders: bool, ?configuration: bool, ?semantic_tokens: untyped, ?code_lens: untyped, ?file_operations: untyped, ?inline_value: untyped, ?inlay_hint: untyped, ?diagnostics: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def apply_edit: () -> bool
+
+        %a{pure}
+        def workspace_edit: () -> untyped
+
+        %a{pure}
+        def did_change_configuration: () -> untyped
+
+        %a{pure}
+        def did_change_watched_files: () -> untyped
+
+        %a{pure}
+        def symbol: () -> untyped
+
+        %a{pure}
+        def execute_command: () -> untyped
+
+        %a{pure}
+        def workspace_folders: () -> bool
+
+        %a{pure}
+        def configuration: () -> bool
+
+        %a{pure}
+        def semantic_tokens: () -> untyped
+
+        %a{pure}
+        def code_lens: () -> untyped
+
+        %a{pure}
+        def file_operations: () -> untyped
+
+        %a{pure}
+        def inline_value: () -> untyped
+
+        %a{pure}
+        def inlay_hint: () -> untyped
+
+        %a{pure}
+        def diagnostics: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

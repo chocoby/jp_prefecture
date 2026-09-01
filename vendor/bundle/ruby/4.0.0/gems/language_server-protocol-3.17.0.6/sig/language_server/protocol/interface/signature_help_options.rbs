@@ -1,0 +1,28 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Server Capabilities for a {@link SignatureHelpRequest}.
+      #
+      class SignatureHelpOptions
+        def initialize: (?trigger_characters: Array[String], ?retrigger_characters: Array[String], ?work_done_progress: bool) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def trigger_characters: () -> Array[String]
+
+        %a{pure}
+        def retrigger_characters: () -> Array[String]
+
+        %a{pure}
+        def work_done_progress: () -> bool
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

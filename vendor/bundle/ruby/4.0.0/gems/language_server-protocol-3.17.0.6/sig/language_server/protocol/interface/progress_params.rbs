@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class ProgressParams
+        def initialize: (token: untyped, value: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def token: () -> untyped
+
+        %a{pure}
+        def value: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

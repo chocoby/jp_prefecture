@@ -1,0 +1,22 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      class HoverClientCapabilities
+        def initialize: (?dynamic_registration: bool, ?content_format: Array[untyped]) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def dynamic_registration: () -> bool
+
+        %a{pure}
+        def content_format: () -> Array[untyped]
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

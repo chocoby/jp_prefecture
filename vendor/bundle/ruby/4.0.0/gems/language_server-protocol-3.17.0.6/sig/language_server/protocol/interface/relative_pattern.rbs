@@ -1,0 +1,29 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # A relative pattern is a helper to construct glob patterns that are matched
+      # relatively to a base URI. The common value for a `baseUri` is a workspace
+      # folder root, but it can be another absolute URI as well.
+      #
+      # @since 3.17.0
+      #
+      class RelativePattern
+        def initialize: (base_uri: untyped, pattern: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def base_uri: () -> untyped
+
+        %a{pure}
+        def pattern: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end

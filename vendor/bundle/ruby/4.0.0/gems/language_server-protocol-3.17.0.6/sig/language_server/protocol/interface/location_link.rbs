@@ -1,0 +1,32 @@
+module LanguageServer
+  module Protocol
+    module Interface
+      #
+      # Represents the connection of two locations. Provides additional metadata over normal {@link Location locations},
+      # including an origin range.
+      #
+      class LocationLink
+        def initialize: (?origin_selection_range: untyped, target_uri: String, target_range: untyped, target_selection_range: untyped) -> void
+
+        @attributes: Hash[Symbol, untyped]
+        attr_reader attributes: Hash[Symbol, untyped]
+
+        %a{pure}
+        def origin_selection_range: () -> untyped
+
+        %a{pure}
+        def target_uri: () -> String
+
+        %a{pure}
+        def target_range: () -> untyped
+
+        %a{pure}
+        def target_selection_range: () -> untyped
+
+        def to_hash: () -> Hash[Symbol, untyped]
+
+        def to_json: (*untyped) -> String
+      end
+    end
+  end
+end
