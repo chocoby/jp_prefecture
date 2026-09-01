@@ -46,13 +46,13 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: 'chore: update zip code data'
+          commit-message: 'chore: 郵便番号データを更新'
           add-paths: data/zip.yml
           branch: update-zip-code-data
           reviewers: chocoby
-          title: 'Update zip code data'
+          title: '郵便番号データを更新'
           body: |
-            Update `data/zip.yml` from the latest `ken_all.zip` published by Japan Post.
+            日本郵便が公開している最新の `ken_all.zip` から `data/zip.yml` を更新します。
 
-            This PR was created automatically by the `update-zip-code-data` workflow.
+            この PR は `update-zip-code-data` ワークフローによって自動作成されました。
           delete-branch: true
