@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- 郵便番号データ更新 PR のコミット対象を `data/zip.yml` のみに限定 ([#101](https://github.com/chocoby/jp_prefecture/pull/101), [@chocoby](https://github.com/chocoby))
+- 郵便番号データの生成処理を `JpPrefecture::ZipMapping::Generator` に抽出し、複数の都道府県が共有する郵便番号が生成ごとに揺れる問題を修正 ([#103](https://github.com/chocoby/jp_prefecture/pull/103), [@chocoby](https://github.com/chocoby))
+
 ## [1.2.0] - 2026-08-11
 
 ### Added

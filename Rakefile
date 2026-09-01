@@ -5,8 +5,7 @@ require 'bundler/gem_tasks'
 
 desc '郵便番号のデータを作成/更新する'
 task :create_zip_code_data do
-  require 'csv'
-  require 'jp_prefecture'
+  require 'jp_prefecture/zip_mapping/generator'
 
   file_name = 'ken_all_utf8.csv'
 
@@ -17,48 +16,7 @@ task :create_zip_code_data do
   `rm ken_all.zip`
   `rm KEN_ALL.CSV`
 
-  zips = []
-
-  # read CSV
-  CSV.foreach(file_name, headers: false) { |line| zips << [line[2], line[6]] }
-
-  # create sorted list of zips -> prefecture_code
-  zips = zips
-         .collect { |zip, prefecture| [zip.to_i, JpPrefecture::Prefecture.find(name: prefecture).code] }
-         .sort_by { |a| a[0] }
-
-  # prepare calculation
-  ranged_zips = []
-  current = [zips.first[0], zips.first[0], zips.first[1]]
-
-  # calculate the zip ranges of each prefecture
-  zips.each do |zip, code|
-    if current[2] == code
-      current[1] = zip
-    else
-      ranged_zips << current
-      current = [zip, zip, code]
-    end
-  end
-
-  # add last prefecture
-  ranged_zips << current
-
-  # create prefecture hash
-  prefectures_to_zip = {}
-
-  ranged_zips.each do |r0, r1, code|
-    prefectures_to_zip[code] ||= []
-    prefectures_to_zip[code] << [r0, r1]
-  end
-
-  prefectures_to_zip = Hash[*prefectures_to_zip.sort.flatten(1)]
-  # save result
-  File.open('data/zip.yml', 'w') do |file|
-    file.write "# { prefecture_code: [[from_zip_1, to_zip_1], [from_zip_2, to_zip_2], ...], ... }\n"
-    file.write "# Last updated: #{Time.now.utc}\n"
-    file.write prefectures_to_zip.to_yaml
-  end
+  JpPrefecture::ZipMapping::Generator.new(file_name).write('data/zip.yml')
 
   # delete temporary file
   `rm #{file_name}`
