@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Setup ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.338.0
         with:
           ruby-version: 'ruby'
           bundler-cache: true
@@ -44,7 +44,7 @@ jobs:
 
       - name: Create pull request
         if: steps.diff.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@v8.1.3
         with:
           commit-message: 'chore: 郵便番号データを更新'
           add-paths: data/zip.yml
