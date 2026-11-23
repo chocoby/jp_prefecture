@@ -6,15 +6,15 @@ workflows:
     '.github/workflows/build.yml':
         - 'actions/checkout@v7.0.1'
         - 'coverallsapp/github-action@v2.3.8'
-        - 'ruby/setup-ruby@v1.338.0'
+        - 'ruby/setup-ruby@v1.342.0'
     '.github/workflows/release.yml':
         - 'actions/checkout@v7.0.1'
-        - 'ruby/setup-ruby@v1.338.0'
+        - 'ruby/setup-ruby@v1.342.0'
         - 'rubygems/configure-rubygems-credentials@v2.1.0'
     '.github/workflows/update-zip-code-data.yml':
         - 'actions/checkout@v7.0.1'
         - 'peter-evans/create-pull-request@v8.1.3'
-        - 'ruby/setup-ruby@v1.338.0'
+        - 'ruby/setup-ruby@v1.342.0'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
@@ -31,9 +31,9 @@ dependencies:
         commit: 'sha1-3ffccacd46053766916f087ce41d627c0b8cf2d1'
         owner_id: 18365890
         repo_id: 197176365
-    'ruby/setup-ruby@v1.338.0':
-        ref: 'v1.338.0'
-        commit: 'sha1-b3aaceaef7e0ee231b499e7b5f49c03fc1d32199'
+    'ruby/setup-ruby@v1.342.0':
+        ref: 'v1.342.0'
+        commit: 'sha1-f9c4492e86def3e644ab32a0ef185eda5b0c20d0'
         owner_id: 210414
         repo_id: 231208785
     'rubygems/configure-rubygems-credentials@v2.1.0':
